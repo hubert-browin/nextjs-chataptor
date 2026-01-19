@@ -1,6 +1,91 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
+
+// --- MOCK DATA (Dane testowe do prototypu) ---
+const conversations = [
+  {
+    id: 1,
+    name: 'Hans Müller',
+    time: '2m',
+    lastMessage: 'Wo ist meine Bestellung?',
+    lang: 'DE',
+    avatarColor: 'bg-indigo-100 text-indigo-600', // Kolor awatara
+    messages: [
+      {
+        id: 1,
+        sender: 'user',
+        text: 'Hallo, wo ist meine Bestellung?',
+        translation: 'Tłum: Cześć, gdzie jest moje zamówienie?',
+        timestamp: '10:23'
+      },
+      {
+        id: 2,
+        sender: 'agent',
+        text: 'Sprawdzam to dla Ciebie, daj mi chwilę.',
+        note: 'Przetłumaczono na Niemiecki',
+        timestamp: '10:24'
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: 'Pierre Dubois',
+    time: '15m',
+    lastMessage: 'Produit endommagé...',
+    lang: 'FR',
+    avatarColor: 'bg-emerald-100 text-emerald-600',
+    messages: [
+      {
+        id: 1,
+        sender: 'user',
+        text: 'Bonjour, mon produit est arrivé endommagé.',
+        translation: 'Tłum: Dzień dobry, mój produkt dotarł uszkodzony.',
+        timestamp: '09:45'
+      },
+      {
+        id: 2,
+        sender: 'agent',
+        text: 'Bardzo mi przykro. Czy możesz przesłać zdjęcie?',
+        note: 'Przetłumaczono na Francuski',
+        timestamp: '09:46'
+      },
+      {
+        id: 3,
+        sender: 'user',
+        text: 'Bien sûr, voici la photo.',
+        translation: 'Tłum: Oczywiście, oto zdjęcie. [Obraz]',
+        timestamp: '09:48'
+      }
+    ]
+  },
+  {
+    id: 3,
+    name: 'Giovanni Rossi',
+    time: '1h',
+    lastMessage: 'Avete questo in rosso?',
+    lang: 'IT',
+    avatarColor: 'bg-rose-100 text-rose-600',
+    messages: [
+      {
+        id: 1,
+        sender: 'user',
+        text: 'Ciao! Avete questo modello in rosso?',
+        translation: 'Tłum: Cześć! Macie ten model w kolorze czerwonym?',
+        timestamp: '08:30'
+      }
+    ]
+  }
+];
 
 export default function Home() {
+  // Stan do śledzenia aktywnej konwersacji (domyślnie pierwsza)
+  const [activeChatId, setActiveChatId] = useState(conversations[0].id);
+  const [inputValue, setInputValue] = useState('');
+
+  // Znajdź obiekt aktywnej konwersacji
+  const activeChat = conversations.find(c => c.id === activeChatId) || conversations[0];
+
   return (
     <main className="flex min-h-screen flex-col bg-white overflow-x-hidden">
       
@@ -33,7 +118,7 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-36 pb-20 text-center overflow-hidden">
-        {/* Background Elements from globals.css */}
+        {/* Background Elements */}
         <div className="hero-bg-stripes absolute inset-0 -z-10"></div>
         <div className="hero-bg-glow absolute -top-[20%] left-1/2 -translate-x-1/2 w-full h-[800px] -z-20"></div>
         
@@ -75,64 +160,152 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UI MOCKUP */}
+      {/* UI MOCKUP - INTERAKTYWNE */}
       <div className="px-6 max-w-5xl mx-auto -mt-10 mb-20 relative z-10">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col h-[600px] md:h-[500px]">
           {/* Window Header */}
-          <div className="bg-slate-50 h-9 border-b border-slate-100 flex items-center px-4 gap-2">
+          <div className="bg-slate-50 h-9 border-b border-slate-100 flex items-center px-4 gap-2 shrink-0">
             <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+            <div className="ml-4 text-[10px] text-slate-400 font-mono">Chataptor Agent Dashboard v1.0</div>
           </div>
           
           {/* Window Body */}
-          <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] h-[400px]">
-            {/* Sidebar */}
-            <div className="hidden md:block border-r border-slate-100 p-4">
-              <div className="p-3 rounded-lg bg-indigo-50 border border-indigo-100 mb-2 cursor-pointer">
-                <div className="flex justify-between text-sm font-semibold text-slate-800">
-                  Hans Müller <span className="text-slate-400 font-normal text-xs">2m</span>
-                </div>
-                <div className="text-xs text-slate-500 mt-1 truncate">Wo ist meine Bestellung?</div>
-                <span className="inline-block text-[10px] px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-500 mt-2">DE</span>
+          <div className="flex flex-1 overflow-hidden">
+            
+            {/* Sidebar (Chat List) */}
+            <div className="w-1/3 md:w-[260px] border-r border-slate-100 bg-white flex flex-col overflow-y-auto">
+              <div className="p-4 border-b border-slate-50">
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Aktywne rozmowy</div>
               </div>
-              <div className="p-3 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
-                <div className="flex justify-between text-sm font-semibold text-slate-800">
-                  Pierre Dubois <span className="text-slate-400 font-normal text-xs">5m</span>
-                </div>
-                <div className="text-xs text-slate-500 mt-1 truncate">Produit endommagé...</div>
-                <span className="inline-block text-[10px] px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-500 mt-2">FR</span>
+              <div className="p-2 space-y-1">
+                {conversations.map((chat) => (
+                  <button
+                    key={chat.id}
+                    onClick={() => setActiveChatId(chat.id)}
+                    className={`w-full text-left p-3 rounded-lg border transition-all duration-200 group ${
+                      activeChatId === chat.id
+                        ? 'bg-indigo-50 border-indigo-100 shadow-sm'
+                        : 'bg-white border-transparent hover:bg-slate-50'
+                    }`}
+                  >
+                    <div className="flex justify-between items-start mb-1">
+                      <span className={`text-sm font-semibold ${activeChatId === chat.id ? 'text-indigo-900' : 'text-slate-700'}`}>
+                        {chat.name}
+                      </span>
+                      <span className="text-[10px] text-slate-400">{chat.time}</span>
+                    </div>
+                    <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-indigo-600/80' : 'text-slate-500'}`}>
+                      {chat.lastMessage}
+                    </div>
+                    <div className="mt-2 flex items-center gap-2">
+                       <span className="inline-flex items-center justify-center px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
+                         {chat.lang}
+                       </span>
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
             
-            {/* Main Chat */}
-            <div className="p-6 flex flex-col justify-between bg-white">
-              <div className="flex flex-col gap-6">
-                {/* Incoming */}
-                <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-slate-200 shrink-0"></div>
-                  <div className="bg-slate-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%]">
-                    <div className="font-medium text-sm">Hallo, wo ist meine Bestellung?</div>
-                    <div className="text-[11px] text-slate-400 mt-1.5 pt-1.5 border-t border-slate-200/50">Tłum: Cześć, gdzie jest moje zamówienie?</div>
+            {/* Main Chat Area */}
+            <div className="flex-1 flex flex-col bg-slate-50/30">
+              
+              {/* Chat Header */}
+              <div className="h-14 border-b border-slate-100 bg-white flex items-center justify-between px-6 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${activeChat.avatarColor}`}>
+                    {activeChat.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-900">{activeChat.name}</div>
+                    <div className="text-[10px] text-slate-500 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Online • Język: {activeChat.lang}
+                    </div>
                   </div>
                 </div>
-                {/* Outgoing */}
-                <div className="flex gap-3 justify-end">
-                  <div className="bg-indigo-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%]">
-                    <div className="text-sm">Sprawdzam to dla Ciebie, daj mi chwilę.</div>
-                    <div className="text-[11px] text-indigo-200 mt-1.5 pt-1.5 border-t border-white/20">Przetłumaczono na Niemiecki</div>
+                <button className="text-slate-400 hover:text-slate-600">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                </button>
+              </div>
+
+              {/* Messages List */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {activeChat.messages.map((msg) => (
+                  <div key={msg.id} className={`flex gap-3 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
+                    {msg.sender === 'user' && (
+                       <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold ${activeChat.avatarColor}`}>
+                         {activeChat.name.charAt(0)}
+                       </div>
+                    )}
+                    
+                    <div className={`flex flex-col max-w-[85%] md:max-w-[70%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
+                      <div 
+                        className={`p-3.5 rounded-2xl text-sm shadow-sm ${
+                          msg.sender === 'agent' 
+                            ? 'bg-indigo-600 text-white rounded-tr-none' 
+                            : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
+                        }`}
+                      >
+                        <div className="font-medium">{msg.text}</div>
+                        
+                        {/* Translation Block */}
+                        {(msg.translation || msg.note) && (
+                          <div className={`mt-2 pt-2 text-[11px] border-t ${
+                            msg.sender === 'agent' 
+                              ? 'border-white/20 text-indigo-100' 
+                              : 'border-slate-100 text-slate-400'
+                          }`}>
+                            {msg.sender === 'user' ? (
+                              <div className="flex items-center gap-1.5">
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                {msg.translation}
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-1.5 justify-end">
+                                {msg.note}
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-slate-300 mt-1 px-1">{msg.timestamp}</span>
+                    </div>
+
+                    {msg.sender === 'agent' && (
+                       <div className="w-8 h-8 rounded-full bg-slate-900 shrink-0 flex items-center justify-center text-white text-xs font-bold">
+                         A
+                       </div>
+                    )}
                   </div>
-                </div>
+                ))}
               </div>
               
-              {/* Input */}
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-lg">
-                  <input type="text" placeholder="Napisz wiadomość po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400" />
-                  <button className="text-indigo-600 text-sm font-semibold px-2">Wyślij</button>
+              {/* Input Area */}
+              <div className="p-4 bg-white border-t border-slate-100">
+                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all">
+                  <input 
+                    type="text" 
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Napisz wiadomość po polsku..." 
+                    className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 px-2" 
+                  />
+                  <button className="bg-white hover:bg-slate-100 text-slate-600 p-1.5 rounded-lg transition-colors border border-slate-200">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                  </button>
+                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-colors shadow-sm">
+                    Wyślij
+                  </button>
+                </div>
+                <div className="text-center mt-2">
+                   <p className="text-[10px] text-slate-400">AI automatycznie przetłumaczy Twoją wiadomość na {activeChat.lang}</p>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
