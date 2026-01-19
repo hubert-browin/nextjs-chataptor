@@ -2,46 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-}
+/* Custom Utilities - przeniesione z Twojego pliku index.html */
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
-}
-
-/* Custom Utilities for Chataptor Design */
-
-/* Subtelny wzór w paski (Intercom style) */
-.hero-stripes {
+/* Paski w tle sekcji Hero */
+.hero-bg-stripes {
   background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size: 60px 100%;
+  mask-image: linear-gradient(to bottom, black 40%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent);
 }
 
-/* Blob / Poświata w tle */
-.hero-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+/* Poświata (Glow) w tle */
+.hero-bg-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
-/* Bento Grid Card Hover Effect */
-.bento-card {
-  transition: all 0.2s ease-in-out;
-}
-.bento-card:hover {
-  border-color: #94a3b8; /* slate-400 */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  transform: translateY(-1px);
-}
-
-/* Pulsing Status Dot */
+/* Animacja pulsującej kropki */
 @keyframes pulse-green {
-  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-  70% { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
-.status-dot {
+
+.animate-pulse-green {
   animation: pulse-green 2s infinite;
+}
+
+/* Dodatkowe wygładzanie czcionek */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
