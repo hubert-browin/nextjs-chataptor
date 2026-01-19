@@ -2,13 +2,10 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    // Skanuj pliki w katalogu app (tam gdzie jest Twój kod)
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    
-    // Oraz w src, jeśli Vercel/Next.js używa tej struktury
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}", // Dodatkowe zabezpieczenie
   ],
   theme: {
     extend: {
