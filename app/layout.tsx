@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+// Ładujemy font Inter z optymalizacją Next.js
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Chataptor - Global Support Platform",
-  description: "Sprzedawaj globalnie, obsługuj lokalnie. Hybrydowe tłumaczenia AI dla e-commerce.",
+  description: "Sprzedawaj globalnie, obsługuj lokalnie. Platforma AI dla e-commerce.",
 };
 
 export default function RootLayout({
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-white text-slate-900 antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
