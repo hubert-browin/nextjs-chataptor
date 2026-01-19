@@ -104,13 +104,12 @@ export default function Home() {
       <nav className="fixed w-full z-50 top-0 left-0 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16">
         <div className="h-full px-6 max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* ZMIANA: Użycie pliku logo zamiast SVG */}
+            {/* ZMIANA: Użycie pełnego logotypu z pliku logotype.png */}
             <img 
-              src="/logo-black.png" 
+              src="/logotype.png" 
               alt="Chataptor Logo" 
               className="h-8 w-auto object-contain"
             />
-            <span className="font-bold text-lg text-slate-900">Chataptor</span>
           </div>
           
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
