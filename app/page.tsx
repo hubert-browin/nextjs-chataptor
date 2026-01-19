@@ -161,8 +161,9 @@ export default function Home() {
       </section>
 
       {/* UI MOCKUP - INTERAKTYWNE */}
-      <div className="px-6 max-w-5xl mx-auto -mt-10 mb-20 relative z-10">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col h-[600px] md:h-[500px]">
+      {/* Zmieniono max-w-5xl na max-w-7xl dla szerszego kontenera */}
+      <div className="px-6 max-w-7xl mx-auto -mt-10 mb-20 relative z-10">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col h-[600px]">
           {/* Window Header */}
           <div className="bg-slate-50 h-9 border-b border-slate-100 flex items-center px-4 gap-2 shrink-0">
             <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
