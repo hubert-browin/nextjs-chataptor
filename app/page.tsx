@@ -81,20 +81,7 @@ const conversations = [
   }
 ];
 
-// Helper do ikony źródła
-const SourceIcon = ({ source }: { source: string }) => {
-  switch (source) {
-    case 'messenger':
-      return <div className="w-2 h-2 rounded-full bg-blue-500" title="Messenger"></div>;
-    case 'whatsapp':
-      return <div className="w-2 h-2 rounded-full bg-green-500" title="WhatsApp"></div>;
-    case 'email':
-      return <div className="w-2 h-2 rounded-full bg-yellow-500" title="Email"></div>;
-    default:
-      return <div className="w-2 h-2 rounded-full bg-slate-400"></div>;
-  }
-};
-
+// Helper do etykiety źródła
 const SourceLabel = ({ source }: { source: string }) => {
     switch (source) {
       case 'messenger': return 'Messenger';
@@ -229,12 +216,11 @@ export default function Home() {
                             {chat.lastMessage}
                         </div>
                         <div className="mt-2 flex items-center gap-2">
-                             {/* JĘZYK + ŹRÓDŁO */}
+                             {/* JĘZYK + ŹRÓDŁO (Bez kropek) */}
                             <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
                                 <span>{chat.lang}</span>
                                 <span className="text-slate-300">|</span>
-                                <SourceIcon source={chat.source} />
-                                <span className="text-[9px] text-slate-400 hidden lg:inline">{SourceLabel({source: chat.source})}</span>
+                                <span className="text-[9px] text-slate-400">{SourceLabel({source: chat.source})}</span>
                             </span>
                         </div>
                     </div>
@@ -259,7 +245,7 @@ export default function Home() {
                       <span className="text-slate-300">•</span>
                       <span>Język: <strong>{activeChat.lang}</strong></span>
                       <span className="text-slate-300">•</span>
-                      <span className="flex items-center gap-1">Przez: <SourceIcon source={activeChat.source} /> {SourceLabel({source: activeChat.source})}</span>
+                      <span>Przez: {SourceLabel({source: activeChat.source})}</span>
                     </div>
                   </div>
                 </div>
@@ -288,7 +274,7 @@ export default function Home() {
                       >
                         <div className="font-medium leading-relaxed">{msg.text}</div>
                         
-                        {/* Translation Block - TERAZ JEDNOLITY DLA OBU STRON */}
+                        {/* Translation Block */}
                         {msg.translation && (
                           <div className={`mt-2 pt-2 text-[11px] border-t flex items-start gap-1.5 ${
                             msg.sender === 'agent' 
