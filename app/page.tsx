@@ -104,11 +104,12 @@ export default function Home() {
       <nav className="fixed w-full z-50 top-0 left-0 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16">
         <div className="h-full px-6 max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-slate-900 rounded-md flex items-center justify-center text-white">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-              </svg>
-            </div>
+            {/* ZMIANA: Użycie pliku logo zamiast SVG */}
+            <img 
+              src="/logo-black.png" 
+              alt="Chataptor Logo" 
+              className="h-8 w-auto object-contain"
+            />
             <span className="font-bold text-lg text-slate-900">Chataptor</span>
           </div>
           
