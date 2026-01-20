@@ -396,7 +396,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
         <div className="px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             
             {/* Kolumna 1: Logo i Opis */}
             <div className="col-span-1 md:col-span-1">
@@ -428,27 +428,16 @@ export default function Home() {
             <div>
               <h3 className="text-sm font-semibold text-slate-900 mb-4 uppercase tracking-wider">Produkt</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Funkcje</a></li>
+                <li><a href="#product" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Funkcje</a></li>
                 <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Integracje</a></li>
                 <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Cennik</a></li>
                 <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Dla Developerów</a></li>
               </ul>
             </div>
 
-            {/* Kolumna 3: Firma */}
+            {/* Kolumna 3: Legal & Kontakt */}
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 mb-4 uppercase tracking-wider">Firma</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">O nas</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Blog</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Kariera</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Kontakt</a></li>
-              </ul>
-            </div>
-
-            {/* Kolumna 4: Legal & Kontakt */}
-            <div>
-              <h3 className="text-sm font-semibold text-slate-900 mb-4 uppercase tracking-wider">Legal</h3>
+              <h3 className="text-sm font-semibold text-slate-900 mb-4 uppercase tracking-wider">Legal & Kontakt</h3>
               <ul className="space-y-3 mb-6">
                 <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Polityka Prywatności</a></li>
                 <li><a href="#" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Regulamin (Terms)</a></li>
