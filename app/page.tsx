@@ -149,12 +149,15 @@ export default function Home() {
   const [inputValue, setInputValue] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false); // Make sure this state is used
 
   const activeChat = conversations.find(c => c.id === activeChatId) || conversations[0];
 
   useEffect(() => {
     const handleScroll = () => {
-        setScrolled(window.scrollY > 20);
+        // Show navbar only after scrolling down a bit (e.g., 100px)
+        setShowNavbar(window.scrollY > 100);
+        setScrolled(window.scrollY > 20); // Keep track of scroll position for other effects if needed
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -173,33 +176,29 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-white overflow-x-hidden font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       
-      {/* NAVIGATION - FLOATING ISLAND STYLE */}
-      <div className="fixed top-0 left-0 w-full z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
-        <nav className={`pointer-events-auto transition-all duration-500 ease-out 
-            ${scrolled 
-                ? 'w-[95%] md:w-[680px] bg-white/80 backdrop-blur-xl border border-slate-200/60 shadow-lg shadow-slate-200/20 py-2.5 px-3 md:px-4 rounded-2xl' 
-                : 'w-[95%] md:w-full max-w-7xl bg-transparent py-4 px-0 border border-transparent'
-            } flex items-center justify-between`}>
+      {/* NAVIGATION - FLOATING ISLAND STYLE (Visible only after scroll) */}
+      <div className={`fixed top-0 left-0 w-full z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none transition-all duration-500 ${showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        <nav className="pointer-events-auto w-[95%] md:w-[680px] bg-white/80 backdrop-blur-xl border border-slate-200/60 shadow-lg shadow-slate-200/20 py-2.5 px-3 md:px-4 rounded-2xl flex items-center justify-between">
             
             <div className="flex items-center gap-3 pl-2">
                 <a href="#" className="flex items-center gap-2 group">
                     <img 
                     src="/logotype.png" 
                     alt="Chataptor Logo" 
-                    className={`object-contain transition-all duration-300 ${scrolled ? 'h-6' : 'h-7 md:h-8'}`}
+                    className="h-6 object-contain"
                     />
                 </a>
             </div>
             
-            <div className={`hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 ${scrolled ? 'text-xs' : 'text-sm'}`}>
-                <a href="#product" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Produkt</a>
-                <a href="#how-it-works" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Jak to działa</a>
-                <a href="#pricing" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Cennik</a>
+            <div className="hidden md:flex items-center gap-1 text-xs font-medium text-slate-600">
+                <a href="#how-it-works" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Jak to działa?</a>
+                <a href="#implementation" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Wdrożenie</a>
+                <a href="#product" className="px-4 py-2 rounded-lg hover:bg-slate-100/50 hover:text-slate-900 transition-all">Funkcje</a>
             </div>
 
             <div className="hidden md:flex items-center gap-3 pr-1">
-                <a href="#" className={`font-medium text-slate-600 hover:text-slate-900 transition-colors ${scrolled ? 'text-xs' : 'text-sm'}`}>Zaloguj się</a>
-                <button className={`bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20 active:scale-95 ${scrolled ? 'px-4 py-2 text-xs' : 'px-5 py-2.5 text-sm'}`}>
+                <a href="#" className="font-medium text-slate-600 hover:text-slate-900 transition-colors text-xs">Zaloguj się</a>
+                <button className="bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20 active:scale-95 px-4 py-2 text-xs">
                 Rozpocznij
                 </button>
             </div>
@@ -219,12 +218,44 @@ export default function Home() {
         </nav>
       </div>
 
+      {/* Static Header Logo (Visible initially) */}
+      <div className={`absolute top-0 left-0 w-full z-40 py-6 px-4 md:px-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0 transition-opacity duration-300 ${showNavbar ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+         <div className="flex items-center gap-2">
+            <img src="/logotype.png" alt="Chataptor Logo" className="h-8 object-contain" />
+         </div>
+         {/* You can add a static "Login" or "Start" button here if you want one always visible before scroll */}
+         <div className="hidden md:flex items-center gap-4">
+             <a href="#" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Zaloguj się</a>
+             <button className="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20 active:scale-95">
+              Rozpocznij za darmo
+            </button>
+         </div>
+         {/* Mobile Menu Trigger for initial view */}
+         <button 
+            className="md:hidden p-2 text-slate-600"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+      </div>
+
+
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-white z-40 flex flex-col pt-28 px-6 gap-6 md:hidden animate-in fade-in duration-200">
-                <a href="#product" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Produkt</a>
-                <a href="#how-it-works" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Jak to działa</a>
-                <a href="#pricing" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Cennik</a>
+            <div className="fixed inset-0 bg-white z-50 flex flex-col pt-28 px-6 gap-6 md:hidden animate-in fade-in duration-200">
+                <button 
+                    className="absolute top-6 right-4 p-2 text-slate-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                >
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <a href="#how-it-works" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Jak to działa?</a>
+                <a href="#implementation" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Wdrożenie</a>
+                <a href="#product" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Funkcje</a>
                 <div className="h-px bg-slate-100 my-2"></div>
                 <a href="#" className="text-lg font-medium text-slate-600">Zaloguj się</a>
                 <button className="bg-slate-900 text-white px-4 py-4 rounded-2xl text-lg font-bold w-full shadow-xl shadow-slate-900/10">
@@ -546,8 +577,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE --- */}
-      <section className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+      {/* --- SEKCJA: WDROŻENIE (ID: implementation) --- */}
+      <section id="implementation" className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-16">
             {/* Lewa strona: Tekst */}
             <div>
@@ -802,7 +833,7 @@ export default function Home() {
                  </div>
             </div>
         </div>
-      </section>
+      </section> {/* Added missing closing tag */}
 
       <footer id="contact" className="py-16 md:py-20 bg-white border-t border-slate-200">
         <div className="container mx-auto px-6 max-w-7xl">
