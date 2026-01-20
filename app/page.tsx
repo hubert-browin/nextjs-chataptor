@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// --- MOCK DATA (Dane testowe do prototypu) ---
+// --- MOCK DATA (Dane testowe) ---
 const conversations = [
   {
     id: 1,
@@ -85,8 +85,8 @@ const SourceLabel = ({ source }: { source: string }) => {
     return source;
 };
 
-// Komponent dla pojedynczego kroku w sekcji "Jak to działa"
-const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
+// Komponent kroku (GrowthStep) - uproszczony i naprawiony
+const GrowthStep = ({ number, title, description, children, side = 'left' }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right' }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
 
@@ -102,20 +102,11 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
 
     return (
         <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {/* Connector Line Logic for Desktop */}
-            {!last && (
-                <div className={`hidden md:block absolute top-1/2 w-1/2 h-[200px] border-slate-300 border-dashed -z-10 
-                    ${side === 'left' 
-                        ? 'left-1/2 border-r-2 border-b-2 rounded-br-[3rem]' 
-                        : 'right-1/2 border-l-2 border-b-2 rounded-bl-[3rem]'
-                    }`} 
-                />
-            )}
-
-            {/* Content Side */}
+            
+            {/* Treść tekstowa */}
             <div className={`md:w-1/2 flex flex-col justify-center ${side === 'left' ? 'md:items-end md:text-right order-2 md:order-1' : 'md:items-start md:text-left order-2 md:order-2'}`}>
-                <div>
-                    <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">
+                <div className="relative">
+                    <div className="inline-block px-3 py-1 bg-white text-slate-500 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200 shadow-sm">
                         KROK {number}
                     </div>
                     <h3 className="text-3xl font-bold text-slate-900 mb-4">{title}</h3>
@@ -123,7 +114,12 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
                 </div>
             </div>
             
-            {/* Visual Side */}
+            {/* Punkt centralny na osi */}
+            <div className={`absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-white border-4 border-slate-100 rounded-full shadow-sm hidden md:flex items-center justify-center text-slate-400 text-sm font-bold z-10 transition-colors duration-500 ${isVisible ? 'text-indigo-600 border-indigo-50' : ''}`}>
+                {number}
+            </div>
+
+            {/* Element wizualny (Karta) */}
             <div className={`md:w-1/2 flex items-center justify-center order-1 ${side === 'left' ? 'md:order-2' : 'md:order-1'}`}>
                 {children}
             </div>
@@ -207,7 +203,6 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-44 pb-24 text-center overflow-hidden">
-        {/* Softer Background Decorations */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-indigo-50/60 to-transparent rounded-[100%] blur-3xl -z-10 opacity-70"></div>
         
         <div className="px-6 max-w-7xl mx-auto relative z-10">
@@ -263,9 +258,9 @@ export default function Home() {
         <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
           <div className="bg-white h-12 border-b border-slate-100 flex items-center px-5 gap-2 shrink-0 justify-between">
             <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
+                <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
             </div>
             <div className="text-[11px] text-slate-400 font-medium tracking-wide">Chataptor Agent Dashboard</div>
             <div className="w-10"></div>
@@ -425,7 +420,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (NOWOCZESNY LAYOUT Z PRZERYWANYMI LINIAMI) --- */}
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (NAPRAWIONA I MINIMALISTYCZNA) --- */}
       <section id="how-it-works" className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-24">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
@@ -433,6 +428,9 @@ export default function Home() {
         </div>
 
         <div className="relative space-y-24 md:space-y-0">
+            {/* CENTRALNA LINIA (SPINE) - STABILNA I PROSTA */}
+            <div className="absolute left-1/2 top-4 bottom-0 w-px border-l-2 border-dashed border-slate-200 -translate-x-1/2 hidden md:block -z-10 h-[calc(100%-100px)]"></div>
+
             {/* Step 1 */}
             <GrowthStep 
                 number="1" 
@@ -504,7 +502,6 @@ export default function Home() {
                 title="Wzrost przychodów" 
                 description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na zespole, a słupki sprzedaży rosną."
                 side="left"
-                last={true}
             >
                 <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
@@ -521,7 +518,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE (JASNA I PRZYJEMNA) --- */}
+      {/* --- SEKCJA: WDROŻENIE (CLEAN LIGHT MODE) --- */}
       <section className="py-24 px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
             {/* Lewa strona: Tekst */}
@@ -533,21 +530,21 @@ export default function Home() {
                 
                 <div className="space-y-8">
                     <div className="flex gap-5 group">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">1</div>
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-slate-400 transition-all">1</div>
                         <div>
                             <h4 className="font-bold text-lg text-slate-900 mb-1">Skopiuj snippet</h4>
                             <p className="text-slate-500 text-sm">Dostępny w Twoim panelu administratora.</p>
                         </div>
                     </div>
                     <div className="flex gap-5 group">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">2</div>
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-slate-400 transition-all">2</div>
                         <div>
                             <h4 className="font-bold text-lg text-slate-900 mb-1">Wklej w &lt;head&gt;</h4>
                             <p className="text-slate-500 text-sm">Działa z każdym CMS i customowym sklepem.</p>
                         </div>
                     </div>
                     <div className="flex gap-5 group">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">3</div>
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-slate-400 transition-all">3</div>
                         <div>
                             <h4 className="font-bold text-lg text-slate-900 mb-1">Wybierz języki</h4>
                             <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
@@ -556,9 +553,9 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Prawa strona: Code Mockup (Clean Light Version) */}
+            {/* Prawa strona: Code Mockup (SUPER CLEAN LIGHT) */}
             <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-50 rounded-3xl blur-lg opacity-60"></div>
                 <div className="relative bg-white rounded-2xl border border-slate-200 p-8 shadow-xl font-mono text-sm">
                     <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
                         <div className="flex items-center gap-2">
@@ -568,23 +565,24 @@ export default function Home() {
                         </div>
                         <span className="text-slate-400 text-xs font-semibold">index.html</span>
                     </div>
-                    <div className="text-slate-600 space-y-1.5 leading-relaxed">
-                        <div><span className="text-pink-600">&lt;head&gt;</span></div>
+                    <div className="text-slate-600 space-y-2 leading-relaxed">
+                        <div><span className="text-purple-600 font-semibold">&lt;head&gt;</span></div>
                         <div className="pl-4 text-slate-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
-                        <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
+                        <div className="pl-4"><span className="text-purple-600">&lt;meta</span> <span className="text-blue-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
                         <div className="pl-4 h-4"></div>
                         <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                        <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r">
-                            <span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                        <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5">
-                            <span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span>
+                        <div className="pl-4 bg-slate-50 border-l-4 border-indigo-500 py-3 pr-2 rounded-r shadow-sm">
+                            <span className="text-purple-600">&lt;script</span> <span className="text-blue-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span>
                         </div>
-                        <div><span className="text-pink-600">&lt;/head&gt;</span></div>
+                        <div className="pl-8 bg-slate-50 border-l-4 border-indigo-500 py-3 pr-2 rounded-r -mt-1.5 shadow-sm">
+                            <span className="text-blue-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-purple-600">&gt;&lt;/script&gt;</span>
+                        </div>
+                        <div><span className="text-purple-600 font-semibold">&lt;/head&gt;</span></div>
                     </div>
                     
-                    {/* Status Badge */}
-                    <div className="absolute top-8 right-8 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-100 flex items-center gap-2 shadow-sm">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    {/* Status Badge - Minimal */}
+                    <div className="absolute top-8 right-8 px-3 py-1 bg-white text-emerald-600 text-xs font-bold rounded-full border border-emerald-100 flex items-center gap-2 shadow-sm">
+                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                         Connected
                     </div>
                 </div>
