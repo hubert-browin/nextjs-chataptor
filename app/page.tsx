@@ -101,7 +101,7 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
     }, []);
 
     return (
-        <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-32 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             
             {/* Desktop Center Connector Point */}
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white bg-indigo-600 shadow-md z-10 items-center justify-center">
@@ -114,18 +114,18 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
             `}></div>
 
             {/* Content Side */}
-            <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 ${side === 'left' ? 'md:items-end md:text-right md:pr-12 order-2 md:order-1' : 'md:items-start md:text-left md:pl-12 order-2 md:order-2'}`}>
+            <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 order-2 md:order-1' : 'md:items-start md:text-left md:pl-16 order-2 md:order-2'}`}>
                 <div>
                     <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">
                         KROK {number}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">{title}</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
                     <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm">{description}</p>
                 </div>
             </div>
             
             {/* Visual Side */}
-            <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-1 ${side === 'left' ? 'md:order-2 md:pl-12' : 'md:order-1 md:pr-12'}`}>
+            <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-1 ${side === 'left' ? 'md:order-2 md:pl-16' : 'md:order-1 md:pr-16'}`}>
                 {children}
             </div>
         </div>
@@ -262,16 +262,16 @@ export default function Home() {
 
       {/* UI MOCKUP - INTERAKTYWNE */}
       <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-6 md:-mt-10 mb-20 md:mb-32 relative z-20">
-        <div className="bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[500px] md:h-[750px] ring-1 ring-slate-900/5">
-          {/* Mockup Header */}
-          <div className="bg-white h-10 md:h-12 border-b border-slate-100 flex items-center px-3 md:px-5 gap-2 shrink-0 justify-between">
-            <div className="flex gap-1.5 md:gap-2">
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div>
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div>
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div>
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
+          {/* Mockup Header - Restore Original Styles */}
+          <div className="bg-white h-12 border-b border-slate-100 flex items-center px-5 gap-2 shrink-0 justify-between">
+            <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
+                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
+                <div className="w-3 h-3 rounded-full bg-slate-200"></div>
             </div>
-            <div className="text-[10px] md:text-[11px] text-slate-400 font-medium tracking-wide">Chataptor Agent</div>
-            <div className="w-8 md:w-10"></div>
+            <div className="text-[11px] text-slate-400 font-medium tracking-wide">Chataptor Agent Dashboard</div>
+            <div className="w-10"></div>
           </div>
           
           <div className="flex flex-1 overflow-hidden relative">
@@ -280,11 +280,11 @@ export default function Home() {
                 ${activeChatId ? 'hidden md:flex' : 'flex'} 
                 w-full md:w-[320px] border-r border-slate-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full
             `}>
-              <div className="p-4 md:p-5 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
+              <div className="p-5 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
                 <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">Inbox</div>
                 <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-md font-medium">3 nowe</div>
               </div>
-              <div className="p-2 md:p-3 space-y-1">
+              <div className="p-3 space-y-1">
                 {conversations.map((chat) => (
                   <button
                     key={chat.id}
@@ -296,7 +296,7 @@ export default function Home() {
                     }`}
                   >
                     {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-600 rounded-r-full"></div>}
-                    <div className={`w-9 h-9 md:w-10 md:h-10 rounded-full shrink-0 flex items-center justify-center text-xs md:text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm`}>
+                    <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm`}>
                         {chat.name.charAt(0)}
                     </div>
                     <div className="flex-1 min-w-0 py-0.5">
@@ -326,18 +326,18 @@ export default function Home() {
                 ${activeChatId ? 'flex' : 'hidden md:flex'} 
                 flex-1 flex-col bg-slate-50/30 relative w-full h-full
             `}>
-              {/* Mobile back button header */}
-              <div className="md:hidden h-14 border-b border-slate-100 bg-white flex items-center px-4 gap-3 sticky top-0 z-20">
+              {/* Mobile back button header - keep for responsiveness */}
+              <div className="md:hidden h-16 border-b border-slate-100 bg-white flex items-center px-4 gap-3 sticky top-0 z-20">
                    <button onClick={() => setActiveChatId(0)} className="p-2 -ml-2 text-slate-500">
                      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                    </button>
-                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${activeChat.avatarColor}`}>
+                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>
                     {activeChat.name.charAt(0)}
                    </div>
                    <div className="font-bold text-sm text-slate-900">{activeChat.name}</div>
               </div>
 
-              {/* Desktop Header */}
+              {/* Desktop Header - Original Style */}
               <div className="hidden md:flex h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>
@@ -361,18 +361,18 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6">
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {activeChat.messages.map((msg) => (
-                  <div key={msg.id} className={`flex gap-2 md:gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
+                  <div key={msg.id} className={`flex gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
                     {msg.sender === 'user' && (
-                        <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full shrink-0 flex items-center justify-center text-[10px] md:text-xs font-bold shadow-sm ${activeChat.avatarColor}`}>
+                        <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold shadow-sm ${activeChat.avatarColor}`}>
                           {activeChat.name.charAt(0)}
                         </div>
                     )}
                     
                     <div className={`flex flex-col max-w-[85%] md:max-w-[70%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
                       <div 
-                        className={`p-3 md:p-4 rounded-2xl text-sm shadow-sm relative group ${
+                        className={`p-4 rounded-2xl text-sm shadow-sm relative group ${
                           msg.sender === 'agent' 
                             ? 'bg-indigo-600 text-white rounded-tr-none'
                             : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
@@ -380,7 +380,7 @@ export default function Home() {
                       >
                         <div className="font-medium leading-relaxed">{msg.text}</div>
                         {msg.translation && (
-                          <div className={`mt-2 md:mt-3 pt-2 text-[10px] md:text-[11px] border-t flex items-start gap-2 ${
+                          <div className={`mt-3 pt-2 text-[11px] border-t flex items-start gap-2 ${
                             msg.sender === 'agent' 
                               ? 'border-white/20 text-indigo-100'
                               : 'border-slate-100 text-slate-400'
@@ -394,7 +394,7 @@ export default function Home() {
                     </div>
 
                     {msg.sender === 'agent' && (
-                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-slate-900 shrink-0 flex items-center justify-center text-white text-[10px] md:text-xs font-bold shadow-sm">
+                        <div className="w-8 h-8 rounded-full bg-slate-900 shrink-0 flex items-center justify-center text-white text-xs font-bold shadow-sm">
                           A
                         </div>
                     )}
@@ -403,7 +403,7 @@ export default function Home() {
                 
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-4">
-                        <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-[10px] md:text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-indigo-200 shadow-sm whitespace-nowrap overflow-hidden max-w-full text-ellipsis">
+                        <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-indigo-200 shadow-sm whitespace-nowrap overflow-hidden max-w-full text-ellipsis">
                             <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             <span className="truncate">AI Sugestia: "Wyślemy nowy produkt jutro."</span>
                         </button>
@@ -411,7 +411,7 @@ export default function Home() {
                 )}
               </div>
               
-              <div className="p-3 md:p-4 bg-white border-t border-slate-100">
+              <div className="p-4 bg-white border-t border-slate-100">
                 <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
                   <input 
                     type="text" 
@@ -420,12 +420,12 @@ export default function Home() {
                     placeholder="Napisz po polsku..." 
                     className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 px-2 min-w-0" 
                   />
-                  <div className="flex items-center gap-1 border-r border-slate-200 pr-1 md:pr-2 mr-1">
+                  <div className="flex items-center gap-1 border-r border-slate-200 pr-2 mr-1">
                      <button className="hover:bg-slate-200 p-1.5 rounded-lg text-slate-400 transition-colors hidden sm:block" title="Załącz plik">
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                      </button>
                   </div>
-                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-3 md:px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">
+                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">
                     Wyślij
                   </button>
                 </div>
@@ -437,8 +437,8 @@ export default function Home() {
       </div>
 
       {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (NOWOCZESNA LINIA) --- */}
-      <section id="how-it-works" className="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-16 md:mb-24">
+      <section id="how-it-works" className="py-24 md:py-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-24 md:mb-32">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
             <p className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto">Ścieżka, która poprowadzi Cię do międzynarodowego sukcesu. Prosta, logiczna, zautomatyzowana.</p>
         </div>
@@ -450,7 +450,7 @@ export default function Home() {
             {/* Mobile Vertical Line */}
             <div className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-slate-200"></div>
 
-            <div className="space-y-16 md:space-y-0 relative">
+            <div className="space-y-24 md:space-y-32 relative">
                 {/* Step 1 */}
                 <GrowthStep 
                     number="1" 
@@ -458,7 +458,7 @@ export default function Home() {
                     description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania bez długich szkoleń."
                     side="right"
                 >
-                    <div className="bg-white p-5 md:p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300 relative">
+                    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300 relative">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -481,7 +481,7 @@ export default function Home() {
                     description="W panelu administratora zaznaczasz kraje, na które chcesz wejść. Tłumaczenie AI włącza się automatycznie dla każdego z nich."
                     side="left"
                 >
-                    <div className="bg-white p-5 md:p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm mr-auto transform hover:-translate-y-1 transition-transform duration-300">
+                    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm mr-auto transform hover:-translate-y-1 transition-transform duration-300">
                         <div className="flex flex-wrap gap-2 mb-6">
                             <span className="px-3 py-1.5 bg-slate-50 rounded-lg text-xs font-semibold text-slate-500">Polska 🇵🇱</span>
                             <span className="px-3 py-1.5 bg-amber-50 rounded-lg text-xs font-semibold text-amber-700 border border-amber-100">Niemcy 🇩🇪</span>
@@ -494,24 +494,26 @@ export default function Home() {
                     </div>
                 </GrowthStep>
 
-                {/* Step 3 */}
+                {/* Step 3 - POPRAWIONY (WYGLĄD CZATU) */}
                 <GrowthStep 
                     number="3" 
                     title="Obsługa bez barier" 
                     description="Klienci piszą w swoim języku, Ty odpisujesz po polsku. AI tłumaczy wszystko w locie, zachowując idealny kontekst e-commerce."
                     side="right"
                 >
-                    <div className="bg-white p-5 md:p-5 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300">
-                        <div className="flex flex-col gap-3">
-                            <div className="flex gap-3">
-                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm shadow-sm">🇩🇪</div>
-                                <div className="bg-slate-50 p-3 rounded-2xl rounded-tl-none text-xs font-medium text-slate-600 border border-slate-100">Wo ist mein Paket?</div>
-                            </div>
-                            <div className="flex gap-3 justify-end">
-                                <div className="bg-indigo-600 p-3 rounded-2xl rounded-tr-none text-xs font-medium text-white shadow-md shadow-indigo-200">Gdzie jest moja paczka? 🇵🇱</div>
-                                <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-sm font-bold text-indigo-600 shadow-sm">A</div>
-                            </div>
-                            <div className="text-[10px] text-center text-slate-400 mt-2 font-medium">Tłumaczenie w czasie rzeczywistym...</div>
+                    <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300">
+                        <div className="flex gap-3">
+                             <div className="w-8 h-8 rounded-full bg-slate-100 shrink-0 flex items-center justify-center text-sm shadow-sm">🇩🇪</div>
+                             <div className="flex flex-col items-start max-w-[85%]">
+                                <div className="p-4 rounded-2xl text-sm shadow-sm bg-white text-slate-700 border border-slate-100 rounded-tl-none">
+                                    <div className="font-medium leading-relaxed">Wo ist mein Paket?</div>
+                                    <div className="mt-3 pt-2 text-[11px] border-t border-slate-100 text-slate-400 flex items-start gap-2">
+                                        <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                        <span className="italic">Gdzie jest moja paczka?</span>
+                                    </div>
+                                </div>
+                                <span className="text-[10px] text-slate-400 mt-1 px-1">10:42</span>
+                             </div>
                         </div>
                     </div>
                 </GrowthStep>
@@ -524,7 +526,7 @@ export default function Home() {
                     side="left"
                     last={true}
                 >
-                    <div className="bg-white p-5 md:p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
                         <div className="relative z-10">
                             <div className="text-4xl md:text-5xl font-extrabold text-emerald-500 mb-2 tracking-tight">+40%</div>
@@ -541,7 +543,7 @@ export default function Home() {
       </section>
 
       {/* --- SEKCJA: WDROŻENIE (JASNA I PRZYJEMNA) --- */}
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+      <section className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
             {/* Lewa strona: Tekst */}
             <div>
@@ -579,11 +581,12 @@ export default function Home() {
             <div className="relative mt-8 lg:mt-0">
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
                 <div className="relative bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-xl font-mono text-xs md:text-sm overflow-x-auto">
+                    {/* Header z kolorowymi kropkami "Macbook" */}
                     <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4 min-w-[300px]">
                         <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                            <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                            <div className="w-3 h-3 rounded-full bg-slate-200"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
                         </div>
                         <span className="text-slate-400 text-xs font-semibold">index.html</span>
                     </div>
