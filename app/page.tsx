@@ -528,7 +528,7 @@ export default function Home() {
                     </div>
                 </GrowthStep>
 
-                {/* Step 4 - WZROST PRZYCHODÓW (Reverted) */}
+                {/* Step 4 - WZROST PRZYCHODÓW */}
                 <GrowthStep number="4" title="Wzrost przychodów" description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na zespole, a słupki sprzedaży rosną." side="left" last={true}>
                     <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
@@ -800,6 +800,81 @@ export default function Home() {
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                     Data Residency (EU)
                  </div>
+            </div>
+        </div>
+      </section>
+
+      <footer id="contact" className="py-16 md:py-20 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid md:grid-cols-3 gap-12 md:gap-16 mb-16 md:mb-20">
+            
+            <div className="space-y-6 md:space-y-8">
+                <div className="flex items-center gap-3">
+                    <img 
+                        src="/logotype.png" 
+                        alt="Chataptor" 
+                        className="h-6 md:h-8 w-auto object-contain"
+                    />
+                </div>
+                <p className="text-slate-500 font-light leading-relaxed max-w-md text-base md:text-lg">
+                    Brama na świat dla Twojego e-commerce. Przełamujemy bariery językowe, łącząc AI z ludzką empatią.
+                </p>
+            </div>
+
+            <div className="space-y-6 md:space-y-8">
+                <h4 className="text-lg font-bold text-slate-900">Kontakt</h4>
+                <div className="space-y-4 md:space-y-5">
+                <a href="mailto:hello@chataptor.com" className="flex items-center gap-4 text-slate-500 hover:text-slate-900 transition-colors group">
+                    <div className="p-2 bg-slate-50 rounded-lg group-hover:bg-slate-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                    </div>
+                    <span className="font-medium text-sm md:text-base">contact@chataptor.com</span>
+                </a>
+                <div className="flex items-center gap-4 text-slate-500">
+                    <div className="p-2 bg-slate-50 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <span className="font-medium text-sm md:text-base">Łódź, Polska</span>
+                </div>
+                </div>
+            </div>
+
+            <div className="space-y-6 md:space-y-8">
+                <h4 className="text-lg font-bold text-slate-900">Informacje prawne</h4>
+                <ul className="space-y-3 md:space-y-4 text-slate-500 font-medium text-sm md:text-base">
+                <li>
+                    <a href="#" className="hover:text-slate-900 transition-colors flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-slate-300 rounded-full"></span>
+                        Polityka prywatności
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="hover:text-slate-900 transition-colors flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-slate-300 rounded-full"></span>
+                        Regulamin
+                    </a>
+                </li>
+                </ul>
+            </div>
+            </div>
+
+            <div className="border-t border-slate-100 pt-8 md:pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-slate-400 text-sm font-medium text-center">
+                © {new Date().getFullYear()} Wszystkie prawa zastrzeżone.
+            </p>
+            <div className="flex items-center gap-3 text-xs font-bold text-slate-500 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Uptime: 99.98%
+            </div>
             </div>
         </div>
       </footer>
