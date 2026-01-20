@@ -288,16 +288,16 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-slate-900 text-white rounded-2xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] shadow-xl shadow-slate-900/10 ring-4 ring-slate-100 active:scale-95">
               Dołącz do bety
             </button>
-            {/* NEW MODERN "PLAY CAPSULE" BUTTON */}
-            <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-slate-100 shadow-[0_0_40px_-10px_rgba(79,70,229,0.3)] hover:shadow-[0_0_60px_-15px_rgba(79,70,229,0.4)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
-                <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40 shrink-0">
+            {/* NEW MODERN "PLAY CAPSULE" BUTTON - MONOCHROME VERSION */}
+            <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-slate-200 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_0_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
+                <div className="relative w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-lg shadow-slate-900/20 shrink-0 group-hover:bg-black transition-colors duration-300">
                     <span className="absolute inset-0 rounded-full border border-white/20"></span>
                     <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                     
-                    {/* Pulsing ring inside icon - Always active */}
-                    <span className="absolute -inset-1 rounded-full border border-indigo-500/30 animate-[ping_2s_linear_infinite]"></span>
+                    {/* Pulsing ring inside icon - Always active (Monochrome) */}
+                    <span className="absolute -inset-1 rounded-full border border-slate-900/30 animate-[ping_2s_linear_infinite]"></span>
                 </div>
-                <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">Zobacz demo</span>
+                <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Zobacz demo</span>
             </button>
           </div>
 
