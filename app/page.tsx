@@ -579,6 +579,33 @@ export default function Home() {
                             <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
                         </div>
                     </div>
+                    {/* NEW STEP 4 WITH LOGOS */}
+                    <div className="flex gap-4 md:gap-5 group">
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all shrink-0">4</div>
+                        <div className="w-full">
+                            <h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4>
+                            <p className="text-slate-500 text-sm mb-4">Podłącz Messengera, WhatsAppa lub e-mail.</p>
+                            
+                            {/* MODERN UNUSUAL LOGO DISPLAY - FLOATING STACK */}
+                            <div className="relative h-14 w-full max-w-xs group/logos">
+                                <div className="absolute left-0 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform -rotate-12 group-hover/logos:rotate-0 group-hover/logos:translate-x-0 transition-all duration-300 z-10">
+                                    <img src="/shopify-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
+                                </div>
+                                <div className="absolute left-6 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform -rotate-6 group-hover/logos:rotate-0 group-hover/logos:translate-x-12 transition-all duration-300 z-20">
+                                    <img src="/woo-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
+                                </div>
+                                <div className="absolute left-12 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-0 group-hover/logos:rotate-0 group-hover/logos:translate-x-24 transition-all duration-300 z-30">
+                                    <img src="/magento-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
+                                </div>
+                                <div className="absolute left-18 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-6 group-hover/logos:rotate-0 group-hover/logos:translate-x-36 transition-all duration-300 z-40 ml-6">
+                                    <img src="/messenger-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
+                                </div>
+                                <div className="absolute left-24 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-12 group-hover/logos:rotate-0 group-hover/logos:translate-x-48 transition-all duration-300 z-50 ml-12">
+                                    <img src="/whatsapp-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -614,35 +641,6 @@ export default function Home() {
                         <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                         Connected
                     </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      {/* --- SEKCJA: INTEGRACJE (PLATFORMY) --- */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4">Działa z Twoim ekosystemem</h3>
-            <p className="text-slate-500 mb-10 md:mb-12 text-sm md:text-base">Bezproblemowa integracja z najpopularniejszymi platformami e-commerce i komunikatorami.</p>
-            
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/shopify-logo.png" alt="Shopify" className="h-full w-auto object-contain" />
-                </div>
-                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/woo-logo.png" alt="WooCommerce" className="h-full w-auto object-contain" />
-                </div>
-                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/magento-logo.png" alt="Magento" className="h-full w-auto object-contain" />
-                </div>
-                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/messenger-logo.png" alt="Messenger" className="h-full w-auto object-contain" />
-                </div>
-                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/whatsapp-logo.png" alt="WhatsApp" className="h-full w-auto object-contain" />
-                </div>
-                <div className="h-7 md:h-9 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
-                    <img src="/gmail-logo.png" alt="Gmail" className="h-full w-auto object-contain" />
                 </div>
             </div>
         </div>
