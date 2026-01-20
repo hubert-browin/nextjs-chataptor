@@ -9,7 +9,7 @@ const styles = `
     100% { transform: translateX(-50%); }
   }
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    animation: marquee 40s linear infinite; /* Zwolnione dla lepszego efektu dużych logotypów */
   }
   .mask-gradient {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -193,7 +193,7 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Panel Agenta</a>
+            <a href="#" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Zaloguj się</a>
             <button className="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20 active:scale-95">
               Rozpocznij za darmo
             </button>
@@ -220,7 +220,7 @@ export default function Home() {
                 <a href="#how-it-works" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Jak to działa</a>
                 <a href="#pricing" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Cennik</a>
                 <div className="h-px bg-slate-100 my-2"></div>
-                <a href="#" className="text-lg font-medium text-slate-600">Panel Agenta</a>
+                <a href="#" className="text-lg font-medium text-slate-600">Zaloguj się</a>
                 <button className="bg-slate-900 text-white px-4 py-4 rounded-2xl text-lg font-bold w-full shadow-xl shadow-slate-900/10">
                     Rozpocznij za darmo
                 </button>
@@ -251,17 +251,16 @@ export default function Home() {
             <span className="block mt-2 md:inline md:mt-0 text-slate-900 font-medium">Zero tłumaczy. Zero opóźnień. 100% AI.</span>
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-16 md:mb-20 px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-16 md:mb-20 px-4">
             <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-slate-900 text-white rounded-2xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] shadow-xl shadow-slate-900/10 ring-4 ring-slate-100 active:scale-95">
               Dołącz do bety
             </button>
-            <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-white text-slate-700 rounded-2xl text-base font-semibold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-3 group active:scale-95">
-              <div className="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg width="10" height="10" fill="currentColor" className="ml-0.5" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <span>Zobacz demo</span>
+            <button className="group relative w-full sm:w-auto px-8 py-3.5 md:py-4 rounded-2xl bg-white text-slate-900 text-base font-bold shadow-lg shadow-slate-200/50 border border-slate-100 hover:border-indigo-100 hover:shadow-indigo-500/20 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden active:scale-95">
+                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <span className="relative flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 group-hover:bg-indigo-600 transition-colors duration-300">
+                    <svg className="w-3 h-3 text-slate-600 group-hover:text-white transition-colors ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <span className="relative">Zobacz demo</span>
             </button>
           </div>
 
@@ -543,7 +542,7 @@ export default function Home() {
 
       {/* --- SEKCJA: WDROŻENIE --- */}
       <section className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-16">
             {/* Lewa strona: Tekst */}
             <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
@@ -572,23 +571,12 @@ export default function Home() {
                             <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
                         </div>
                     </div>
-                    {/* NEW STEP 4 + MARQUEE */}
+                    {/* Step 4 - List Item Only */}
                     <div className="flex gap-4 md:gap-5 group">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all shrink-0">4</div>
-                        <div className="w-full overflow-hidden">
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">4</div>
+                        <div>
                             <h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4>
-                            <p className="text-slate-500 text-sm mb-4">Podłącz Messengera, WhatsAppa lub e-mail.</p>
-                            
-                            {/* INFINITE MARQUEE */}
-                            <div className="w-full relative mask-gradient">
-                                <div className="flex animate-marquee whitespace-nowrap">
-                                    {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-                                        <div key={index} className="w-14 h-14 flex-shrink-0 flex items-center justify-center mx-2 md:mx-3 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                                            <img src={logo} alt="Integration" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <p className="text-slate-500 text-sm">Podłącz Messengera, WhatsAppa lub e-mail.</p>
                         </div>
                     </div>
                 </div>
@@ -624,6 +612,17 @@ export default function Home() {
                         Connected
                     </div>
                 </div>
+            </div>
+        </div>
+
+        {/* FULL WIDTH MARQUEE BELOW GRID */}
+        <div className="w-full max-w-7xl mx-auto relative mask-gradient mt-12">
+            <div className="flex animate-marquee whitespace-nowrap items-center">
+                {[...logos, ...logos, ...logos, ...logos, ...logos].map((logo, index) => (
+                    <div key={index} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center mx-4 md:mx-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                        <img src={logo} alt="Integration" className="w-12 h-12 md:w-16 md:h-16 object-contain" />
+                    </div>
+                ))}
             </div>
         </div>
       </section>
