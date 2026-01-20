@@ -2,6 +2,22 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
+// --- STYLES FOR ANIMATIONS (MARQUEE) ---
+// Dodajemy style bezpośrednio tutaj, aby nie modyfikować global.css
+const styles = `
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+  .mask-gradient {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+`;
+
 // --- MOCK DATA ---
 const conversations = [
   {
@@ -81,11 +97,7 @@ const conversations = [
   }
 ];
 
-const SourceLabel = ({ source }: { source: string }) => {
-    return source;
-};
-
-// Nowoczesny komponent kroku z poprawioną linią
+// Komponent kroku
 const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
@@ -149,8 +161,18 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const logos = [
+    '/shopify-logo.png',
+    '/woo-logo.png',
+    '/magento-logo.png',
+    '/messenger-logo.png',
+    '/whatsapp-logo.png',
+    '/gmail-logo.png'
+  ];
+
   return (
     <main className="flex min-h-screen flex-col bg-white overflow-x-hidden font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
       
       {/* NAVIGATION */}
       <nav className={`fixed w-full z-50 top-0 left-0 transition-all duration-300 ${scrolled || mobileMenuOpen ? 'bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm py-3 md:py-4' : 'bg-transparent py-4 md:py-6'}`}>
@@ -209,7 +231,6 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-32 md:pt-44 pb-16 md:pb-24 text-center overflow-hidden">
-        {/* Softer Background Decorations */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] md:w-[1200px] h-[600px] bg-gradient-to-b from-indigo-50/60 to-transparent rounded-[100%] blur-3xl -z-10 opacity-70"></div>
         
         <div className="px-4 md:px-6 max-w-7xl mx-auto relative z-10">
@@ -260,10 +281,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UI MOCKUP - INTERAKTYWNE */}
+      {/* UI MOCKUP */}
       <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-6 md:-mt-10 mb-20 md:mb-32 relative z-20">
         <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
-          {/* Mockup Header - Restore Original Styles */}
+          {/* Header */}
           <div className="bg-white h-12 border-b border-slate-100 flex items-center px-5 gap-2 shrink-0 justify-between">
             <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-slate-200"></div>
@@ -275,7 +296,7 @@ export default function Home() {
           </div>
           
           <div className="flex flex-1 overflow-hidden relative">
-            {/* Sidebar List - Hidden on small mobile, simplified */}
+            {/* Sidebar */}
             <div className={`
                 ${activeChatId ? 'hidden md:flex' : 'flex'} 
                 w-full md:w-[320px] border-r border-slate-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full
@@ -322,12 +343,11 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Chat Area */}
+            {/* Chat */}
             <div className={`
                 ${activeChatId ? 'flex' : 'hidden md:flex'} 
                 flex-1 flex-col bg-slate-50/30 relative w-full h-full
             `}>
-              {/* Mobile back button header - keep for responsiveness */}
               <div className="md:hidden h-16 border-b border-slate-100 bg-white flex items-center px-4 gap-3 sticky top-0 z-20">
                    <button onClick={() => setActiveChatId(0)} className="p-2 -ml-2 text-slate-500">
                      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -338,7 +358,6 @@ export default function Home() {
                    <div className="font-bold text-sm text-slate-900">{activeChat.name}</div>
               </div>
 
-              {/* Desktop Header - Original Style */}
               <div className="hidden md:flex h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>
@@ -441,7 +460,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (NOWOCZESNA LINIA) --- */}
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (GROWTH PATH) --- */}
       <section id="how-it-works" className="py-24 md:py-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-24 md:mb-32">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
@@ -449,20 +468,12 @@ export default function Home() {
         </div>
 
         <div className="relative">
-            {/* The Central Line (Desktop Only) */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-indigo-200 -translate-x-1/2 rounded-full"></div>
-            
-            {/* Mobile Vertical Line */}
             <div className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-slate-200"></div>
 
             <div className="space-y-24 md:space-y-32 relative">
                 {/* Step 1 */}
-                <GrowthStep 
-                    number="1" 
-                    title="Szybka instalacja" 
-                    description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania bez długich szkoleń."
-                    side="right"
-                >
+                <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
                     <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300 relative">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm">
@@ -480,12 +491,7 @@ export default function Home() {
                 </GrowthStep>
 
                 {/* Step 2 */}
-                <GrowthStep 
-                    number="2" 
-                    title="Wybór rynków" 
-                    description="W panelu administratora zaznaczasz kraje, na które chcesz wejść. Tłumaczenie AI włącza się automatycznie dla każdego z nich."
-                    side="left"
-                >
+                <GrowthStep number="2" title="Wybór rynków" description="W panelu zaznaczasz kraje, na które chcesz wejść. Tłumaczenie AI włącza się automatycznie." side="left">
                     <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm mr-auto transform hover:-translate-y-1 transition-transform duration-300">
                         <div className="flex flex-wrap gap-2 mb-6">
                             <span className="px-3 py-1.5 bg-slate-50 rounded-lg text-xs font-semibold text-slate-500">Polska 🇵🇱</span>
@@ -499,13 +505,8 @@ export default function Home() {
                     </div>
                 </GrowthStep>
 
-                {/* Step 3 - POPRAWIONY (WYGLĄD CZATU) */}
-                <GrowthStep 
-                    number="3" 
-                    title="Obsługa bez barier" 
-                    description="Klienci piszą w swoim języku, Ty odpisujesz po polsku. AI tłumaczy wszystko w locie, zachowując idealny kontekst e-commerce."
-                    side="right"
-                >
+                {/* Step 3 */}
+                <GrowthStep number="3" title="Obsługa bez barier" description="Klienci piszą w swoim języku, Ty odpisujesz po polsku. AI tłumaczy wszystko w locie." side="right">
                     <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300">
                         <div className="flex gap-3">
                              <div className="w-8 h-8 rounded-full bg-slate-100 shrink-0 flex items-center justify-center text-sm shadow-sm">🇩🇪</div>
@@ -523,31 +524,26 @@ export default function Home() {
                     </div>
                 </GrowthStep>
 
-                {/* Step 4 */}
-                <GrowthStep 
-                    number="4" 
-                    title="Wzrost przychodów" 
-                    description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na zespole, a słupki sprzedaży rosną."
-                    side="left"
-                    last={true}
-                >
-                    <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
-                        <div className="relative z-10">
-                            <div className="text-4xl md:text-5xl font-extrabold text-emerald-500 mb-2 tracking-tight">+40%</div>
-                            <div className="text-sm font-semibold text-slate-600">Wzrost konwersji</div>
-                            <div className="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg w-fit">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                Trend wzrostowy
+                {/* Step 4 - MARQUEE (Nowy Design) */}
+                <GrowthStep number="4" title="Integracja" description="Podłącz Messengera, WhatsAppa lub e-mail i zarządzaj wszystkim z jednego miejsca." side="left" last={true}>
+                    <div className="w-full max-w-sm mr-auto relative">
+                        <div className="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 overflow-hidden w-full h-[100px] flex items-center relative mask-gradient">
+                            <div className="flex animate-marquee whitespace-nowrap">
+                                {[...logos, ...logos, ...logos].map((logo, index) => (
+                                    <div key={index} className="w-16 h-16 flex-shrink-0 flex items-center justify-center mx-4">
+                                        <img src={logo} alt="Integration Logo" className="w-10 h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
+                                    </div>
+                                ))}
                             </div>
                         </div>
+                        <div className="text-center mt-3 text-xs text-slate-400 font-medium">Obsługiwane platformy</div>
                     </div>
                 </GrowthStep>
             </div>
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE (JASNA I PRZYJEMNA) --- */}
+      {/* --- SEKCJA: WDROŻENIE --- */}
       <section className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
             {/* Lewa strona: Tekst */}
@@ -556,7 +552,6 @@ export default function Home() {
                 <p className="text-slate-600 text-base md:text-lg mb-10 leading-relaxed">
                     Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.
                 </p>
-                
                 <div className="space-y-6 md:space-y-8">
                     <div className="flex gap-4 md:gap-5 group">
                         <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">1</div>
@@ -579,41 +574,13 @@ export default function Home() {
                             <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
                         </div>
                     </div>
-                    {/* NEW STEP 4 WITH LOGOS */}
-                    <div className="flex gap-4 md:gap-5 group">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all shrink-0">4</div>
-                        <div className="w-full">
-                            <h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4>
-                            <p className="text-slate-500 text-sm mb-4">Podłącz Messengera, WhatsAppa lub e-mail.</p>
-                            
-                            {/* MODERN UNUSUAL LOGO DISPLAY - FLOATING STACK */}
-                            <div className="relative h-14 w-full max-w-xs group/logos">
-                                <div className="absolute left-0 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform -rotate-12 group-hover/logos:rotate-0 group-hover/logos:translate-x-0 transition-all duration-300 z-10">
-                                    <img src="/shopify-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
-                                </div>
-                                <div className="absolute left-6 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform -rotate-6 group-hover/logos:rotate-0 group-hover/logos:translate-x-12 transition-all duration-300 z-20">
-                                    <img src="/woo-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
-                                </div>
-                                <div className="absolute left-12 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-0 group-hover/logos:rotate-0 group-hover/logos:translate-x-24 transition-all duration-300 z-30">
-                                    <img src="/magento-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
-                                </div>
-                                <div className="absolute left-18 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-6 group-hover/logos:rotate-0 group-hover/logos:translate-x-36 transition-all duration-300 z-40 ml-6">
-                                    <img src="/messenger-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
-                                </div>
-                                <div className="absolute left-24 top-0 w-10 h-10 bg-white rounded-xl shadow-md border border-slate-100 flex items-center justify-center transform rotate-12 group-hover/logos:rotate-0 group-hover/logos:translate-x-48 transition-all duration-300 z-50 ml-12">
-                                    <img src="/whatsapp-logo.png" className="w-6 h-6 object-contain opacity-70 hover:opacity-100" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            {/* Prawa strona: Code Mockup (Clean Light Version) */}
+            {/* Prawa strona: Code Mockup */}
             <div className="relative mt-8 lg:mt-0">
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
                 <div className="relative bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-xl font-mono text-xs md:text-sm overflow-x-auto">
-                    {/* Header z kolorowymi kropkami "Macbook" */}
                     <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4 min-w-[300px]">
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
@@ -635,8 +602,6 @@ export default function Home() {
                         </div>
                         <div><span className="text-pink-600">&lt;/head&gt;</span></div>
                     </div>
-                    
-                    {/* Status Badge */}
                     <div className="absolute top-8 right-8 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-100 flex items-center gap-2 shadow-sm">
                         <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                         Connected
@@ -646,7 +611,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES (BENTO GRID) */}
+      {/* FEATURES (BENTO GRID - PREMIUM LOOK) */}
       <section id="product" className="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wszystko w jednym panelu.</h2>
@@ -654,96 +619,127 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 md:gap-8">
-          {/* Card 1 - Translation */}
-          <div className="group bg-white border border-slate-200 rounded-[2rem] p-6 md:p-10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-slate-100 transition-colors"></div>
+          
+          {/* Card 1 - Translation (Premium Gradient) */}
+          <div className="group bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px]"></div>
             
-            <div className="flex-1 relative z-10 text-center md:text-left">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center mb-6 shadow-xl shadow-slate-900/10 mx-auto md:mx-0">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+            <div className="flex-1 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white flex items-center justify-center mb-6 shadow-lg shadow-slate-900/20">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">Tłumaczenie Native-like</h3>
-              <p className="text-slate-500 text-sm md:text-base leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst, rozumie terminologię branżową i automatycznie wygładza ton. Latencja poniżej 50ms.</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Tłumaczenie Native-like</h3>
+              <p className="text-slate-500 text-base leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst i ton marki. Twoje wiadomości brzmią naturalnie, a nie jak robot.</p>
             </div>
-            <div className="hidden md:flex flex-1 flex-col gap-4 w-full opacity-80 group-hover:opacity-100 transition-opacity">
-               <div className="bg-white border border-slate-100 p-5 rounded-2xl text-sm text-slate-600 shadow-sm flex items-center gap-3">
-                 <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-                 <span className="truncate">"Produkt jest super!"</span>
-                 <svg className="w-4 h-4 text-slate-300 mx-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 <strong className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg truncate">Das Produkt ist toll!</strong>
-               </div>
-               <div className="bg-white border border-slate-100 p-5 rounded-2xl text-sm text-slate-600 shadow-sm flex items-center gap-3">
-                 <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-                 <span className="truncate">"Zwrot środków"</span>
-                 <svg className="w-4 h-4 text-slate-300 mx-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 <strong className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg truncate">Rückerstattung</strong>
-               </div>
+            
+            <div className="relative w-full md:w-1/2 bg-slate-50/50 rounded-2xl p-4 border border-slate-100/50 backdrop-blur-sm group-hover:bg-white/80 transition-colors">
+                <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs">🇩🇪</div>
+                        <div className="bg-white border border-slate-100 p-3 rounded-2xl rounded-tl-none text-sm text-slate-600 shadow-sm">
+                            Das Produkt ist toll!
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <svg className="w-4 h-4 text-indigo-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </div>
+                    <div className="flex items-start gap-3 justify-end">
+                        <div className="bg-indigo-600 p-3 rounded-2xl rounded-tr-none text-sm text-white shadow-md shadow-indigo-200">
+                            Produkt jest świetny!
+                        </div>
+                        <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-xs font-bold text-indigo-600">A</div>
+                    </div>
+                </div>
             </div>
           </div>
 
-          {/* Card 2 - Omnichannel */}
-          <div className="bg-white border border-slate-200 rounded-[2rem] p-6 md:p-10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group min-h-[400px]">
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
+          {/* Card 2 - Omnichannel (Unified Hub) */}
+          <div className="bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent opacity-50"></div>
             
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-6 shadow-xl shadow-indigo-600/20 relative z-10">
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+            <div className="relative z-10 mb-auto">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">Omnichannel Hub</h3>
+                <p className="text-slate-500 text-base mb-8">Zarządzaj wszystkimi kanałami z jednego miejsca. Koniec z przełączaniem kart.</p>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 relative z-10 group-hover:text-indigo-600 transition-colors">Omnichannel Inbox</h3>
-            <p className="text-slate-500 text-sm md:text-base mb-10 relative z-10">Email, Chat, Messenger, WhatsApp - zarządzaj wszystkimi kanałami z jednego miejsca.</p>
             
-            <div className="mt-auto flex flex-col gap-3 md:gap-4 relative z-10">
-               {['Messenger', 'WhatsApp', 'Email', 'Instagram DM'].map((app, i) => (
-                   <div key={app} className="flex items-center justify-between p-3 md:p-4 bg-white border border-slate-100 rounded-xl shadow-sm hover:scale-[1.02] transition-transform cursor-default">
-                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                         <div className={`w-2.5 h-2.5 rounded-full ${i===0 ? 'bg-blue-500' : i===1 ? 'bg-green-500' : i===2 ? 'bg-yellow-500' : 'bg-pink-500'}`}></div> 
-                         {app}
-                      </div>
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                   </div>
-               ))}
+            <div className="relative z-10 space-y-3 mt-4">
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg></div>
+                        <span className="font-semibold text-slate-700">Messenger</span>
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 delay-75">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg></div>
+                        <span className="font-semibold text-slate-700">WhatsApp</span>
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 delay-150">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-yellow-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
+                        <span className="font-semibold text-slate-700">Email</span>
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
             </div>
           </div>
 
-          {/* Card 3 - Marketing */}
-          <div className="bg-white border border-slate-200 rounded-[2rem] p-6 md:p-10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 group">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-pink-500 text-white flex items-center justify-center mb-6 shadow-xl shadow-pink-500/20">
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+          {/* Card 3 - Marketing (Growth Visual) */}
+          <div className="group bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[60px]"></div>
+            
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-pink-500/20">
+              <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 group-hover:text-pink-600 transition-colors">Marketing Automation</h3>
-            <p className="text-slate-500 text-sm md:text-base">Wbudowane narzędzia do newsletterów i pop-upów. Zwiększaj sprzedaż, gdy support śpi.</p>
+            <h3 className="text-2xl font-bold text-slate-900 mb-3">Marketing Automation</h3>
+            <p className="text-slate-500 text-base mb-6">Wbudowane narzędzia do newsletterów i pop-upów. Zwiększaj sprzedaż, gdy support śpi.</p>
+            
+            <div className="mt-4 flex items-end gap-1 h-16 w-full opacity-60 group-hover:opacity-100 transition-opacity">
+                <div className="w-1/5 bg-pink-100 rounded-t-lg h-[40%]"></div>
+                <div className="w-1/5 bg-pink-200 rounded-t-lg h-[60%]"></div>
+                <div className="w-1/5 bg-pink-300 rounded-t-lg h-[50%]"></div>
+                <div className="w-1/5 bg-pink-400 rounded-t-lg h-[80%]"></div>
+                <div className="w-1/5 bg-pink-500 rounded-t-lg h-[100%] shadow-lg shadow-pink-500/30"></div>
+            </div>
           </div>
 
           {/* Card 4 (Dark) - Pay-per-Satisfaction */}
-          <div className="bg-slate-900 text-white border border-slate-800 rounded-[2rem] p-6 md:p-10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-300 relative overflow-hidden flex flex-col justify-between group min-h-[300px]">
+          <div className="bg-slate-900 text-white border border-slate-800 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-300 relative overflow-hidden flex flex-col justify-between group min-h-[300px]">
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/20 rounded-full blur-[60px] group-hover:bg-emerald-500/30 transition-all duration-500"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px] group-hover:bg-emerald-500/30 transition-all duration-500"></div>
 
             <div className="relative z-10">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 backdrop-blur-sm border border-white/10">
-                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div className="w-14 h-14 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 backdrop-blur-sm border border-white/10 shadow-inner">
+                   <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-3">Pay-per-Satisfaction</h3>
-                <p className="text-slate-400 text-sm md:text-base mb-8">Płacisz tylko wtedy, gdy AI oceni rozmowę jako sukces (6/10+). Zero ryzyka.</p>
+                <h3 className="text-2xl font-bold mb-3">Pay-per-Satisfaction</h3>
+                <p className="text-slate-400 text-base mb-8">Płacisz tylko wtedy, gdy AI oceni rozmowę jako sukces (6/10+). Zero ryzyka.</p>
             </div>
 
-            <div className="bg-slate-800/50 rounded-2xl p-5 border border-white/10 backdrop-blur-sm relative z-10">
-                <div className="flex justify-between text-[10px] md:text-[11px] text-slate-400 mb-3 uppercase tracking-wider font-bold">
-                    <span>Niezadowolony</span>
-                    <span className="text-emerald-400">Sukces</span>
+            <div className="bg-slate-800/50 rounded-2xl p-5 border border-white/10 backdrop-blur-sm relative z-10 shadow-lg">
+                <div className="flex justify-between text-[11px] text-slate-400 mb-3 uppercase tracking-wider font-bold">
+                    <span>Sentiment Analysis</span>
+                    <span className="text-emerald-400">9.2/10</span>
                 </div>
-                <div className="h-2.5 bg-slate-700 rounded-full overflow-hidden relative mb-4">
-                    <div className="absolute left-0 top-0 h-full w-3/4 bg-gradient-to-r from-slate-600 to-emerald-500 rounded-full"></div>
-                    <div className="absolute left-3/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"></div>
+                <div className="h-3 bg-slate-700 rounded-full overflow-hidden relative mb-4 shadow-inner">
+                    <div className="absolute left-0 top-0 h-full w-[92%] bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="text-xs text-slate-500">Opłata: 0 PLN</span>
-                    <span className="text-xs text-white font-bold bg-white/10 px-2 py-1 rounded">Opłata: Standard</span>
+                    <span className="text-xs text-slate-500">Koszt:</span>
+                    <span className="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">Opłata naliczona</span>
                 </div>
             </div>
           </div>
         </div>
 
-        {/* SECURITY BADGES */}
+        {/* SECURITY BADGES - ZOSTAWIONE BEZ ZMIAN */}
         <div className="mt-16 md:mt-20 border-t border-slate-100 pt-12 text-center">
             <h4 className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Bezpieczeństwo klasy Enterprise</h4>
             <div className="flex flex-wrap justify-center gap-6 md:gap-20 items-center">
