@@ -529,38 +529,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER - MINIMALISTYCZNY */}
-      <footer className="bg-white border-t border-slate-200 py-12">
-        <div className="px-6 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            {/* Lewa strona - Logo i copyright */}
-            <div className="flex flex-col items-center md:items-start gap-4">
-                <img 
-                    src="/logotype.png" 
-                    alt="Chataptor" 
-                    className="h-6 w-auto object-contain"
-                />
-                <p className="text-sm text-slate-400 text-center md:text-left">
-                    &copy; {new Date().getFullYear()} Chataptor Sp. z o.o.<br/>
-                    Wszelkie prawa zastrzeżone.
+      {/* FOOTER - NOWY DESIGN WZOROWANY NA DOGINVOICE */}
+      <footer id="contact" className="py-16 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid md:grid-cols-3 gap-12 mb-16">
+            
+            {/* Kolumna 1: Brand */}
+            <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                    <img 
+                        src="/logotype.png" 
+                        alt="Chataptor" 
+                        className="h-8 w-auto object-contain"
+                    />
+                </div>
+                <p className="text-slate-500 font-light leading-relaxed max-w-md">
+                    Brama na świat dla Twojego e-commerce. Przełamujemy bariery językowe, łącząc AI z ludzką empatią.
                 </p>
             </div>
 
-            {/* Prawa strona - Linki */}
-            <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
-                <a href="#" className="hover:text-indigo-600 transition-colors">Cennik</a>
-                <a href="#" className="hover:text-indigo-600 transition-colors">Kontakt</a>
-                <a href="#" className="hover:text-indigo-600 transition-colors">Regulamin</a>
-                <a href="#" className="hover:text-indigo-600 transition-colors">Polityka Prywatności</a>
+            {/* Kolumna 2: Kontakt */}
+            <div className="space-y-6">
+                <h4 className="text-xl font-medium text-slate-900">Kontakt</h4>
+                <div className="space-y-4">
+                <a href="mailto:hello@chataptor.com" className="flex items-center gap-3 text-slate-500 hover:text-indigo-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail h-5 w-5 flex-shrink-0">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span className="font-light">hello@chataptor.com</span>
+                </a>
+                <div className="flex items-center gap-3 text-slate-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span className="font-light">Warszawa, Polska</span>
+                </div>
+                </div>
             </div>
 
-            {/* Status Systemu - mały detal */}
+            {/* Kolumna 3: Legal */}
+            <div className="space-y-6">
+                <h4 className="text-xl font-medium text-slate-900">Informacje prawne</h4>
+                <ul className="space-y-3 text-slate-500 font-light">
+                <li>
+                    <a href="#" className="hover:text-indigo-600 transition-colors">Polityka prywatności</a>
+                </li>
+                <li>
+                    <a href="#" className="hover:text-indigo-600 transition-colors">Regulamin</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+
+            <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-slate-400 text-sm font-light text-center">
+                © {new Date().getFullYear()} Chataptor Sp. z o.o. Wszystkie prawa zastrzeżone.
+            </p>
+            {/* Uptime Badge zachowany z poprzedniej wersji */}
             <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-50 px-3 py-1 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                Systemy sprawne
+                Uptime: 99.98%
+            </div>
             </div>
         </div>
       </footer>
 
     </main>
   );
-}
+}git
