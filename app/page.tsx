@@ -11,8 +11,8 @@ const conversations = [
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
     source: 'Messenger', // Zmienione na nazwę własną do wyświetlania
-    // ZMIANA: Kolor awatara na bordowy
-    avatarColor: 'bg-rose-100 text-rose-700',
+    // ZMIANA: Neutralny kolor awatara
+    avatarColor: 'bg-slate-100 text-slate-700',
     messages: [
       {
         id: 1,
@@ -37,7 +37,7 @@ const conversations = [
     lastMessage: 'Produit endommagé...',
     lang: 'FR',
     source: 'Email',
-    avatarColor: 'bg-emerald-100 text-emerald-600',
+    avatarColor: 'bg-slate-100 text-slate-700',
     messages: [
       {
         id: 1,
@@ -69,8 +69,8 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    // ZMIANA: Kolor awatara na bordowy
-    avatarColor: 'bg-rose-100 text-rose-700',
+    // ZMIANA: Neutralny kolor awatara
+    avatarColor: 'bg-slate-100 text-slate-700',
     messages: [
       {
         id: 1,
@@ -125,16 +125,16 @@ export default function Home() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-            {/* ZMIANA: Hover color na rose-700 */}
-            <a href="#product" className="hover:text-rose-700 transition-colors">Produkt</a>
-            <a href="#features" className="hover:text-rose-700 transition-colors">Dla kogo</a>
-            <a href="#pricing" className="hover:text-rose-700 transition-colors">Cennik</a>
+            {/* ZMIANA: Hover color na slate-900 (czarny) */}
+            <a href="#product" className="hover:text-slate-900 transition-colors">Produkt</a>
+            <a href="#features" className="hover:text-slate-900 transition-colors">Dla kogo</a>
+            <a href="#pricing" className="hover:text-slate-900 transition-colors">Cennik</a>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-rose-700 transition-colors">Panel Agenta</a>
-            {/* ZMIANA: Kolor przycisku na bordowy */}
-            <button className="bg-rose-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-rose-800 transition-all hover:shadow-lg hover:shadow-rose-900/20">
+            <a href="#" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Panel Agenta</a>
+            {/* ZMIANA: Kolor przycisku na czarny (neutralny) */}
+            <button className="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20">
               Rozpocznij za darmo
             </button>
           </div>
@@ -162,8 +162,8 @@ export default function Home() {
                 <a href="#pricing" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Cennik</a>
                 <div className="h-px bg-slate-100 my-2"></div>
                 <a href="#" className="text-lg font-medium text-slate-700">Panel Agenta</a>
-                {/* ZMIANA: Kolor przycisku na bordowy */}
-                <button className="bg-rose-900 text-white px-4 py-3 rounded-xl text-base font-medium w-full">
+                {/* ZMIANA: Kolor przycisku na czarny */}
+                <button className="bg-slate-900 text-white px-4 py-3 rounded-xl text-base font-medium w-full">
                     Rozpocznij za darmo
                 </button>
             </div>
@@ -172,10 +172,10 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-40 pb-20 text-center overflow-hidden">
-        {/* Background Decorations - Zmienione na cieplejsze */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-rose-50/50 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
-        <div className="absolute top-20 right-0 w-64 h-64 bg-red-100/40 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute top-40 left-0 w-72 h-72 bg-pink-100/40 rounded-full blur-3xl -z-10"></div>
+        {/* Background Decorations - Zmienione na neutralne szarości/błękity */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-slate-50/80 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
+        <div className="absolute top-20 right-0 w-64 h-64 bg-gray-100/40 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute top-40 left-0 w-72 h-72 bg-slate-100/40 rounded-full blur-3xl -z-10"></div>
         
         <div className="px-6 max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 mb-8 shadow-sm hover:shadow-md transition-shadow cursor-default">
@@ -188,8 +188,8 @@ export default function Home() {
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 text-slate-900">
             Sprzedawaj globalnie.<br />
-            {/* ZMIANA: Gradient tekstu na bordowy */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-800 to-red-900">Obsługuj lokalnie.</span>
+            {/* ZMIANA: Usunięcie gradientu i koloru akcentowego, teraz ciemnoszary */}
+            <span className="text-slate-500">Obsługuj lokalnie.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-light mb-10 leading-relaxed">
@@ -201,9 +201,9 @@ export default function Home() {
             <button className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-105 shadow-xl shadow-slate-900/20 ring-4 ring-slate-900/5">
               Dołącz do bety
             </button>
-            {/* ZMIANA: Nowy design przycisku Zobacz demo */}
-            <button className="w-full md:w-auto px-8 py-4 bg-white text-slate-800 rounded-xl text-base font-semibold border border-slate-200 hover:border-rose-200 hover:bg-rose-50/50 hover:text-rose-900 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-700 group-hover:text-white transition-all duration-300 shadow-inner">
+            {/* ZMODYFIKOWANY PRZYCISK DEMO - NEUTRALNY */}
+            <button className="w-full md:w-auto px-8 py-4 bg-white text-slate-800 rounded-xl text-base font-semibold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-3 group">
+              <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-slate-800 group-hover:text-white transition-all duration-300 shadow-inner">
                 <svg width="14" height="14" fill="currentColor" className="ml-0.5" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                 </svg>
@@ -229,13 +229,13 @@ export default function Home() {
 
       {/* UI MOCKUP - INTERAKTYWNE */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 -mt-10 mb-20 relative z-20">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-rose-900/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
           {/* Window Header */}
           <div className="bg-slate-50 h-10 border-b border-slate-100 flex items-center px-4 gap-2 shrink-0 justify-between">
             <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
+                <div className="w-3 h-3 rounded-full bg-slate-300/80"></div>
+                <div className="w-3 h-3 rounded-full bg-slate-300/80"></div>
+                <div className="w-3 h-3 rounded-full bg-slate-300/80"></div>
             </div>
             <div className="text-[10px] text-slate-400 font-mono tracking-wide">Chataptor Agent Dashboard v1.0</div>
             <div className="w-10"></div> {/* Spacer */}
@@ -248,7 +248,7 @@ export default function Home() {
             <div className="w-1/3 md:w-[320px] border-r border-slate-100 bg-white flex flex-col overflow-y-auto custom-scrollbar">
               <div className="p-4 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
                 <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">Inbox</div>
-                <div className="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded-md">3 oczekujące</div>
+                <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-md">3 oczekujące</div>
               </div>
               <div className="p-2 space-y-1">
                 {conversations.map((chat) => (
@@ -257,12 +257,12 @@ export default function Home() {
                     onClick={() => setActiveChatId(chat.id)}
                     className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${
                       activeChatId === chat.id
-                        ? 'bg-rose-50 border-rose-100 shadow-sm z-10' // ZMIANA
+                        ? 'bg-slate-50 border-slate-200 shadow-sm z-10' // ZMIANA: Neutralne tło aktywne
                         : 'bg-white border-transparent hover:bg-slate-50'
                     }`}
                   >
-                    {/* Active Indicator - ZMIANA na rose */}
-                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-rose-700 rounded-r-full"></div>}
+                    {/* Active Indicator - ZMIANA na czarny */}
+                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-slate-800 rounded-r-full"></div>}
 
                     {/* AVATAR W SIDEBARZE */}
                     <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm`}>
@@ -271,14 +271,14 @@ export default function Home() {
 
                     <div className="flex-1 min-w-0 py-0.5">
                         <div className="flex justify-between items-center mb-0.5">
-                            {/* ZMIANA: tekst aktywny na rose */}
-                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-rose-900' : 'text-slate-700'}`}>
+                            {/* ZMIANA: tekst aktywny na slate-900 */}
+                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-slate-900' : 'text-slate-700'}`}>
                                 {chat.name}
                             </span>
                             <span className="text-[10px] text-slate-400 ml-2 whitespace-nowrap">{chat.time}</span>
                         </div>
-                        {/* ZMIANA: tekst wiadomości na rose */}
-                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-rose-700/80' : 'text-slate-500'}`}>
+                        {/* ZMIANA: tekst wiadomości na slate-600 */}
+                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-slate-600' : 'text-slate-500'}`}>
                             {chat.lastMessage}
                         </div>
                         <div className="mt-2 flex items-center gap-2">
@@ -336,7 +336,7 @@ export default function Home() {
                       <div 
                         className={`p-4 rounded-2xl text-sm shadow-sm relative group ${
                           msg.sender === 'agent' 
-                            ? 'bg-rose-800 text-white rounded-tr-none' // ZMIANA
+                            ? 'bg-slate-800 text-white rounded-tr-none' // ZMIANA: Tło dymka agenta na ciemny szary
                             : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
                         }`}
                       >
@@ -346,7 +346,7 @@ export default function Home() {
                         {msg.translation && (
                           <div className={`mt-3 pt-2 text-[11px] border-t flex items-start gap-2 ${
                             msg.sender === 'agent' 
-                              ? 'border-white/20 text-rose-100' // ZMIANA
+                              ? 'border-white/20 text-slate-300' // ZMIANA: Kolor tekstu tłumaczenia agenta
                               : 'border-slate-100 text-slate-400'
                           }`}>
                             <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
@@ -375,8 +375,8 @@ export default function Home() {
                 {/* AI Suggestion Pill - Extra Feature */}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-4">
-                        {/* ZMIANA: Kolory na rose */}
-                        <button className="bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-rose-200">
+                        {/* ZMIANA: Kolory na neutralne z lekkim akcentem indygo (dla akcji) */}
+                        <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-indigo-200/50">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             AI Sugestia: "Przepraszam za kłopot. Wyślemy nowy produkt jutro."
                         </button>
@@ -386,8 +386,8 @@ export default function Home() {
               
               {/* Input Area */}
               <div className="p-4 bg-white border-t border-slate-100">
-                {/* ZMIANA: Focus ring na rose */}
-                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-rose-500/20 focus-within:border-rose-500 transition-all shadow-inner">
+                {/* ZMIANA: Focus ring na neutralny/delikatny */}
+                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-slate-400/20 focus-within:border-slate-400 transition-all shadow-inner">
                   <input 
                     type="text" 
                     value={inputValue}
@@ -400,8 +400,8 @@ export default function Home() {
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                      </button>
                   </div>
-                  {/* ZMIANA: Przycisk wyślij na rose */}
-                  <button className="bg-rose-800 hover:bg-rose-900 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-rose-200 active:scale-95">
+                  {/* ZMIANA: Przycisk wyślij na czarny */}
+                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-slate-200 active:scale-95">
                     Wyślij
                   </button>
                 </div>
@@ -425,17 +425,17 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
           {/* Card 1 - Translation */}
-          {/* ZMIANA: Cień i hover na rose */}
-          <div className="group bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-900/5 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-rose-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-rose-100 transition-colors"></div>
+          {/* ZMIANA: Neutralny hover i cienie */}
+          <div className="group bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-slate-100 transition-colors"></div>
             
             <div className="flex-1 relative z-10">
-              {/* ZMIANA: Ikona tła na rose */}
-              <div className="w-12 h-12 rounded-2xl bg-rose-800 text-white flex items-center justify-center mb-6 shadow-lg shadow-rose-600/20">
+              {/* ZMIANA: Ikona tła na ciemny szary */}
+              <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center mb-6 shadow-lg shadow-slate-900/10">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
-              {/* ZMIANA: Tekst hover na rose */}
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-rose-700 transition-colors">Tłumaczenie Native-like</h3>
+              {/* ZMIANA: Tekst hover na slate-700 */}
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">Tłumaczenie Native-like</h3>
               <p className="text-slate-500 text-sm leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst, rozumie terminologię branżową i automatycznie wygładza ton. Latencja poniżej 50ms.</p>
             </div>
             <div className="hidden md:flex flex-1 flex-col gap-3 w-full opacity-80 group-hover:opacity-100 transition-opacity">
@@ -443,32 +443,33 @@ export default function Home() {
                  <div className="w-2 h-2 rounded-full bg-slate-300"></div>
                  <span>"Produkt jest super!"</span>
                  <svg className="w-4 h-4 text-slate-300 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 {/* ZMIANA: Badge na rose */}
-                 <strong className="text-rose-700 bg-rose-50 px-2 py-1 rounded">Das Produkt ist toll!</strong>
+                 {/* ZMIANA: Badge na neutralny */}
+                 <strong className="text-slate-700 bg-slate-100 px-2 py-1 rounded">Das Produkt ist toll!</strong>
                </div>
                <div className="bg-white border border-slate-100 p-4 rounded-xl text-xs text-slate-600 shadow-sm flex items-center gap-3">
                  <div className="w-2 h-2 rounded-full bg-slate-300"></div>
                  <span>"Zwrot środków"</span>
                  <svg className="w-4 h-4 text-slate-300 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 <strong className="text-rose-700 bg-rose-50 px-2 py-1 rounded">Rückerstattung</strong>
+                 <strong className="text-slate-700 bg-slate-100 px-2 py-1 rounded">Rückerstattung</strong>
                </div>
             </div>
           </div>
 
           {/* Card 2 - Omnichannel */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-50/50 to-transparent"></div>
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
+            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
             
-            <div className="w-12 h-12 rounded-2xl bg-blue-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 relative z-10">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-600/20 relative z-10">
               <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors">Omnichannel Inbox</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10 group-hover:text-indigo-600 transition-colors">Omnichannel Inbox</h3>
             <p className="text-slate-500 text-sm mb-8 relative z-10">Email, Chat, Messenger, WhatsApp - zarządzaj wszystkimi kanałami z jednego miejsca.</p>
             
             <div className="mt-auto flex flex-col gap-3 relative z-10">
                {['Messenger', 'WhatsApp', 'Email', 'Instagram DM'].map((app, i) => (
                    <div key={app} className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:scale-105 transition-transform cursor-default">
                       <div className="flex items-center gap-3 text-sm font-medium text-slate-700">
+                         {/* Zachowujemy oryginalne kolory brandowe platform (niezależne od naszego brandu) */}
                          <div className={`w-2 h-2 rounded-full ${i===0 ? 'bg-blue-500' : i===1 ? 'bg-green-500' : i===2 ? 'bg-yellow-500' : 'bg-pink-500'}`}></div> 
                          {app}
                       </div>
@@ -479,7 +480,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 - Marketing */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-900/5 transition-all duration-300 group">
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group">
             <div className="w-12 h-12 rounded-2xl bg-pink-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-pink-500/20">
               <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
             </div>
@@ -562,7 +563,7 @@ export default function Home() {
             <div className="space-y-6">
                 <h4 className="text-xl font-medium text-slate-900">Kontakt</h4>
                 <div className="space-y-4">
-                <a href="mailto:hello@chataptor.com" className="flex items-center gap-3 text-slate-500 hover:text-rose-700 transition-colors">
+                <a href="mailto:hello@chataptor.com" className="flex items-center gap-3 text-slate-500 hover:text-slate-900 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail h-5 w-5 flex-shrink-0">
                     <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -584,10 +585,10 @@ export default function Home() {
                 <h4 className="text-xl font-medium text-slate-900">Informacje prawne</h4>
                 <ul className="space-y-3 text-slate-500 font-light">
                 <li>
-                    <a href="#" className="hover:text-rose-700 transition-colors">Polityka prywatności</a>
+                    <a href="#" className="hover:text-slate-900 transition-colors">Polityka prywatności</a>
                 </li>
                 <li>
-                    <a href="#" className="hover:text-rose-700 transition-colors">Regulamin</a>
+                    <a href="#" className="hover:text-slate-900 transition-colors">Regulamin</a>
                 </li>
                 </ul>
             </div>
