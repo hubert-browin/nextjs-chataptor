@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // --- MOCK DATA (Dane testowe do prototypu) ---
 const conversations = [
@@ -85,6 +85,44 @@ const SourceLabel = ({ source }: { source: string }) => {
     return source;
 };
 
+// Komponent dla pojedynczego kroku w sekcji "Jak to działa" z prostą animacją wejścia
+const GrowthStep = ({ number, title, description, children, side = 'left' }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right' }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const domRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => setIsVisible(entry.isIntersecting));
+        });
+        if (domRef.current) observer.observe(domRef.current);
+        return () => {
+            if (domRef.current) observer.unobserve(domRef.current);
+        };
+    }, []);
+
+    return (
+        <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`md:w-1/2 flex ${side === 'left' ? 'justify-end text-right' : 'justify-start text-left'} ${side === 'right' ? 'md:order-2' : 'md:order-1'}`}>
+                <div>
+                    <div className="text-indigo-600 font-bold mb-2 uppercase tracking-wide text-xs">KROK {number}</div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3">{title}</h3>
+                    <p className="text-slate-500 max-w-xs leading-relaxed">{description}</p>
+                </div>
+            </div>
+            
+            {/* Circle Indicator */}
+            <div className={`absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-white border-2 border-indigo-100 rounded-full shadow-lg hidden md:flex items-center justify-center text-indigo-600 text-sm font-bold z-10 transition-colors duration-500 ${isVisible ? 'bg-indigo-600 text-white border-indigo-600' : ''}`}>
+                {number}
+            </div>
+
+            <div className={`md:w-1/2 ${side === 'left' ? 'md:order-2' : 'md:order-1 flex justify-end'}`}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
+
 export default function Home() {
   const [activeChatId, setActiveChatId] = useState(conversations[0].id);
   const [inputValue, setInputValue] = useState('');
@@ -119,7 +157,7 @@ export default function Home() {
           
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
             <a href="#product" className="hover:text-slate-900 transition-colors">Produkt</a>
-            <a href="#features" className="hover:text-slate-900 transition-colors">Dla kogo</a>
+            <a href="#how-it-works" className="hover:text-slate-900 transition-colors">Jak to działa</a>
             <a href="#pricing" className="hover:text-slate-900 transition-colors">Cennik</a>
           </div>
 
@@ -147,7 +185,7 @@ export default function Home() {
         {mobileMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl md:hidden animate-in slide-in-from-top-5">
                 <a href="#product" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Produkt</a>
-                <a href="#features" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Dla kogo</a>
+                <a href="#how-it-works" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Jak to działa</a>
                 <a href="#pricing" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Cennik</a>
                 <div className="h-px bg-slate-100 my-2"></div>
                 <a href="#" className="text-lg font-medium text-slate-700">Panel Agenta</a>
@@ -379,37 +417,103 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- NOWA SEKCJA: INTEGRACJE (PLATFORMY) --- */}
-      <section className="py-12 bg-white border-b border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-8">Integrujemy się z tym, co już masz</p>
-            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Text placeholders for platforms to keep clean look without images */}
-                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96BF48] transition-colors cursor-default">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M22.95 9.6l-1.95-6.9L17.5 7.2 12.55 0 7.6 7.2 4.1 2.7 2.15 9.6c-.05.2-.05.45.05.65l8.55 11.2c.4.55 1.25.55 1.65 0l8.55-11.2c.1-.2.1-.45.05-.65z"/></svg>
-                    Shopify
-                </div>
-                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96588A] transition-colors cursor-default">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12 6.63 0 12-5.37 12-12 0-6.63-5.37-12-12-12zm4.39 16.32c-.52.26-2.58 1.15-3.04 1.35-.46.2-.82.16-1.12-.22-.3-.38-.6-1.16-.76-1.57-.16-.41-.44-.46-.86-.26-.42.2-1.78.85-2.22 1.05-.44.2-.87.42-1.25.64-.38.22-.64.44-1.25.64-.61.2-1.28-.2-1.28-.2s-1.38-.9-1.9-1.26c-.52-.36-.36-.92-.36-.92s.32-.56 1.9-1.26c1.58-.7 5.14-2.12 5.14-2.12s.9-.4 1.4-.4c.5 0 .9.4 1.4.4s3.56 1.42 5.14 2.12c1.58.7 1.9 1.26 1.9 1.26s.16.56-.36.92c-.52.36-1.9 1.26-1.9 1.26z"/></svg>
-                    WooCommerce
-                </div>
-                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#F37623] transition-colors cursor-default">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.9 2.1c-.5-.1-1.3-.1-1.8 0l-5.8 1.2-3.7 3.7c-.4.4-.6 1-.6 1.5v7c0 .6.2 1.1.6 1.5l3.7 3.7 5.8 1.2c.5.1 1.3.1 1.8 0l5.8-1.2 3.7-3.7c.4-.4.6-1 .6-1.5v-7c0-.6-.2-1.1-.6-1.5l-3.7-3.7-5.8-1.2zM7 12l5-5 5 5-5 5-5-5z"/></svg>
-                    Magento
-                </div>
-                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#0084FF] transition-colors cursor-default">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
-                    Messenger
-                </div>
-                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#25D366] transition-colors cursor-default">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
-                    WhatsApp
-                </div>
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (JAK TO DZIAŁA) - PRZENIESIONA I ODŚWIEŻONA --- */}
+      <section id="how-it-works" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-24">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
+            <p className="text-slate-500 max-w-xl mx-auto text-lg">Prosta ścieżka ekspansji. Bez dodatkowych pracowników, bez skomplikowanych wdrożeń.</p>
+        </div>
+
+        <div className="relative">
+            {/* Vertical Line - connecting steps */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-100 via-indigo-200 to-slate-100 -translate-x-1/2 hidden md:block"></div>
+
+            <div className="space-y-32">
+                <GrowthStep 
+                    number="1" 
+                    title="Podłączasz Chataptor" 
+                    description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania."
+                    side="left"
+                >
+                    <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50 max-w-sm transform hover:scale-105 transition-transform duration-300">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <div className="text-sm font-bold text-slate-900">System gotowy</div>
+                                <div className="text-xs text-slate-500">Status: Aktywny</div>
+                            </div>
+                        </div>
+                        <div className="mt-4 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                            <div className="h-full bg-indigo-500 w-full animate-[progress_1s_ease-out]"></div>
+                        </div>
+                    </div>
+                </GrowthStep>
+
+                <GrowthStep 
+                    number="2" 
+                    title="Odblokowujesz rynki" 
+                    description="W panelu administratora zaznaczasz kraje, które chcesz obsługiwać. Tłumaczenie AI włącza się automatycznie."
+                    side="right"
+                >
+                    <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50 max-w-sm ml-auto transform hover:scale-105 transition-transform duration-300">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            <span className="px-3 py-1 bg-slate-100 rounded-full text-xs font-medium text-slate-500">Polska 🇵🇱</span>
+                            <span className="px-3 py-1 bg-yellow-100 rounded-full text-xs font-medium text-yellow-700 border border-yellow-200">Niemcy 🇩🇪</span>
+                            <span className="px-3 py-1 bg-blue-100 rounded-full text-xs font-medium text-blue-700 border border-blue-200">Francja 🇫🇷</span>
+                        </div>
+                        <div className="flex justify-between items-center mt-2">
+                            <span className="text-sm font-semibold text-slate-700">Dostępność</span>
+                            <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full font-medium">Globalna</span>
+                        </div>
+                    </div>
+                </GrowthStep>
+
+                <GrowthStep 
+                    number="3" 
+                    title="Obsługujesz bez barier" 
+                    description="Klienci piszą po niemiecku, Ty odpisujesz po polsku. AI tłumaczy w locie, zachowując kontekst e-commerce."
+                    side="left"
+                >
+                    <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50 max-w-sm transform hover:scale-105 transition-transform duration-300">
+                        <div className="flex flex-col gap-3">
+                            <div className="flex gap-2">
+                                <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px]">🇩🇪</div>
+                                <div className="bg-slate-100 p-2.5 rounded-2xl rounded-tl-none text-xs text-slate-600">Wo ist mein Paket?</div>
+                            </div>
+                            <div className="flex gap-2 justify-end">
+                                <div className="bg-indigo-600 p-2.5 rounded-2xl rounded-tr-none text-xs text-white shadow-md shadow-indigo-200">Gdzie jest moja paczka? 🇵🇱</div>
+                                <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-[10px]">A</div>
+                            </div>
+                            <div className="text-[10px] text-center text-slate-400 mt-1">Tłumaczenie w czasie rzeczywistym...</div>
+                        </div>
+                    </div>
+                </GrowthStep>
+
+                <GrowthStep 
+                    number="4" 
+                    title="Zwiększasz sprzedaż" 
+                    description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na native speakerach."
+                    side="right"
+                >
+                    <div className="bg-white p-6 rounded-2xl border border-green-100 shadow-xl shadow-green-900/5 max-w-sm ml-auto relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                        <div className="relative z-10">
+                            <div className="text-4xl font-bold text-green-600 mb-2">+40%</div>
+                            <div className="text-sm font-medium text-slate-600">Wzrost konwersji na nowych rynkach</div>
+                            <div className="mt-4 flex items-center gap-2 text-xs text-green-700 bg-green-50 px-3 py-1.5 rounded-lg w-fit">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                Trend wzrostowy
+                            </div>
+                        </div>
+                    </div>
+                </GrowthStep>
             </div>
         </div>
       </section>
 
-      {/* --- NOWA SEKCJA: WDROŻENIE (DEVELOPER FRIENDLY) --- */}
+      {/* --- SEKCJA: WDROŻENIE (DEVELOPER FRIENDLY) --- */}
       <section className="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         {/* Glow effect */}
@@ -482,106 +586,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- NOWA SEKCJA: ŚCIEŻKA EKSPANSJI (GROWTH PATH) --- */}
-      <section id="features" className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Jak to działa w praktyce?</h2>
-            <p className="text-slate-500 max-w-xl mx-auto">Od lokalnego e-commerce do międzynarodowego gracza w czterech prostych krokach.</p>
-        </div>
-
-        <div className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block"></div>
-
-            <div className="space-y-24">
-                {/* Step 1 */}
-                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-                    <div className="md:w-1/2 flex justify-end text-right order-2 md:order-1">
-                        <div>
-                            <div className="text-indigo-600 font-bold mb-2">KROK 1</div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Podłączasz Chataptor</h3>
-                            <p className="text-slate-500 max-w-xs ml-auto">Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania.</p>
-                        </div>
-                    </div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-indigo-600 rounded-full border-4 border-white shadow-lg hidden md:flex items-center justify-center text-white text-xs font-bold z-10">1</div>
-                    <div className="md:w-1/2 order-1 md:order-2">
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                </div>
-                                <div className="text-sm font-semibold text-slate-700">System gotowy do pracy</div>
-                            </div>
-                        </div>
-                    </div>
+      {/* --- SEKCJA: INTEGRACJE (PLATFORMY) - PRZENIESIONA NIŻEJ --- */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+            <h3 className="text-2xl font-bold text-slate-900 mb-10">Integrujemy się z Twoim ekosystemem</h3>
+            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                {/* Text placeholders for platforms */}
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96BF48] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M22.95 9.6l-1.95-6.9L17.5 7.2 12.55 0 7.6 7.2 4.1 2.7 2.15 9.6c-.05.2-.05.45.05.65l8.55 11.2c.4.55 1.25.55 1.65 0l8.55-11.2c.1-.2.1-.45.05-.65z"/></svg>
+                    Shopify
                 </div>
-
-                {/* Step 2 */}
-                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-                    <div className="md:w-1/2 flex justify-end order-2">
-                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm ml-auto">
-                            <div className="flex gap-2 mb-2">
-                                <span className="w-6 h-4 bg-slate-300 rounded-sm block"></span>
-                                <span className="w-6 h-4 bg-yellow-400 rounded-sm block"></span>
-                                <span className="w-6 h-4 bg-blue-600 rounded-sm block"></span>
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700">Aktywacja rynku: Niemcy, Francja</div>
-                        </div>
-                    </div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-indigo-600 rounded-full shadow-lg hidden md:flex items-center justify-center text-indigo-600 text-xs font-bold z-10">2</div>
-                    <div className="md:w-1/2 order-1">
-                        <div>
-                            <div className="text-indigo-600 font-bold mb-2">KROK 2</div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Odblokowujesz rynki</h3>
-                            <p className="text-slate-500 max-w-xs">W panelu administratora zaznaczasz kraje, które chcesz obsługiwać. Tłumaczenie AI włącza się automatycznie.</p>
-                        </div>
-                    </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96588A] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12 6.63 0 12-5.37 12-12 0-6.63-5.37-12-12-12zm4.39 16.32c-.52.26-2.58 1.15-3.04 1.35-.46.2-.82.16-1.12-.22-.3-.38-.6-1.16-.76-1.57-.16-.41-.44-.46-.86-.26-.42.2-1.78.85-2.22 1.05-.44.2-.87.42-1.25.64-.38.22-.64.44-1.25.64-.61.2-1.28-.2-1.28-.2s-1.38-.9-1.9-1.26c-.52-.36-.36-.92-.36-.92s.32-.56 1.9-1.26c1.58-.7 5.14-2.12 5.14-2.12s.9-.4 1.4-.4c.5 0 .9.4 1.4.4s3.56 1.42 5.14 2.12c1.58.7 1.9 1.26 1.9 1.26s.16.56-.36.92c-.52.36-1.9 1.26-1.9 1.26z"/></svg>
+                    WooCommerce
                 </div>
-
-                {/* Step 3 */}
-                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-                    <div className="md:w-1/2 flex justify-end text-right order-2 md:order-1">
-                        <div>
-                            <div className="text-indigo-600 font-bold mb-2">KROK 3</div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Obsługujesz bez barier</h3>
-                            <p className="text-slate-500 max-w-xs ml-auto">Klienci piszą po niemiecku, Ty odpisujesz po polsku. AI tłumaczy w locie, zachowując kontekst e-commerce.</p>
-                        </div>
-                    </div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-indigo-600 rounded-full shadow-lg hidden md:flex items-center justify-center text-indigo-600 text-xs font-bold z-10">3</div>
-                    <div className="md:w-1/2 order-1 md:order-2">
-                        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-md max-w-sm">
-                            <div className="flex gap-3 mb-3">
-                                <div className="bg-slate-100 p-2 rounded-lg rounded-tl-none text-xs text-slate-600">Wo ist mein Paket? 🇩🇪</div>
-                            </div>
-                            <div className="flex gap-3 justify-end">
-                                <div className="bg-indigo-600 p-2 rounded-lg rounded-tr-none text-xs text-white">Gdzie jest moja paczka? 🇵🇱</div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#F37623] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.9 2.1c-.5-.1-1.3-.1-1.8 0l-5.8 1.2-3.7 3.7c-.4.4-.6 1-.6 1.5v7c0 .6.2 1.1.6 1.5l3.7 3.7 5.8 1.2c.5.1 1.3.1 1.8 0l5.8-1.2 3.7-3.7c.4-.4.6-1 .6-1.5v-7c0-.6-.2-1.1-.6-1.5l-3.7-3.7-5.8-1.2zM7 12l5-5 5 5-5 5-5-5z"/></svg>
+                    Magento
                 </div>
-
-                 {/* Step 4 */}
-                 <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-                    <div className="md:w-1/2 flex justify-end order-2">
-                         <div className="bg-green-50 p-6 rounded-2xl border border-green-100 shadow-sm max-w-sm ml-auto">
-                            <div className="text-3xl font-bold text-green-600 mb-1">+40%</div>
-                            <div className="text-sm font-semibold text-green-800">Wzrost sprzedaży zagranicznej</div>
-                        </div>
-                    </div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg hidden md:flex items-center justify-center text-white text-xs font-bold z-10">4</div>
-                    <div className="md:w-1/2 order-1">
-                        <div>
-                            <div className="text-green-600 font-bold mb-2">EFEKT</div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Zwiększasz sprzedaż</h3>
-                            <p className="text-slate-500 max-w-xs">Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na native speakerach.</p>
-                        </div>
-                    </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#0084FF] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
+                    Messenger
+                </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#25D366] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
+                    WhatsApp
                 </div>
             </div>
         </div>
       </section>
 
-      {/* FEATURES (BENTO GRID) - EXISTING SECTION */}
+      {/* FEATURES (BENTO GRID) - PRZENIESIONE NA KONIEC */}
       <section id="product" className="py-24 px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Wszystko w jednym panelu.</h2>
@@ -678,6 +713,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* SECURITY BADGES (na dole bento grida) */}
         <div className="mt-16 border-t border-slate-100 pt-10 text-center">
             <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-6">Bezpieczeństwo klasy Enterprise</h4>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center">
