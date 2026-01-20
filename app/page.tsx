@@ -585,7 +585,7 @@ export default function Home() {
 
             <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm font-light text-center">
-                © {new Date().getFullYear()} Chataptor Sp. z o.o. Wszystkie prawa zastrzeżone.
+                © {new Date().getFullYear()} Wszystkie prawa zastrzeżone.
             </p>
             {/* Uptime Badge zachowany z poprzedniej wersji */}
             <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-50 px-3 py-1 rounded-full">
