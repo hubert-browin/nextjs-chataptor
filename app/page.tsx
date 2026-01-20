@@ -310,9 +310,10 @@ export default function Home() {
                             {chat.lastMessage}
                         </div>
                         <div className="mt-2 flex items-center gap-2">
-                             <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
-                                <span className={`w-2 h-2 rounded-full ${chat.id === 1 ? 'bg-yellow-400' : chat.id === 2 ? 'bg-blue-400' : 'bg-green-400'}`}></span>
-                                <span>{chat.lang}</span>
+                             <span className="inline-flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
+                                <span className="font-bold">{chat.lang}</span>
+                                <span className="text-slate-300">|</span>
+                                <span className="capitalize">{chat.source}</span>
                             </span>
                         </div>
                     </div>
@@ -428,6 +429,10 @@ export default function Home() {
                   <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">
                     Wyślij
                   </button>
+                </div>
+                <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
@@ -620,22 +625,24 @@ export default function Home() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4">Działa z Twoim ekosystemem</h3>
             <p className="text-slate-500 mb-10 md:mb-12 text-sm md:text-base">Bezproblemowa integracja z najpopularniejszymi platformami e-commerce i komunikatorami.</p>
             
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-20 opacity-70 grayscale hover:grayscale-0 transition-all duration-700">
-                <div className="flex items-center gap-2 md:gap-3 text-lg md:text-xl font-bold text-slate-700 hover:text-[#96BF48] transition-colors cursor-default group">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M22.95 9.6l-1.95-6.9L17.5 7.2 12.55 0 7.6 7.2 4.1 2.7 2.15 9.6c-.05.2-.05.45.05.65l8.55 11.2c.4.55 1.25.55 1.65 0l8.55-11.2c.1-.2.1-.45.05-.65z"/></svg>
-                    Shopify
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/shopify-logo.png" alt="Shopify" className="h-full w-auto object-contain" />
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 text-lg md:text-xl font-bold text-slate-700 hover:text-[#96588A] transition-colors cursor-default group">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12 6.63 0 12-5.37 12-12 0-6.63-5.37-12-12-12zm4.39 16.32c-.52.26-2.58 1.15-3.04 1.35-.46.2-.82.16-1.12-.22-.3-.38-.6-1.16-.76-1.57-.16-.41-.44-.46-.86-.26-.42.2-1.78.85-2.22 1.05-.44.2-.87.42-1.25.64-.38.22-.64.44-1.25.64-.61.2-1.28-.2-1.28-.2s-1.38-.9-1.9-1.26c-.52-.36-.36-.92-.36-.92s.32-.56 1.9-1.26c1.58-.7 5.14-2.12 5.14-2.12s.9-.4 1.4-.4c.5 0 .9.4 1.4.4s3.56 1.42 5.14 2.12c1.58.7 1.9 1.26 1.9 1.26s.16.56-.36.92c-.52.36-1.9 1.26-1.9 1.26z"/></svg>
-                    Woo
+                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/woo-logo.png" alt="WooCommerce" className="h-full w-auto object-contain" />
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 text-lg md:text-xl font-bold text-slate-700 hover:text-[#F37623] transition-colors cursor-default group">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M12.9 2.1c-.5-.1-1.3-.1-1.8 0l-5.8 1.2-3.7 3.7c-.4.4-.6 1-.6 1.5v7c0 .6.2 1.1.6 1.5l3.7 3.7 5.8 1.2c.5.1 1.3.1 1.8 0l5.8-1.2 3.7-3.7c.4-.4.6-1 .6-1.5v-7c0-.6-.2-1.1-.6-1.5l-3.7-3.7-5.8-1.2zM7 12l5-5 5 5-5 5-5-5z"/></svg>
-                    Magento
+                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/magento-logo.png" alt="Magento" className="h-full w-auto object-contain" />
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 text-lg md:text-xl font-bold text-slate-700 hover:text-[#0084FF] transition-colors cursor-default group">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
-                    Messenger
+                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/messenger-logo.png" alt="Messenger" className="h-full w-auto object-contain" />
+                </div>
+                <div className="h-8 md:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/whatsapp-logo.png" alt="WhatsApp" className="h-full w-auto object-contain" />
+                </div>
+                <div className="h-7 md:h-9 flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-500">
+                    <img src="/gmail-logo.png" alt="Gmail" className="h-full w-auto object-contain" />
                 </div>
             </div>
         </div>
