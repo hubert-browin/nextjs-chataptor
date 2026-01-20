@@ -11,7 +11,8 @@ const conversations = [
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
     source: 'Messenger', // Zmienione na nazwę własną do wyświetlania
-    avatarColor: 'bg-indigo-100 text-indigo-600',
+    // ZMIANA: Kolor awatara na bordowy
+    avatarColor: 'bg-rose-100 text-rose-700',
     messages: [
       {
         id: 1,
@@ -68,7 +69,8 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    avatarColor: 'bg-rose-100 text-rose-600',
+    // ZMIANA: Kolor awatara na bordowy
+    avatarColor: 'bg-rose-100 text-rose-700',
     messages: [
       {
         id: 1,
@@ -123,14 +125,16 @@ export default function Home() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-            <a href="#product" className="hover:text-indigo-600 transition-colors">Produkt</a>
-            <a href="#features" className="hover:text-indigo-600 transition-colors">Dla kogo</a>
-            <a href="#pricing" className="hover:text-indigo-600 transition-colors">Cennik</a>
+            {/* ZMIANA: Hover color na rose-700 */}
+            <a href="#product" className="hover:text-rose-700 transition-colors">Produkt</a>
+            <a href="#features" className="hover:text-rose-700 transition-colors">Dla kogo</a>
+            <a href="#pricing" className="hover:text-rose-700 transition-colors">Cennik</a>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Panel Agenta</a>
-            <button className="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20">
+            <a href="#" className="text-sm font-medium text-slate-600 hover:text-rose-700 transition-colors">Panel Agenta</a>
+            {/* ZMIANA: Kolor przycisku na bordowy */}
+            <button className="bg-rose-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-rose-800 transition-all hover:shadow-lg hover:shadow-rose-900/20">
               Rozpocznij za darmo
             </button>
           </div>
@@ -158,7 +162,8 @@ export default function Home() {
                 <a href="#pricing" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Cennik</a>
                 <div className="h-px bg-slate-100 my-2"></div>
                 <a href="#" className="text-lg font-medium text-slate-700">Panel Agenta</a>
-                <button className="bg-indigo-600 text-white px-4 py-3 rounded-xl text-base font-medium w-full">
+                {/* ZMIANA: Kolor przycisku na bordowy */}
+                <button className="bg-rose-900 text-white px-4 py-3 rounded-xl text-base font-medium w-full">
                     Rozpocznij za darmo
                 </button>
             </div>
@@ -167,10 +172,10 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-40 pb-20 text-center overflow-hidden">
-        {/* Background Decorations */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-indigo-50/50 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
-        <div className="absolute top-20 right-0 w-64 h-64 bg-blue-100/40 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute top-40 left-0 w-72 h-72 bg-purple-100/40 rounded-full blur-3xl -z-10"></div>
+        {/* Background Decorations - Zmienione na cieplejsze */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-rose-50/50 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
+        <div className="absolute top-20 right-0 w-64 h-64 bg-red-100/40 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute top-40 left-0 w-72 h-72 bg-pink-100/40 rounded-full blur-3xl -z-10"></div>
         
         <div className="px-6 max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 mb-8 shadow-sm hover:shadow-md transition-shadow cursor-default">
@@ -183,7 +188,8 @@ export default function Home() {
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 text-slate-900">
             Sprzedawaj globalnie.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Obsługuj lokalnie.</span>
+            {/* ZMIANA: Gradient tekstu na bordowy */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-800 to-red-900">Obsługuj lokalnie.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-light mb-10 leading-relaxed">
@@ -195,19 +201,18 @@ export default function Home() {
             <button className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-105 shadow-xl shadow-slate-900/20 ring-4 ring-slate-900/5">
               Dołącz do bety
             </button>
-            {/* ZMODYFIKOWANY PRZYCISK DEMO */}
-            <button className="w-full md:w-auto px-8 py-4 bg-white/50 backdrop-blur-sm border border-slate-200 text-slate-700 rounded-xl text-base font-semibold hover:bg-white hover:shadow-lg hover:border-indigo-200 transition-all flex items-center justify-center gap-3 group">
-              <span className="w-8 h-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg width="12" height="12" fill="currentColor" className="text-indigo-600 ml-0.5" viewBox="0 0 24 24">
+            {/* ZMIANA: Nowy design przycisku Zobacz demo */}
+            <button className="w-full md:w-auto px-8 py-4 bg-white text-slate-800 rounded-xl text-base font-semibold border border-slate-200 hover:border-rose-200 hover:bg-rose-50/50 hover:text-rose-900 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-3 group">
+              <div className="w-10 h-10 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-700 group-hover:text-white transition-all duration-300 shadow-inner">
+                <svg width="14" height="14" fill="currentColor" className="ml-0.5" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                 </svg>
-              </span>
+              </div>
               <span>Zobacz demo</span>
             </button>
           </div>
 
           <div className="mt-16 text-xs text-slate-400 uppercase tracking-widest font-semibold mb-6">Technologia, której ufasz</div>
-          {/* ZAKTUALIZOWANE LOGOTYPY Z OBRAZKAMI */}
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <div className="h-8 flex items-center">
                 <img src="/openai-logo.png" alt="OpenAI" className="h-full w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" />
@@ -224,7 +229,7 @@ export default function Home() {
 
       {/* UI MOCKUP - INTERAKTYWNE */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 -mt-10 mb-20 relative z-20">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-indigo-900/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-rose-900/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
           {/* Window Header */}
           <div className="bg-slate-50 h-10 border-b border-slate-100 flex items-center px-4 gap-2 shrink-0 justify-between">
             <div className="flex gap-2">
@@ -252,12 +257,12 @@ export default function Home() {
                     onClick={() => setActiveChatId(chat.id)}
                     className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${
                       activeChatId === chat.id
-                        ? 'bg-indigo-50 border-indigo-100 shadow-sm z-10'
+                        ? 'bg-rose-50 border-rose-100 shadow-sm z-10' // ZMIANA
                         : 'bg-white border-transparent hover:bg-slate-50'
                     }`}
                   >
-                    {/* Active Indicator */}
-                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-600 rounded-r-full"></div>}
+                    {/* Active Indicator - ZMIANA na rose */}
+                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-rose-700 rounded-r-full"></div>}
 
                     {/* AVATAR W SIDEBARZE */}
                     <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm`}>
@@ -266,18 +271,18 @@ export default function Home() {
 
                     <div className="flex-1 min-w-0 py-0.5">
                         <div className="flex justify-between items-center mb-0.5">
-                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-indigo-900' : 'text-slate-700'}`}>
+                            {/* ZMIANA: tekst aktywny na rose */}
+                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-rose-900' : 'text-slate-700'}`}>
                                 {chat.name}
                             </span>
                             <span className="text-[10px] text-slate-400 ml-2 whitespace-nowrap">{chat.time}</span>
                         </div>
-                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-indigo-600/80' : 'text-slate-500'}`}>
+                        {/* ZMIANA: tekst wiadomości na rose */}
+                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-rose-700/80' : 'text-slate-500'}`}>
                             {chat.lastMessage}
                         </div>
                         <div className="mt-2 flex items-center gap-2">
-                             {/* JĘZYK + ŹRÓDŁO - POPRAWIONE */}
-                            <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
-                                {/* USUNIĘTE KOLOROWE KROPKI */}
+                             <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
                                 <span>{chat.lang}</span>
                             </span>
                              <span className="inline-flex items-center px-1.5 py-0.5 bg-slate-50 rounded text-[9px] text-slate-400 uppercase tracking-wide">
@@ -293,7 +298,7 @@ export default function Home() {
             {/* Main Chat Area */}
             <div className="flex-1 flex flex-col bg-slate-50/50 relative">
               
-              {/* Chat Header - ZMODYFIKOWANY */}
+              {/* Chat Header */}
               <div className="h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>
@@ -306,13 +311,11 @@ export default function Home() {
                       <span className="text-slate-300">•</span>
                       <span>Język: <strong className="uppercase">{activeChat.lang}</strong></span>
                       <span className="text-slate-300">•</span>
-                      {/* DODANA NAZWA KOMUNIKATORA */}
                       <span className="capitalize">{activeChat.source}</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                    {/* USUNIĘTY PRZYCISK SZCZEGÓŁY ZAMÓWIENIA */}
                     <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
                     </button>
@@ -333,7 +336,7 @@ export default function Home() {
                       <div 
                         className={`p-4 rounded-2xl text-sm shadow-sm relative group ${
                           msg.sender === 'agent' 
-                            ? 'bg-indigo-600 text-white rounded-tr-none' 
+                            ? 'bg-rose-800 text-white rounded-tr-none' // ZMIANA
                             : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
                         }`}
                       >
@@ -343,7 +346,7 @@ export default function Home() {
                         {msg.translation && (
                           <div className={`mt-3 pt-2 text-[11px] border-t flex items-start gap-2 ${
                             msg.sender === 'agent' 
-                              ? 'border-white/20 text-indigo-100' 
+                              ? 'border-white/20 text-rose-100' // ZMIANA
                               : 'border-slate-100 text-slate-400'
                           }`}>
                             <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
@@ -372,7 +375,8 @@ export default function Home() {
                 {/* AI Suggestion Pill - Extra Feature */}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-4">
-                        <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-indigo-200">
+                        {/* ZMIANA: Kolory na rose */}
+                        <button className="bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-rose-200">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             AI Sugestia: "Przepraszam za kłopot. Wyślemy nowy produkt jutro."
                         </button>
@@ -382,7 +386,8 @@ export default function Home() {
               
               {/* Input Area */}
               <div className="p-4 bg-white border-t border-slate-100">
-                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
+                {/* ZMIANA: Focus ring na rose */}
+                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-rose-500/20 focus-within:border-rose-500 transition-all shadow-inner">
                   <input 
                     type="text" 
                     value={inputValue}
@@ -395,7 +400,8 @@ export default function Home() {
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                      </button>
                   </div>
-                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">
+                  {/* ZMIANA: Przycisk wyślij na rose */}
+                  <button className="bg-rose-800 hover:bg-rose-900 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-rose-200 active:scale-95">
                     Wyślij
                   </button>
                 </div>
@@ -419,14 +425,17 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
           {/* Card 1 - Translation */}
-          <div className="group bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-900/5 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-indigo-100 transition-colors"></div>
+          {/* ZMIANA: Cień i hover na rose */}
+          <div className="group bg-white border border-slate-200 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-900/5 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-rose-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-rose-100 transition-colors"></div>
             
             <div className="flex-1 relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-600/20">
+              {/* ZMIANA: Ikona tła na rose */}
+              <div className="w-12 h-12 rounded-2xl bg-rose-800 text-white flex items-center justify-center mb-6 shadow-lg shadow-rose-600/20">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Tłumaczenie Native-like</h3>
+              {/* ZMIANA: Tekst hover na rose */}
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-rose-700 transition-colors">Tłumaczenie Native-like</h3>
               <p className="text-slate-500 text-sm leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst, rozumie terminologię branżową i automatycznie wygładza ton. Latencja poniżej 50ms.</p>
             </div>
             <div className="hidden md:flex flex-1 flex-col gap-3 w-full opacity-80 group-hover:opacity-100 transition-opacity">
@@ -434,13 +443,14 @@ export default function Home() {
                  <div className="w-2 h-2 rounded-full bg-slate-300"></div>
                  <span>"Produkt jest super!"</span>
                  <svg className="w-4 h-4 text-slate-300 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 <strong className="text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Das Produkt ist toll!</strong>
+                 {/* ZMIANA: Badge na rose */}
+                 <strong className="text-rose-700 bg-rose-50 px-2 py-1 rounded">Das Produkt ist toll!</strong>
                </div>
                <div className="bg-white border border-slate-100 p-4 rounded-xl text-xs text-slate-600 shadow-sm flex items-center gap-3">
                  <div className="w-2 h-2 rounded-full bg-slate-300"></div>
                  <span>"Zwrot środków"</span>
                  <svg className="w-4 h-4 text-slate-300 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                 <strong className="text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Rückerstattung</strong>
+                 <strong className="text-rose-700 bg-rose-50 px-2 py-1 rounded">Rückerstattung</strong>
                </div>
             </div>
           </div>
@@ -552,7 +562,7 @@ export default function Home() {
             <div className="space-y-6">
                 <h4 className="text-xl font-medium text-slate-900">Kontakt</h4>
                 <div className="space-y-4">
-                <a href="mailto:hello@chataptor.com" className="flex items-center gap-3 text-slate-500 hover:text-indigo-600 transition-colors">
+                <a href="mailto:hello@chataptor.com" className="flex items-center gap-3 text-slate-500 hover:text-rose-700 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail h-5 w-5 flex-shrink-0">
                     <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -574,10 +584,10 @@ export default function Home() {
                 <h4 className="text-xl font-medium text-slate-900">Informacje prawne</h4>
                 <ul className="space-y-3 text-slate-500 font-light">
                 <li>
-                    <a href="#" className="hover:text-indigo-600 transition-colors">Polityka prywatności</a>
+                    <a href="#" className="hover:text-rose-700 transition-colors">Polityka prywatności</a>
                 </li>
                 <li>
-                    <a href="#" className="hover:text-indigo-600 transition-colors">Regulamin</a>
+                    <a href="#" className="hover:text-rose-700 transition-colors">Regulamin</a>
                 </li>
                 </ul>
             </div>
