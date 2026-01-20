@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // --- STYLES FOR ANIMATIONS (MARQUEE) ---
-// Dodajemy style bezpośrednio tutaj, aby nie modyfikować global.css
 const styles = `
   @keyframes marquee {
     0% { transform: translateX(0); }
@@ -524,19 +523,18 @@ export default function Home() {
                     </div>
                 </GrowthStep>
 
-                {/* Step 4 - MARQUEE (Nowy Design) */}
-                <GrowthStep number="4" title="Integracja" description="Podłącz Messengera, WhatsAppa lub e-mail i zarządzaj wszystkim z jednego miejsca." side="left" last={true}>
-                    <div className="w-full max-w-sm mr-auto relative">
-                        <div className="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 overflow-hidden w-full h-[100px] flex items-center relative mask-gradient">
-                            <div className="flex animate-marquee whitespace-nowrap">
-                                {[...logos, ...logos, ...logos].map((logo, index) => (
-                                    <div key={index} className="w-16 h-16 flex-shrink-0 flex items-center justify-center mx-4">
-                                        <img src={logo} alt="Integration Logo" className="w-10 h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
-                                    </div>
-                                ))}
+                {/* Step 4 - WZROST PRZYCHODÓW (Reverted) */}
+                <GrowthStep number="4" title="Wzrost przychodów" description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na zespole, a słupki sprzedaży rosną." side="left" last={true}>
+                    <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
+                        <div className="relative z-10">
+                            <div className="text-4xl md:text-5xl font-extrabold text-emerald-500 mb-2 tracking-tight">+40%</div>
+                            <div className="text-sm font-semibold text-slate-600">Wzrost konwersji</div>
+                            <div className="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg w-fit">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                Trend wzrostowy
                             </div>
                         </div>
-                        <div className="text-center mt-3 text-xs text-slate-400 font-medium">Obsługiwane platformy</div>
                     </div>
                 </GrowthStep>
             </div>
@@ -572,6 +570,25 @@ export default function Home() {
                         <div>
                             <h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Wybierz języki</h4>
                             <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
+                        </div>
+                    </div>
+                    {/* NEW STEP 4 + MARQUEE */}
+                    <div className="flex gap-4 md:gap-5 group">
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all shrink-0">4</div>
+                        <div className="w-full overflow-hidden">
+                            <h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4>
+                            <p className="text-slate-500 text-sm mb-4">Podłącz Messengera, WhatsAppa lub e-mail.</p>
+                            
+                            {/* INFINITE MARQUEE */}
+                            <div className="w-full relative mask-gradient">
+                                <div className="flex animate-marquee whitespace-nowrap">
+                                    {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
+                                        <div key={index} className="w-14 h-14 flex-shrink-0 flex items-center justify-center mx-2 md:mx-3 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                            <img src={logo} alt="Integration" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -654,40 +671,63 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 - Omnichannel (Unified Hub) */}
+          {/* Card 2 - Omnichannel (Unified Hub) - NOWE GĘSTE WYPEŁNIENIE */}
           <div className="bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent opacity-50"></div>
             
-            <div className="relative z-10 mb-auto">
+            <div className="relative z-10 mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
                 <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Omnichannel Hub</h3>
-                <p className="text-slate-500 text-base mb-8">Zarządzaj wszystkimi kanałami z jednego miejsca. Koniec z przełączaniem kart.</p>
+                <p className="text-slate-500 text-base">Zarządzaj wszystkimi kanałami z jednego miejsca. Koniec z przełączaniem kart.</p>
             </div>
             
-            <div className="relative z-10 space-y-3 mt-4">
-                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300">
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg></div>
-                        <span className="font-semibold text-slate-700">Messenger</span>
-                    </div>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 delay-75">
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg></div>
-                        <span className="font-semibold text-slate-700">WhatsApp</span>
-                    </div>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 delay-150">
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-yellow-500 flex items-center justify-center text-white"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
-                        <span className="font-semibold text-slate-700">Email</span>
-                    </div>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                </div>
+            <div className="relative z-10 flex-1 bg-slate-50 rounded-2xl border border-slate-100 p-1 flex flex-col gap-1 overflow-hidden shadow-inner">
+               {/* Mockup listy wiadomości */}
+               <div className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                     <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-xs font-bold text-slate-800">Jan K.</span>
+                        <span className="text-[10px] text-slate-400">2m</span>
+                     </div>
+                     <p className="text-xs text-slate-500 truncate">Gdzie jest moja paczka?</p>
+                  </div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+               </div>
+
+               <div className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 opacity-90">
+                  <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                     <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-xs font-bold text-slate-800">Anna N.</span>
+                        <span className="text-[10px] text-slate-400">15m</span>
+                     </div>
+                     <p className="text-xs text-slate-500 truncate">Chcę zwrócić produkt...</p>
+                  </div>
+               </div>
+
+               <div className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 opacity-80">
+                  <div className="w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                     <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-xs font-bold text-slate-800">Support</span>
+                        <span className="text-[10px] text-slate-400">1h</span>
+                     </div>
+                     <p className="text-xs text-slate-500 truncate">Nowe zgłoszenie #421</p>
+                  </div>
+               </div>
+               
+               <div className="mt-auto bg-indigo-50 border border-indigo-100 p-2 text-center rounded-lg text-[10px] font-bold text-indigo-600 uppercase tracking-wide">
+                  + 5 innych kanałów
+               </div>
             </div>
           </div>
 
