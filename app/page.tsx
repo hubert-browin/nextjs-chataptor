@@ -104,7 +104,7 @@ export default function Home() {
       <nav className="fixed w-full z-50 top-0 left-0 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16">
         <div className="h-full px-6 max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* ZMIANA: Użycie pełnego logotypu z pliku logotype.png */}
+            {/* Użycie pełnego logotypu w nagłówku */}
             <img 
               src="/logotype.png" 
               alt="Chataptor Logo" 
@@ -114,12 +114,12 @@ export default function Home() {
           
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
             <a href="#product" className="hover:text-slate-900 transition-colors">Produkt</a>
-            <a href="#how-it-works" className="hover:text-slate-900 transition-colors">Dla kogo?</a>
+            <a href="#how-it-works" className="hover:text-slate-900 transition-colors">Dla kogo</a>
             <a href="#pricing" className="hover:text-slate-900 transition-colors">Cennik</a>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="hidden md:block text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Zaloguj się</a>
+            <a href="#" className="hidden md:block text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Panel Agenta</a>
             <button className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">
               Rozpocznij za darmo
             </button>
@@ -150,7 +150,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <button className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl text-base font-semibold hover:bg-slate-800 transition-colors">
-              Dołącz do testów
+              Dołącz do pilotażu
             </button>
             <button className="w-full md:w-auto px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl text-base font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,9 +396,13 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="mt-20 border-t border-slate-200 py-12 bg-white">
         <div className="px-6 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 font-bold text-slate-900">
-            <div className="w-6 h-6 bg-slate-900 text-white text-[10px] flex items-center justify-center rounded">C</div>
-            Chataptor
+          <div className="flex items-center gap-2">
+            {/* ZMIANA: Logo w stopce - używamy logotypu zamiast tekstu */}
+            <img 
+              src="/logotype.png" 
+              alt="Chataptor" 
+              className="h-6 w-auto object-contain opacity-90 grayscale hover:grayscale-0 transition-all duration-300"
+            />
           </div>
           <div className="text-slate-500 text-sm">
             &copy; 2025 Chataptor. All rights reserved.
