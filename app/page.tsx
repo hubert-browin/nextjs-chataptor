@@ -10,22 +10,21 @@ const conversations = [
     time: '2m',
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
-    source: 'Messenger', // Zmienione na nazwę własną do wyświetlania
-    // PRZYWRÓCONE: Kolor awatara na indygo
+    source: 'Messenger', 
     avatarColor: 'bg-indigo-100 text-indigo-600',
     messages: [
       {
         id: 1,
         sender: 'user',
         text: 'Hallo, wo ist meine Bestellung?',
-        translation: 'Cześć, gdzie jest moje zamówienie?', // Tłumaczenie na PL
+        translation: 'Cześć, gdzie jest moje zamówienie?', 
         timestamp: '10:23'
       },
       {
         id: 2,
         sender: 'agent',
         text: 'Sprawdzam to dla Ciebie, daj mi chwilę.',
-        translation: 'Ich überprüfe das für Sie, einen Moment bitte.', // Tłumaczenie na język klienta
+        translation: 'Ich überprüfe das für Sie, einen Moment bitte.', 
         timestamp: '10:24'
       }
     ]
@@ -37,7 +36,6 @@ const conversations = [
     lastMessage: 'Produit endommagé...',
     lang: 'FR',
     source: 'Email',
-    // PRZYWRÓCONE: Kolor awatara na szmaragdowy
     avatarColor: 'bg-emerald-100 text-emerald-600',
     messages: [
       {
@@ -70,7 +68,6 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    // PRZYWRÓCONE: Kolor awatara na różany
     avatarColor: 'bg-rose-100 text-rose-600',
     messages: [
       {
@@ -84,11 +81,9 @@ const conversations = [
   }
 ];
 
-// Helper do etykiety źródła
 const SourceLabel = ({ source }: { source: string }) => {
-    // Prostszy return, bo source jest już sformatowane w danych
     return source;
-  };
+};
 
 export default function Home() {
   const [activeChatId, setActiveChatId] = useState(conversations[0].id);
@@ -98,7 +93,6 @@ export default function Home() {
 
   const activeChat = conversations.find(c => c.id === activeChatId) || conversations[0];
 
-  // Efekt cienia na nawigacji po scrollowaniu
   useEffect(() => {
     const handleScroll = () => {
         setScrolled(window.scrollY > 20);
@@ -114,7 +108,6 @@ export default function Home() {
       <nav className={`fixed w-full z-50 top-0 left-0 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="px-6 max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Logo */}
             <div className="flex items-center gap-2">
                 <img 
                 src="/logotype.png" 
@@ -124,7 +117,6 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
             <a href="#product" className="hover:text-slate-900 transition-colors">Produkt</a>
             <a href="#features" className="hover:text-slate-900 transition-colors">Dla kogo</a>
@@ -138,7 +130,6 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             className="md:hidden p-2 text-slate-600"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -153,7 +144,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl md:hidden animate-in slide-in-from-top-5">
                 <a href="#product" className="text-lg font-medium text-slate-700" onClick={() => setMobileMenuOpen(false)}>Produkt</a>
@@ -170,7 +160,6 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-40 pb-20 text-center overflow-hidden">
-        {/* Background Decorations */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-slate-50/80 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
         <div className="absolute top-20 right-0 w-64 h-64 bg-gray-100/40 rounded-full blur-3xl -z-10"></div>
         <div className="absolute top-40 left-0 w-72 h-72 bg-slate-100/40 rounded-full blur-3xl -z-10"></div>
@@ -198,7 +187,6 @@ export default function Home() {
             <button className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-105 shadow-xl shadow-slate-900/20 ring-4 ring-slate-900/5">
               Dołącz do bety
             </button>
-            {/* ZMODYFIKOWANY PRZYCISK DEMO - MNIEJSZY PADDING ABY WYRÓWNAĆ WYSOKOŚĆ */}
             <button className="w-full md:w-auto px-8 py-4 bg-white text-slate-800 rounded-xl text-base font-semibold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-3 group">
               <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-slate-800 group-hover:text-white transition-all duration-300 shadow-inner">
                 <svg width="12" height="12" fill="currentColor" className="ml-0.5" viewBox="0 0 24 24">
@@ -227,7 +215,6 @@ export default function Home() {
       {/* UI MOCKUP - INTERAKTYWNE */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 -mt-10 mb-20 relative z-20">
         <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-indigo-900/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
-          {/* Window Header - PRZYWRÓCONE KOLORY KROPEK */}
           <div className="bg-slate-50 h-10 border-b border-slate-100 flex items-center px-4 gap-2 shrink-0 justify-between">
             <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
@@ -235,13 +222,10 @@ export default function Home() {
                 <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
             </div>
             <div className="text-[10px] text-slate-400 font-mono tracking-wide">Chataptor Agent Dashboard v1.0</div>
-            <div className="w-10"></div> {/* Spacer */}
+            <div className="w-10"></div>
           </div>
           
-          {/* Window Body */}
           <div className="flex flex-1 overflow-hidden">
-            
-            {/* Sidebar (Chat List) */}
             <div className="w-1/3 md:w-[320px] border-r border-slate-100 bg-white flex flex-col overflow-y-auto custom-scrollbar">
               <div className="p-4 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
                 <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">Inbox</div>
@@ -254,33 +238,26 @@ export default function Home() {
                     onClick={() => setActiveChatId(chat.id)}
                     className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${
                       activeChatId === chat.id
-                        ? 'bg-indigo-50 border-indigo-100 shadow-sm z-10' // PRZYWRÓCONE: Aktywny kolor indygo
+                        ? 'bg-indigo-50 border-indigo-100 shadow-sm z-10'
                         : 'bg-white border-transparent hover:bg-slate-50'
                     }`}
                   >
-                    {/* Active Indicator - PRZYWRÓCONE: Indygo */}
                     {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-600 rounded-r-full"></div>}
-
-                    {/* AVATAR W SIDEBARZE */}
                     <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm`}>
                         {chat.name.charAt(0)}
                     </div>
-
                     <div className="flex-1 min-w-0 py-0.5">
                         <div className="flex justify-between items-center mb-0.5">
-                            {/* PRZYWRÓCONE: Kolor indygo dla aktywnego tekstu */}
                             <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-indigo-900' : 'text-slate-700'}`}>
                                 {chat.name}
                             </span>
                             <span className="text-[10px] text-slate-400 ml-2 whitespace-nowrap">{chat.time}</span>
                         </div>
-                        {/* PRZYWRÓCONE: Kolor indygo dla wiadomości */}
                         <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-indigo-600/80' : 'text-slate-500'}`}>
                             {chat.lastMessage}
                         </div>
                         <div className="mt-2 flex items-center gap-2">
                              <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm">
-                                {/* PRZYWRÓCONE: Kolorowe kropki przy językach */}
                                 <span className={`w-2 h-2 rounded-full ${chat.id === 1 ? 'bg-yellow-400' : chat.id === 2 ? 'bg-blue-400' : 'bg-green-400'}`}></span>
                                 <span>{chat.lang}</span>
                             </span>
@@ -294,10 +271,7 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Main Chat Area */}
             <div className="flex-1 flex flex-col bg-slate-50/50 relative">
-              
-              {/* Chat Header */}
               <div className="h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>
@@ -321,7 +295,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Messages List */}
               <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {activeChat.messages.map((msg) => (
                   <div key={msg.id} className={`flex gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
@@ -335,25 +308,21 @@ export default function Home() {
                       <div 
                         className={`p-4 rounded-2xl text-sm shadow-sm relative group ${
                           msg.sender === 'agent' 
-                            ? 'bg-indigo-600 text-white rounded-tr-none' // PRZYWRÓCONE: Tło dymka agenta na indygo
+                            ? 'bg-indigo-600 text-white rounded-tr-none'
                             : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
                         }`}
                       >
                         <div className="font-medium leading-relaxed">{msg.text}</div>
-                        
-                        {/* Translation Block */}
                         {msg.translation && (
                           <div className={`mt-3 pt-2 text-[11px] border-t flex items-start gap-2 ${
                             msg.sender === 'agent' 
-                              ? 'border-white/20 text-indigo-100' // PRZYWRÓCONE: Kolor tekstu tłumaczenia agenta
+                              ? 'border-white/20 text-indigo-100'
                               : 'border-slate-100 text-slate-400'
                           }`}>
                             <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                             <span className="italic">{msg.translation}</span>
                           </div>
                         )}
-                        
-                        {/* Status Icon for Agent */}
                         {msg.sender === 'agent' && (
                             <div className="absolute -left-5 bottom-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
@@ -371,10 +340,8 @@ export default function Home() {
                   </div>
                 ))}
                 
-                {/* AI Suggestion Pill - Extra Feature */}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-4">
-                        {/* PRZYWRÓCONE: Kolory indygo dla sugestii */}
                         <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors border border-indigo-200">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             AI Sugestia: "Przepraszam za kłopot. Wyślemy nowy produkt jutro."
@@ -383,9 +350,7 @@ export default function Home() {
                 )}
               </div>
               
-              {/* Input Area */}
               <div className="p-4 bg-white border-t border-slate-100">
-                {/* PRZYWRÓCONE: Focus ring na indygo */}
                 <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
                   <input 
                     type="text" 
@@ -399,7 +364,6 @@ export default function Home() {
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                      </button>
                   </div>
-                  {/* PRZYWRÓCONE: Przycisk wyślij na indygo */}
                   <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">
                     Wyślij
                   </button>
@@ -415,7 +379,209 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FEATURES (BENTO GRID) */}
+      {/* --- NOWA SEKCJA: INTEGRACJE (PLATFORMY) --- */}
+      <section className="py-12 bg-white border-b border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+            <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-8">Integrujemy się z tym, co już masz</p>
+            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                {/* Text placeholders for platforms to keep clean look without images */}
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96BF48] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M22.95 9.6l-1.95-6.9L17.5 7.2 12.55 0 7.6 7.2 4.1 2.7 2.15 9.6c-.05.2-.05.45.05.65l8.55 11.2c.4.55 1.25.55 1.65 0l8.55-11.2c.1-.2.1-.45.05-.65z"/></svg>
+                    Shopify
+                </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#96588A] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12 6.63 0 12-5.37 12-12 0-6.63-5.37-12-12-12zm4.39 16.32c-.52.26-2.58 1.15-3.04 1.35-.46.2-.82.16-1.12-.22-.3-.38-.6-1.16-.76-1.57-.16-.41-.44-.46-.86-.26-.42.2-1.78.85-2.22 1.05-.44.2-.87.42-1.25.64-.38.22-.64.44-1.25.64-.61.2-1.28-.2-1.28-.2s-1.38-.9-1.9-1.26c-.52-.36-.36-.92-.36-.92s.32-.56 1.9-1.26c1.58-.7 5.14-2.12 5.14-2.12s.9-.4 1.4-.4c.5 0 .9.4 1.4.4s3.56 1.42 5.14 2.12c1.58.7 1.9 1.26 1.9 1.26s.16.56-.36.92c-.52.36-1.9 1.26-1.9 1.26z"/></svg>
+                    WooCommerce
+                </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#F37623] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.9 2.1c-.5-.1-1.3-.1-1.8 0l-5.8 1.2-3.7 3.7c-.4.4-.6 1-.6 1.5v7c0 .6.2 1.1.6 1.5l3.7 3.7 5.8 1.2c.5.1 1.3.1 1.8 0l5.8-1.2 3.7-3.7c.4-.4.6-1 .6-1.5v-7c0-.6-.2-1.1-.6-1.5l-3.7-3.7-5.8-1.2zM7 12l5-5 5 5-5 5-5-5z"/></svg>
+                    Magento
+                </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#0084FF] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
+                    Messenger
+                </div>
+                <div className="flex items-center gap-2 text-xl font-bold text-slate-700 hover:text-[#25D366] transition-colors cursor-default">
+                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
+                    WhatsApp
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* --- NOWA SEKCJA: WDROŻENIE (DEVELOPER FRIENDLY) --- */}
+      <section className="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[100px]"></div>
+
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            {/* Lewa strona: Tekst */}
+            <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Wdrożenie szybsze niż parzenie kawy.</h2>
+                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                    Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-white font-semibold">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.
+                </p>
+                
+                <div className="space-y-6">
+                    <div className="flex items-start gap-4 group">
+                        <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-500 transition-colors">1</div>
+                        <div>
+                            <h4 className="font-semibold text-lg text-white">Skopiuj snippet</h4>
+                            <p className="text-slate-500 text-sm">Dostępny w Twoim panelu administratora.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-4 group">
+                        <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-500 transition-colors">2</div>
+                        <div>
+                            <h4 className="font-semibold text-lg text-white">Wklej w &lt;head&gt;</h4>
+                            <p className="text-slate-500 text-sm">Działa z każdym CMS i customowym sklepem.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-4 group">
+                        <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-500 transition-colors">3</div>
+                        <div>
+                            <h4 className="font-semibold text-lg text-white">Wybierz języki</h4>
+                            <p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Prawa strona: Code Mockup */}
+            <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="relative bg-[#0F172A] rounded-xl border border-slate-800 p-6 shadow-2xl font-mono text-sm overflow-hidden">
+                    <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-4">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span className="ml-2 text-slate-500 text-xs">index.html</span>
+                    </div>
+                    <div className="text-slate-300 space-y-1">
+                        <div><span className="text-purple-400">&lt;head&gt;</span></div>
+                        <div className="pl-4 text-slate-500">&lt;!-- Twoje meta tagi --&gt;</div>
+                        <div className="pl-4"><span className="text-purple-400">&lt;meta</span> <span className="text-blue-400">charset</span>=<span className="text-green-400">"UTF-8"</span> /&gt;</div>
+                        <div className="pl-4 h-4"></div>
+                        <div className="pl-4 text-slate-500">&lt;!-- Chataptor Integration --&gt;</div>
+                        <div className="pl-4 bg-indigo-500/10 border-l-2 border-indigo-500 py-1 pr-2">
+                            <span className="text-purple-400">&lt;script</span> <span className="text-blue-400">src</span>=<span className="text-green-400">"https://cdn.chataptor.com/widget.js"</span></div>
+                        <div className="pl-8 bg-indigo-500/10 border-l-2 border-indigo-500 py-1 pr-2">
+                            <span className="text-blue-400">data-id</span>=<span className="text-green-400">"YOUR_STORE_ID"</span> <span className="text-purple-400">&gt;&lt;/script&gt;</span>
+                        </div>
+                        <div><span className="text-purple-400">&lt;/head&gt;</span></div>
+                    </div>
+                    
+                    {/* Status Badge */}
+                    <div className="absolute top-6 right-6 px-3 py-1 bg-green-500/10 text-green-400 text-xs rounded-full border border-green-500/20 flex items-center gap-2 animate-pulse">
+                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                        Connected
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* --- NOWA SEKCJA: ŚCIEŻKA EKSPANSJI (GROWTH PATH) --- */}
+      <section id="features" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Jak to działa w praktyce?</h2>
+            <p className="text-slate-500 max-w-xl mx-auto">Od lokalnego e-commerce do międzynarodowego gracza w czterech prostych krokach.</p>
+        </div>
+
+        <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block"></div>
+
+            <div className="space-y-24">
+                {/* Step 1 */}
+                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+                    <div className="md:w-1/2 flex justify-end text-right order-2 md:order-1">
+                        <div>
+                            <div className="text-indigo-600 font-bold mb-2">KROK 1</div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Podłączasz Chataptor</h3>
+                            <p className="text-slate-500 max-w-xs ml-auto">Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania.</p>
+                        </div>
+                    </div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-indigo-600 rounded-full border-4 border-white shadow-lg hidden md:flex items-center justify-center text-white text-xs font-bold z-10">1</div>
+                    <div className="md:w-1/2 order-1 md:order-2">
+                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div className="text-sm font-semibold text-slate-700">System gotowy do pracy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+                    <div className="md:w-1/2 flex justify-end order-2">
+                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm ml-auto">
+                            <div className="flex gap-2 mb-2">
+                                <span className="w-6 h-4 bg-slate-300 rounded-sm block"></span>
+                                <span className="w-6 h-4 bg-yellow-400 rounded-sm block"></span>
+                                <span className="w-6 h-4 bg-blue-600 rounded-sm block"></span>
+                            </div>
+                            <div className="text-sm font-semibold text-slate-700">Aktywacja rynku: Niemcy, Francja</div>
+                        </div>
+                    </div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-indigo-600 rounded-full shadow-lg hidden md:flex items-center justify-center text-indigo-600 text-xs font-bold z-10">2</div>
+                    <div className="md:w-1/2 order-1">
+                        <div>
+                            <div className="text-indigo-600 font-bold mb-2">KROK 2</div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Odblokowujesz rynki</h3>
+                            <p className="text-slate-500 max-w-xs">W panelu administratora zaznaczasz kraje, które chcesz obsługiwać. Tłumaczenie AI włącza się automatycznie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+                    <div className="md:w-1/2 flex justify-end text-right order-2 md:order-1">
+                        <div>
+                            <div className="text-indigo-600 font-bold mb-2">KROK 3</div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Obsługujesz bez barier</h3>
+                            <p className="text-slate-500 max-w-xs ml-auto">Klienci piszą po niemiecku, Ty odpisujesz po polsku. AI tłumaczy w locie, zachowując kontekst e-commerce.</p>
+                        </div>
+                    </div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-indigo-600 rounded-full shadow-lg hidden md:flex items-center justify-center text-indigo-600 text-xs font-bold z-10">3</div>
+                    <div className="md:w-1/2 order-1 md:order-2">
+                        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-md max-w-sm">
+                            <div className="flex gap-3 mb-3">
+                                <div className="bg-slate-100 p-2 rounded-lg rounded-tl-none text-xs text-slate-600">Wo ist mein Paket? 🇩🇪</div>
+                            </div>
+                            <div className="flex gap-3 justify-end">
+                                <div className="bg-indigo-600 p-2 rounded-lg rounded-tr-none text-xs text-white">Gdzie jest moja paczka? 🇵🇱</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 {/* Step 4 */}
+                 <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+                    <div className="md:w-1/2 flex justify-end order-2">
+                         <div className="bg-green-50 p-6 rounded-2xl border border-green-100 shadow-sm max-w-sm ml-auto">
+                            <div className="text-3xl font-bold text-green-600 mb-1">+40%</div>
+                            <div className="text-sm font-semibold text-green-800">Wzrost sprzedaży zagranicznej</div>
+                        </div>
+                    </div>
+                    <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg hidden md:flex items-center justify-center text-white text-xs font-bold z-10">4</div>
+                    <div className="md:w-1/2 order-1">
+                        <div>
+                            <div className="text-green-600 font-bold mb-2">EFEKT</div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-3">Zwiększasz sprzedaż</h3>
+                            <p className="text-slate-500 max-w-xs">Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na native speakerach.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* FEATURES (BENTO GRID) - EXISTING SECTION */}
       <section id="product" className="py-24 px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Wszystko w jednym panelu.</h2>
@@ -484,7 +650,6 @@ export default function Home() {
 
           {/* Card 4 (Dark) - Pay-per-Satisfaction */}
           <div className="bg-slate-900 text-white border border-slate-800 rounded-3xl p-8 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
-            {/* Background Mesh */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/20 rounded-full blur-3xl"></div>
 
@@ -496,7 +661,6 @@ export default function Home() {
                 <p className="text-slate-400 text-sm mb-6">Płacisz tylko wtedy, gdy AI oceni rozmowę jako sukces (6/10+). Zero ryzyka.</p>
             </div>
 
-            {/* Interactive Visual Element */}
             <div className="bg-slate-800/50 rounded-xl p-3 border border-white/5 backdrop-blur-sm">
                 <div className="flex justify-between text-[10px] text-slate-400 mb-2 uppercase tracking-wider font-semibold">
                     <span>Niezadowolony</span>
@@ -514,7 +678,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* SECURITY TRUST BADGE SECTION */}
         <div className="mt-16 border-t border-slate-100 pt-10 text-center">
             <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-6">Bezpieczeństwo klasy Enterprise</h4>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center">
@@ -534,12 +697,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER - NOWY DESIGN WZOROWANY NA DOGINVOICE */}
       <footer id="contact" className="py-16 bg-white border-t border-slate-200">
         <div className="container mx-auto px-6 max-w-7xl">
             <div className="grid md:grid-cols-3 gap-12 mb-16">
             
-            {/* Kolumna 1: Brand */}
             <div className="space-y-6">
                 <div className="flex items-center gap-3">
                     <img 
@@ -553,7 +714,6 @@ export default function Home() {
                 </p>
             </div>
 
-            {/* Kolumna 2: Kontakt */}
             <div className="space-y-6">
                 <h4 className="text-xl font-medium text-slate-900">Kontakt</h4>
                 <div className="space-y-4">
@@ -574,7 +734,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Kolumna 3: Legal */}
             <div className="space-y-6">
                 <h4 className="text-xl font-medium text-slate-900">Informacje prawne</h4>
                 <ul className="space-y-3 text-slate-500 font-light">
@@ -592,7 +751,6 @@ export default function Home() {
             <p className="text-slate-400 text-sm font-light text-center">
                 © {new Date().getFullYear()} Wszystkie prawa zastrzeżone.
             </p>
-            {/* Uptime Badge zachowany z poprzedniej wersji */}
             <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-50 px-3 py-1 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                 Uptime: 99.98%
