@@ -729,7 +729,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Pay-per-Satisfaction</h3>
                 <p className="text-slate-400 text-lg leading-relaxed mb-6">
-                    Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
+                    Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena jakości wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm font-medium text-slate-300">
                     <div className="flex items-center gap-2">
@@ -746,7 +746,7 @@ export default function Home() {
             {/* Progress Bar Visualization */}
             <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-6 md:p-8 border border-white/10 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-4">
-                    <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
+                    <div className="text-sm font-medium text-slate-400">Analiza jakości (Live)</div>
                     <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-slate-500">/10</span></div>
                 </div>
                 
