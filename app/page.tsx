@@ -623,7 +623,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 - Omnichannel Hub (Compact Square - Bottom Left) */}
-          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
             <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
@@ -660,7 +660,7 @@ export default function Home() {
             </div>
             
             {/* Minimalist Chart UI */}
-            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex-1 flex flex-col justify-end relative overflow-hidden">
+            <div className="bg-white rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
                 
                 {/* Simple Bar Chart - Pink Variant */}
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
