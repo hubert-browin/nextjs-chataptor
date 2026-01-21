@@ -561,7 +561,6 @@ export default function Home() {
           
           {/* Card 1 - Translation (Glassmorphism + Real-time) */}
           <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-10 items-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl opacity-50"></div>
             
             <div className="flex-1 relative z-10 text-left">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
@@ -575,7 +574,7 @@ export default function Home() {
             
             {/* Visual - Real-time Chat Simulation */}
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm bg-slate-50/50 p-6 rounded-3xl border border-slate-100 shadow-inner">
+                <div className="relative w-full max-w-sm bg-white p-6 rounded-3xl">
                     <div className="flex flex-col gap-4">
                         {/* Incoming Message */}
                         <div className="flex items-start gap-3">
