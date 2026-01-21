@@ -154,7 +154,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-        // Show navbar only after scrolling down a bit (e.g., 100px)
         setShowNavbar(window.scrollY > 100);
     };
     window.addEventListener('scroll', handleScroll);
@@ -227,7 +226,6 @@ export default function Home() {
               Rozpocznij za darmo
             </button>
          </div>
-         {/* Mobile Menu Trigger for initial view */}
          <button 
             className="md:hidden p-2 text-slate-600"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -288,13 +286,10 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-slate-900 text-white rounded-2xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] shadow-xl shadow-slate-900/10 ring-4 ring-slate-100 active:scale-95">
               Dołącz do bety
             </button>
-            {/* NEW MODERN "PLAY CAPSULE" BUTTON - MONOCHROME VERSION */}
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-slate-200 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_0_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
                 <div className="relative w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-lg shadow-slate-900/20 shrink-0 group-hover:bg-black transition-colors duration-300">
                     <span className="absolute inset-0 rounded-full border border-white/20"></span>
                     <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                    
-                    {/* Pulsing ring inside icon - Always active (Monochrome) */}
                     <span className="absolute -inset-1 rounded-full border border-slate-900/30 animate-[ping_2s_linear_infinite]"></span>
                 </div>
                 <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Zobacz demo</span>
@@ -664,150 +659,192 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES (BENTO GRID - COMPACT & DENSE) */}
+      {/* FEATURES (BENTO GRID - RESTORED LAYOUT) */}
       <section id="product" className="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Wszystko w jednym panelu.</h2>
-          <p className="text-base text-slate-500 max-w-2xl mx-auto">Zastąp Intercom, Mailchimp i zewnętrznych tłumaczy jednym narzędziem.</p>
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wszystko w jednym panelu.</h2>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">Zastąp Intercom, Mailchimp i zewnętrznych tłumaczy jednym narzędziem zaprojektowanym dla nowoczesnego e-commerce.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 md:gap-6 auto-rows-[minmax(280px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 md:gap-8">
           
-          {/* Card 1 - Translation (Wide) */}
-          <div className="group bg-white border border-slate-200 rounded-3xl p-6 hover:shadow-xl hover:shadow-slate-200/40 transition-all duration-300 md:col-span-2 flex flex-col sm:flex-row gap-6 items-center overflow-hidden relative">
+          {/* Card 1 - Translation */}
+          <div className="group bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            <div className="flex-1 relative z-10 min-w-[50%]">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-white flex items-center justify-center mb-4 shadow-lg shadow-slate-900/20">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+            <div className="flex-1 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white flex items-center justify-center mb-6 shadow-lg shadow-slate-900/20">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Tłumaczenie Native-like</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst i ton marki. Zero robotycznych odpowiedzi.</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Tłumaczenie Native-like</h3>
+              <p className="text-slate-500 text-base leading-relaxed">Silnik oparty na OpenAI i DeepL. Zachowuje kontekst i ton marki. Twoje wiadomości brzmią naturalnie, a nie jak robot.</p>
             </div>
             
-            <div className="relative w-full sm:w-[45%] bg-slate-50 rounded-xl p-3 border border-slate-100 backdrop-blur-sm group-hover:bg-white/80 transition-colors self-stretch flex flex-col justify-center">
-                <div className="space-y-2">
-                    <div className="flex items-start gap-2">
-                        <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px]">🇩🇪</div>
-                        <div className="bg-white border border-slate-100 p-2 rounded-lg rounded-tl-none text-xs text-slate-600 shadow-sm">
-                            Das Produkt ist toll!
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-2 justify-end">
-                        <div className="bg-indigo-600 p-2 rounded-lg rounded-tr-none text-xs text-white shadow-md">
-                            Produkt jest świetny!
-                        </div>
-                        <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-[10px] font-bold text-indigo-600">A</div>
-                    </div>
+            <div className="relative w-full md:w-1/2 bg-slate-50/50 rounded-2xl p-6 border border-slate-100/50 backdrop-blur-sm group-hover:bg-white/80 transition-colors flex flex-col justify-center items-center gap-4">
+                <div className="w-full bg-white border border-slate-100 p-4 rounded-2xl shadow-sm relative">
+                    <div className="absolute -top-3 -left-3 w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10 text-sm">🇩🇪</div>
+                    <p className="text-slate-600 text-sm font-medium">Das Produkt ist toll!</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <div className="h-4 w-px bg-indigo-200"></div>
+                    <div className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-full border border-indigo-100">AI TRANSLATION</div>
+                    <div className="h-4 w-px bg-indigo-200"></div>
+                    <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7"></path></svg>
+                </div>
+                <div className="w-full bg-indigo-600 p-4 rounded-2xl shadow-md shadow-indigo-200 relative">
+                    <div className="absolute -bottom-3 -right-3 w-8 h-8 bg-indigo-800 rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10 text-xs font-bold text-white">PL</div>
+                    <p className="text-white text-sm font-medium">Produkt jest świetny!</p>
                 </div>
             </div>
           </div>
 
-          {/* Card 2 - Omnichannel (Tall) - REDESIGNED CONTENT */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 hover:shadow-xl hover:shadow-slate-200/40 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
+          {/* Card 2 - Omnichannel (Tall) */}
+          <div className="bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 md:row-span-2 flex flex-col relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent opacity-50"></div>
             
-            <div className="relative z-10 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center mb-4 shadow-lg shadow-indigo-500/20">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+            <div className="relative z-10 mb-8">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel Hub</h3>
-                <p className="text-slate-500 text-sm">Zarządzaj wszystkimi kanałami z jednego miejsca.</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">Omnichannel Hub</h3>
+                <p className="text-slate-500 text-base">Zarządzaj wszystkimi kanałami z jednego miejsca. Koniec z przełączaniem kart.</p>
             </div>
             
-            {/* New Dense Content: Channel Status List */}
             <div className="relative z-10 flex-1 flex flex-col gap-3">
-                <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm transition-transform hover:scale-[1.02]">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-[#0084FF]/10 text-[#0084FF] flex items-center justify-center">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
+                        <div className="w-10 h-10 rounded-xl bg-[#0084FF]/10 text-[#0084FF] flex items-center justify-center">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/></svg>
                         </div>
                         <div>
-                            <div className="text-xs font-bold text-slate-900">Messenger</div>
-                            <div className="text-[10px] text-emerald-500 font-medium">Aktywny • 2ms</div>
+                            <div className="text-sm font-bold text-slate-900">Messenger</div>
+                            <div className="text-xs text-emerald-500 font-medium">Aktywny • 2ms</div>
                         </div>
                     </div>
-                    <div className="w-8 h-5 bg-emerald-500 rounded-full relative cursor-pointer">
-                        <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+                    <div className="w-10 h-6 bg-emerald-500 rounded-full relative cursor-pointer shadow-sm">
+                        <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm transition-transform hover:scale-[1.02]">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
+                        <div className="w-10 h-10 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/></svg>
                         </div>
                         <div>
-                            <div className="text-xs font-bold text-slate-900">WhatsApp</div>
-                            <div className="text-[10px] text-emerald-500 font-medium">Aktywny • 12ms</div>
+                            <div className="text-sm font-bold text-slate-900">WhatsApp</div>
+                            <div className="text-xs text-emerald-500 font-medium">Aktywny • 12ms</div>
                         </div>
                     </div>
-                    <div className="w-8 h-5 bg-emerald-500 rounded-full relative cursor-pointer">
-                        <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+                    <div className="w-10 h-6 bg-emerald-500 rounded-full relative cursor-pointer shadow-sm">
+                        <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl shadow-sm opacity-60">
+                <div className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm opacity-60 transition-transform hover:scale-[1.02]">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <div className="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </div>
                         <div>
-                            <div className="text-xs font-bold text-slate-900">Instagram</div>
-                            <div className="text-[10px] text-slate-400 font-medium">Niepołączony</div>
+                            <div className="text-sm font-bold text-slate-900">Instagram</div>
+                            <div className="text-xs text-slate-400 font-medium">Niepołączony</div>
                         </div>
                     </div>
-                    <div className="w-8 h-5 bg-slate-200 rounded-full relative cursor-pointer">
-                        <div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+                    <div className="w-10 h-6 bg-slate-200 rounded-full relative cursor-pointer">
+                        <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
                     </div>
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Statystyki</span>
-                    <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">99.9% Uptime</span>
+                <div className="mt-auto pt-6 border-t border-slate-100 flex justify-between items-center">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Statystyki</span>
+                    <span className="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg">99.9% Uptime</span>
                 </div>
             </div>
           </div>
 
-          {/* Card 3 - Marketing (Compact) */}
-          <div className="group bg-white border border-slate-200 rounded-3xl p-6 hover:shadow-xl hover:shadow-slate-200/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+          {/* Card 3 - Marketing (Enhanced) */}
+          <div className="group bg-white border border-slate-200 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
             <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-pink-500/20">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-pink-500/20">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
-                <p className="text-slate-500 text-sm">Newslettery i pop-upy.</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">Marketing Automation</h3>
+                <p className="text-slate-500 text-base mb-6">Wbudowane narzędzia do newsletterów i pop-upów. Zwiększaj sprzedaż, gdy support śpi.</p>
             </div>
             
-            <div className="relative h-12 w-full mt-4 flex items-end gap-1">
-                <div className="w-1/5 bg-pink-100 rounded-t-sm h-[30%]"></div>
-                <div className="w-1/5 bg-pink-200 rounded-t-sm h-[50%]"></div>
-                <div className="w-1/5 bg-pink-300 rounded-t-sm h-[40%]"></div>
-                <div className="w-1/5 bg-pink-400 rounded-t-sm h-[70%]"></div>
-                <div className="w-1/5 bg-pink-500 rounded-t-sm h-[90%] shadow-lg shadow-pink-500/30"></div>
+            {/* Marketing Mini-UI */}
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 shadow-inner group-hover:bg-white transition-colors">
+                <div className="flex justify-between items-center mb-3">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-xs font-bold text-slate-700">Kampania: Black Friday</span>
+                    </div>
+                    <span className="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded">Wysłano</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                    <div className="bg-white p-2 rounded-lg border border-slate-100 text-center">
+                        <div className="text-[10px] text-slate-400 uppercase font-bold">Open Rate</div>
+                        <div className="text-lg font-bold text-pink-500">42%</div>
+                    </div>
+                    <div className="bg-white p-2 rounded-lg border border-slate-100 text-center">
+                        <div className="text-[10px] text-slate-400 uppercase font-bold">CTR</div>
+                        <div className="text-lg font-bold text-indigo-500">18%</div>
+                    </div>
+                </div>
+                <div className="relative h-24 bg-white border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center">
+                    <div className="absolute inset-0 bg-slate-50 opacity-50"></div>
+                    <div className="relative bg-white shadow-lg rounded-lg p-3 w-3/4 text-center border border-slate-100 transform -rotate-2">
+                        <span className="text-xs font-bold text-slate-800 block mb-1">Rabat -20%!</span>
+                        <span className="text-[10px] text-slate-500 block">Tylko dzisiaj dla Ciebie.</span>
+                        <div className="mt-2 h-6 bg-slate-900 rounded text-white text-[10px] flex items-center justify-center font-bold">Odbierz</div>
+                    </div>
+                </div>
             </div>
           </div>
 
-          {/* Card 4 (Dark) - Pay-per-Satisfaction (Compact) */}
-          <div className="bg-slate-900 text-white border border-slate-800 rounded-3xl p-6 hover:shadow-xl hover:shadow-slate-900/30 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+          {/* Card 4 (Dark) - Pay-per-Satisfaction (Enhanced) */}
+          <div className="bg-slate-900 text-white border border-slate-800 rounded-[2rem] p-8 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-300 relative overflow-hidden flex flex-col justify-between group">
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/20 rounded-full blur-[60px]"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px] group-hover:bg-emerald-500/30 transition-all duration-500"></div>
 
             <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 backdrop-blur-sm border border-white/10 shadow-inner">
-                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div className="w-14 h-14 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 backdrop-blur-sm border border-white/10 shadow-inner">
+                   <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Pay-per-Satisfaction</h3>
-                <p className="text-slate-400 text-sm">Płać tylko za sukces.</p>
+                <h3 className="text-2xl font-bold mb-3">Pay-per-Satisfaction</h3>
+                <p className="text-slate-400 text-base mb-8">Płacisz tylko wtedy, gdy AI oceni rozmowę jako sukces (6/10+). Jeśli klient jest niezadowolony, nie płacisz nic.</p>
             </div>
 
-            <div className="bg-slate-800/50 rounded-xl p-3 border border-white/10 backdrop-blur-sm relative z-10 mt-4">
-                <div className="flex justify-between text-[10px] text-slate-400 mb-2 uppercase tracking-wider font-bold">
-                    <span>Ocena AI</span>
-                    <span className="text-emerald-400">9.2</span>
+            <div className="relative z-10 space-y-3">
+                {/* Scenario 1: Bad Sentiment */}
+                <div className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-lg">😡</div>
+                        <div>
+                            <div className="text-xs text-slate-400">Sentyment: <span className="text-rose-400 font-bold">2/10</span></div>
+                            <div className="text-[10px] text-slate-500">"Towar uszkodzony..."</div>
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <div className="text-xs text-slate-500 line-through">Standard</div>
+                        <div className="text-sm font-bold text-white">0.00 PLN</div>
+                    </div>
                 </div>
-                <div className="h-2 bg-slate-700 rounded-full overflow-hidden relative">
-                    <div className="absolute left-0 top-0 h-full w-[92%] bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full"></div>
+
+                {/* Scenario 2: Good Sentiment */}
+                <div className="flex items-center justify-between bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 relative overflow-hidden">
+                    <div className="absolute left-0 top-0 w-1 h-full bg-emerald-500"></div>
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-lg">😍</div>
+                        <div>
+                            <div className="text-xs text-slate-300">Sentyment: <span className="text-emerald-400 font-bold">9/10</span></div>
+                            <div className="text-[10px] text-slate-400">"Dziękuję, super!"</div>
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <div className="text-xs font-bold text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded">Sukces</div>
+                    </div>
                 </div>
             </div>
           </div>
