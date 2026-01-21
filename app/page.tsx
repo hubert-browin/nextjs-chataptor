@@ -198,7 +198,7 @@ const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { f
     </div>
 );
 
-// Komponent Kroku Growth
+// Komponent Kroku Growth - ZMODYFIKOWANY UKŁAD MOBILNY
 const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
@@ -218,16 +218,24 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white bg-indigo-600 shadow-md z-10 items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
             </div>
-            {/* Ukrywamy linię przerywaną na mobile, bo psuje layout */}
+            {/* Linia tylko na desktopie */}
             <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-indigo-200 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
-            <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 order-2 md:order-1' : 'md:items-start md:text-left md:pl-16 order-2 md:order-2'}`}>
+            
+            {/* TEKST (KROK, TYTUŁ) */}
+            {/* Mobile: order-1 (pierwszy) */}
+            {/* Desktop: order zależy od 'side' */}
+            <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 order-1 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 md:order-1' : 'md:items-start md:text-left md:pl-16 md:order-2'}`}>
                 <div>
                     <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">KROK {number}</div>
                     <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
                     <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm">{description}</p>
                 </div>
             </div>
-            <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-1 ${side === 'left' ? 'md:order-2 md:pl-16' : 'md:order-1 md:pr-16'}`}>
+
+            {/* WIZUALIZACJA (KAFELEK) */}
+            {/* Mobile: order-2 (drugi) */}
+            {/* Desktop: order zależy od 'side' */}
+            <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-2 ${side === 'left' ? 'md:order-2 md:pl-16' : 'md:order-1 md:pr-16'}`}>
                 {children}
             </div>
         </div>
@@ -554,11 +562,13 @@ export default function Home() {
                 </div>
             </div>
         </div>
+        {/* POWIĘKSZONE LOGOTYPY INTEGRACJI */}
         <div className="w-full relative mask-gradient mt-8 md:mt-12 overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap items-center">
                 {[...logos, ...logos, ...logos, ...logos, ...logos].map((logo, index) => (
                     <div key={index} className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0 flex items-center justify-center mx-6 md:mx-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src={logo} alt="Integration" className="w-16 h-16 md:w-24 md:h-24 object-contain" />
+                        {/* Zmieniono w-16 h-16 na w-24 h-24 oraz w-24 na w-32 */}
+                        <img src={logo} alt="Integration" className="w-24 h-24 md:w-32 md:h-32 object-contain" />
                     </div>
                 ))}
             </div>
@@ -763,12 +773,12 @@ export default function Home() {
             <div className="space-y-6 md:space-y-8">
                 <h4 className="text-lg font-bold text-slate-900">Kontakt</h4>
                 <div className="space-y-4 md:space-y-5">
-                <a href="mailto:hello@chataptor.com" className="flex items-center gap-4 text-slate-500 hover:text-slate-900 transition-colors group">
-                    <div className="p-2 bg-slate-50 rounded-lg group-hover:bg-slate-100 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
+                <a href="mailto:contact@chataptor.com" className="flex items-center gap-4 text-slate-500 hover:text-slate-900 transition-colors group">
+                    <div className="p-2 rounded-lg group-hover:bg-slate-100 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
                     <span className="font-medium text-sm md:text-base">contact@chataptor.com</span>
                 </a>
                 <div className="flex items-center gap-4 text-slate-500">
-                    <div className="p-2 bg-slate-50 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                    <div className="p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
                     <span className="font-medium text-sm md:text-base">Łódź, Polska</span>
                 </div>
                 </div>
