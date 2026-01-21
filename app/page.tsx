@@ -584,7 +584,10 @@ export default function Home() {
                                 <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 text-sm text-slate-800">
                                     Wo ist mein Paket?
                                     <div className="h-px bg-slate-100 my-2"></div>
-                                    <div className="text-indigo-600 font-medium">Gdzie jest moja paczka?</div>
+                                    <div className="text-indigo-600 font-medium flex items-center gap-2">
+                                        Gdzie jest moja paczka?
+                                        <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -596,7 +599,10 @@ export default function Home() {
                                 <div className="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-left">
                                     Sprawdzam to...
                                     <div className="h-px bg-white/20 my-2"></div>
-                                    <div className="text-indigo-200 font-medium">Ich überprüfe das...</div>
+                                    <div className="text-indigo-200 font-medium flex items-center gap-2">
+                                        Ich überprüfe das...
+                                        <svg className="w-3.5 h-3.5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -618,7 +624,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 - Omnichannel Hub (Compact Square - Bottom Left) */}
-          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-6 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
+          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
             <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
@@ -646,7 +652,7 @@ export default function Home() {
           </div>
 
           {/* Card 4 - Marketing Automation (Minimalist Chart - Bottom Center) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-6 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
              <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
