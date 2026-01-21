@@ -583,13 +583,8 @@ export default function Home() {
                             <div className="flex-1">
                                 <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 text-sm text-slate-800">
                                     Wo ist mein Paket?
-                                </div>
-                                <div className="mt-1 flex items-center gap-1.5 px-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                                    <span className="text-[10px] font-medium text-indigo-600 uppercase tracking-wide">Tłumaczenie (Live)</span>
-                                </div>
-                                <div className="mt-1 bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100 text-xs font-medium text-indigo-900">
-                                    Gdzie jest moja paczka?
+                                    <div className="h-px bg-slate-100 my-2"></div>
+                                    <div className="text-indigo-600 font-medium">Gdzie jest moja paczka?</div>
                                 </div>
                             </div>
                         </div>
@@ -598,15 +593,10 @@ export default function Home() {
                         <div className="flex items-start gap-3 flex-row-reverse mt-2">
                             <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
                             <div className="flex-1 text-right">
-                                <div className="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm">
+                                <div className="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-left">
                                     Sprawdzam to...
-                                </div>
-                                <div className="mt-1 flex items-center gap-1.5 px-1 justify-end">
-                                    <span className="text-[10px] font-medium text-indigo-600 uppercase tracking-wide">Wysłano jako</span>
-                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                                </div>
-                                <div className="mt-1 bg-white p-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-600 text-right">
-                                    Ich überprüfe das...
+                                    <div className="h-px bg-white/20 my-2"></div>
+                                    <div className="text-indigo-200 font-medium">Ich überprüfe das...</div>
                                 </div>
                             </div>
                         </div>
@@ -628,15 +618,15 @@ export default function Home() {
           </div>
 
           {/* Card 3 - Omnichannel Hub (Compact Square - Bottom Left) */}
-          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
-            <div className="relative z-10 mb-6">
+          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-6 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
+            <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
                     Wszystkie kanały w jednym miejscu. Zarządzaj wiadomościami z wielu źródeł bez przełączania kart.
                 </p>
             </div>
             
-            <div className="relative z-10 flex-1 space-y-2.5">
+            <div className="relative z-10 flex-1 space-y-2">
                 {/* Compact Text-Only List Items */}
                 {[
                     { name: 'Widget na stronie', color: 'bg-indigo-500' },
@@ -644,23 +634,20 @@ export default function Home() {
                     { name: 'WhatsApp', color: 'bg-green-500' },
                     { name: 'Messenger', color: 'bg-blue-500' },
                 ].map((item, i) => (
-                    <div key={i} className="glass-panel p-2.5 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
-                        <span className="font-bold text-slate-700 text-sm pl-2">{item.name}</span>
+                    <div key={i} className="glass-panel p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
+                        <span className="font-bold text-slate-700 text-xs pl-2">{item.name}</span>
                         <div className={`w-2 h-2 rounded-full ${item.color} shadow-sm mr-2`}></div>
                     </div>
                 ))}
-                <div className="text-center pt-3">
+                <div className="text-center pt-2">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">...i wiele więcej</span>
                 </div>
             </div>
           </div>
 
           {/* Card 4 - Marketing Automation (Minimalist Chart - Bottom Center) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
-             <div className="relative z-10 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center shadow-sm mb-4">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                </div>
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-6 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+             <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
                     Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
@@ -668,10 +655,10 @@ export default function Home() {
             </div>
             
             {/* Minimalist Chart UI */}
-            <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 flex-1 flex flex-col justify-end relative overflow-hidden">
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex-1 flex flex-col justify-end relative overflow-hidden">
                 
                 {/* Simple Bar Chart - Pink Variant */}
-                <div className="flex items-end justify-between gap-2 h-24 mt-4">
+                <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
                         <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
                             {/* Highlight the last bar */}
