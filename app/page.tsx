@@ -119,7 +119,7 @@ const conversations = [
 
 // --- COMPONENTS ---
 
-// Komponent Licznika (Market Unlock) - Updated Design
+// Komponent Licznika (Market Unlock)
 const MarketCounter = () => {
     const [baseCount, setBaseCount] = useState(38000000); // Startowa liczba (Polska)
     const [activeCountries, setActiveCountries] = useState<string[]>(['pl']);
@@ -139,7 +139,6 @@ const MarketCounter = () => {
 
     return (
         <div className="w-full space-y-6 flex flex-col h-full">
-            {/* New Design for Counter Header - Cleaner, Modern */}
             <div className="text-center pt-2 pb-4 border-b border-slate-100 shrink-0">
                 <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
                 <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tabular-nums transition-all duration-300 tracking-tight">
@@ -216,36 +215,23 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
 
     return (
         <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-32 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            
-            {/* Desktop Center Connector Point */}
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white bg-indigo-600 shadow-md z-10 items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
             </div>
-
-            {/* Desktop Horizontal Connector Line */}
-            <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-indigo-200 w-1/2
-                ${side === 'left' ? 'left-1/2' : 'right-1/2'}
-            `}></div>
-
-            {/* Content Side */}
+            <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-indigo-200 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 order-2 md:order-1' : 'md:items-start md:text-left md:pl-16 order-2 md:order-2'}`}>
                 <div>
-                    <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">
-                        KROK {number}
-                    </div>
+                    <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">KROK {number}</div>
                     <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
                     <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-sm">{description}</p>
                 </div>
             </div>
-            
-            {/* Visual Side */}
             <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-1 ${side === 'left' ? 'md:order-2 md:pl-16' : 'md:order-1 md:pr-16'}`}>
                 {children}
             </div>
         </div>
     );
 };
-
 
 export default function Home() {
   const [activeChatId, setActiveChatId] = useState(conversations[0].id);
@@ -257,7 +243,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-        // Show navbar only after scrolling down a bit (e.g., 100px)
         setShowNavbar(window.scrollY > 100);
     };
     window.addEventListener('scroll', handleScroll);
@@ -588,27 +573,43 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Visual - Glass Bubble Translation */}
+            {/* Visual - Real-time Chat Simulation */}
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm">
-                    {/* Source Bubble */}
-                    <div className="glass-panel p-4 rounded-2xl rounded-bl-none shadow-sm relative mb-8 transform transition-transform hover:-translate-y-1">
-                        <div className="absolute -top-3 -left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center border border-slate-100 shadow-sm text-sm z-10">🇩🇪</div>
-                        <p className="text-slate-700 font-medium text-sm">Wo ist mein Paket?</p>
-                    </div>
-
-                    {/* Connection Line */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-0 h-12">
-                        <div className="w-0.5 h-full bg-gradient-to-b from-slate-200 via-indigo-400 to-slate-200"></div>
-                        <div className="absolute bg-white p-1.5 rounded-full shadow-md border border-indigo-100 text-indigo-500">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7"></path></svg>
+                <div className="relative w-full max-w-sm bg-slate-50/50 p-6 rounded-3xl border border-slate-100 shadow-inner">
+                    <div className="flex flex-col gap-4">
+                        {/* Incoming Message */}
+                        <div className="flex items-start gap-3">
+                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">DE</div>
+                            <div className="flex-1">
+                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 text-sm text-slate-800">
+                                    Wo ist mein Paket?
+                                </div>
+                                <div className="mt-1 flex items-center gap-1.5 px-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                                    <span className="text-[10px] font-medium text-indigo-600 uppercase tracking-wide">Tłumaczenie (Live)</span>
+                                </div>
+                                <div className="mt-1 bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100 text-xs font-medium text-indigo-900">
+                                    Gdzie jest moja paczka?
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Target Bubble */}
-                    <div className="bg-indigo-600 p-4 rounded-2xl rounded-tr-none shadow-lg shadow-indigo-200 relative text-right transform transition-transform hover:translate-y-1">
-                        <div className="absolute -bottom-3 -right-3 w-8 h-8 bg-slate-900 border-2 border-white rounded-full flex items-center justify-center shadow-sm text-[10px] font-bold text-white z-10">PL</div>
-                        <p className="text-white font-medium text-sm">Gdzie jest moja paczka?</p>
+                        {/* Outgoing Message */}
+                        <div className="flex items-start gap-3 flex-row-reverse mt-2">
+                            <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
+                            <div className="flex-1 text-right">
+                                <div className="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm">
+                                    Sprawdzam to...
+                                </div>
+                                <div className="mt-1 flex items-center gap-1.5 px-1 justify-end">
+                                    <span className="text-[10px] font-medium text-indigo-600 uppercase tracking-wide">Wysłano jako</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                                </div>
+                                <div className="mt-1 bg-white p-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-600 text-right">
+                                    Ich überprüfe das...
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -617,12 +618,9 @@ export default function Home() {
           {/* Card 2 - Market Unlock (Tall Vertical - Right Column) */}
           <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
              <div className="relative z-10 mb-4 flex-none">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shadow-sm mb-4">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                    Marzysz o ekspansji? Z nami to kwestia jednego kliknięcia. Po prostu włączasz nowy rynek, a nasz system zajmuje się resztą – tłumaczy treści, obsługuje waluty i dostosowuje komunikację. Skup się na sprzedaży, my zajmiemy się barierami.
+                    Włącz nowy rynek jednym kliknięciem. Skaluj sprzedaż bez granic.
                 </p>
             </div>
             
@@ -632,35 +630,27 @@ export default function Home() {
           {/* Card 3 - Omnichannel Hub (Compact Square - Bottom Left) */}
           <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-xl transition-all duration-500 flex flex-col relative overflow-hidden group">
             <div className="relative z-10 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center mb-4 shadow-sm">
-                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-                </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                    Połącz wszystkie punkty styku z klientem. Zarządzaj wiadomościami z widgetu na stronie, e-maili, WhatsAppa i Messengera w jednym, spójnym panelu. To dopiero początek – integracji jest znacznie więcej.
+                    Wszystkie kanały w jednym miejscu. Zarządzaj wiadomościami z wielu źródeł bez przełączania kart.
                 </p>
             </div>
             
             <div className="relative z-10 flex-1 space-y-2.5">
-                {/* Modern Glass List Items - Compact for Square */}
+                {/* Compact Text-Only List Items */}
                 {[
-                    { name: 'Widget na stronie', icon: <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />, bg: 'from-indigo-500 to-purple-600', shadow: 'shadow-indigo-500/30' },
-                    { name: 'Email', icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>, bg: 'from-amber-400 to-orange-500', shadow: 'shadow-orange-500/30' },
-                    { name: 'WhatsApp', icon: <path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/>, bg: 'from-green-500 to-emerald-600', shadow: 'shadow-green-500/30' },
-                    { name: 'Messenger', icon: <path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/>, bg: 'from-blue-500 to-blue-600', shadow: 'shadow-blue-500/30' },
+                    { name: 'Widget na stronie', color: 'bg-indigo-500' },
+                    { name: 'Email', color: 'bg-amber-500' },
+                    { name: 'WhatsApp', color: 'bg-green-500' },
+                    { name: 'Messenger', color: 'bg-blue-500' },
                 ].map((item, i) => (
                     <div key={i} className="glass-panel p-2.5 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
-                        <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${item.bg} text-white flex items-center justify-center ${item.shadow}`}>
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">{item.icon}</svg>
-                            </div>
-                            <span className="font-bold text-slate-700 text-sm">{item.name}</span>
-                        </div>
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
+                        <span className="font-bold text-slate-700 text-sm pl-2">{item.name}</span>
+                        <div className={`w-2 h-2 rounded-full ${item.color} shadow-sm mr-2`}></div>
                     </div>
                 ))}
-                <div className="text-center pt-2">
-                    <span className="text-[10px] font-semibold text-slate-400 bg-slate-100 px-2 py-1 rounded-full">+ wiele więcej integracji</span>
+                <div className="text-center pt-3">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">...i wiele więcej</span>
                 </div>
             </div>
           </div>
@@ -673,19 +663,15 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                    Wykorzystaj potencjał każdej interakcji. Nasz innowacyjny kreator pop-upów, odzyskiwanie porzuconych koszyków i inteligentne newslettery zmienią odwiedzających w lojalnych klientów.
+                    Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
                 </p>
             </div>
             
             {/* Minimalist Chart UI */}
             <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 flex-1 flex flex-col justify-end relative overflow-hidden">
-                <div className="absolute top-4 left-5">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Konwersja</div>
-                    <div className="text-2xl font-bold text-slate-900">Skuteczność</div>
-                </div>
                 
                 {/* Simple Bar Chart - Pink Variant */}
-                <div className="flex items-end justify-between gap-2 h-20 mt-4">
+                <div className="flex items-end justify-between gap-2 h-24 mt-4">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
                         <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
                             {/* Highlight the last bar */}
@@ -698,108 +684,73 @@ export default function Home() {
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* --- SEKCJA: PAY-PER-SATISFACTION (DEDICATED FULL WIDTH) --- */}
-      <section className="py-20 md:py-32 px-4 md:px-6 bg-slate-900 relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
-         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px]"></div>
-         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]"></div>
-
-         <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          {/* Card 5 (Dark) - Pay-per-Satisfaction (Full Width Bottom - RESTORED) */}
+          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] p-8 md:p-12 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center mt-4">
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
             
-            {/* Left: Text Content */}
-            <div className="text-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-bold text-emerald-400 uppercase tracking-widest mb-6">
-                    Rewolucyjny Model Rozliczeń
+            <div className="relative z-10 flex-1 max-w-lg">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                        Rewolucyjny Model
+                    </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                    Płać tylko za <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">zadowolonych klientów.</span>
-                </h2>
-                <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+                <h3 className="text-3xl font-bold mb-4">Pay-per-Satisfaction</h3>
+                <p className="text-slate-400 text-lg leading-relaxed mb-6">
                     Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
+                <div className="flex gap-8 text-sm font-medium text-slate-300">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                        Ocena 0-5: <span className="text-white font-bold">0 PLN</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                        Ocena 6-10: <span className="text-white font-bold">Success Fee</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Progress Bar Visualization */}
+            <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-sm">
+                <div className="flex justify-between items-end mb-4">
+                    <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
+                    <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-slate-500">/10</span></div>
+                </div>
                 
-                <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                            <span className="text-2xl">😡</span>
-                        </div>
+                {/* The Bar */}
+                <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-2">
+                    {/* Free Zone (Red/Grey) */}
+                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
+                    {/* Paid Zone (Green) */}
+                    <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
+                    
+                    {/* Pointer Indicator */}
+                    <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
+                </div>
+
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+                    <span>Niezadowolony (0)</span>
+                    <span className="text-white">Próg Płatności (6.0)</span>
+                    <span className="text-emerald-400">Zachwycony (10)</span>
+                </div>
+
+                <div className="mt-6 bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">✓</div>
                         <div>
-                            <div className="text-white font-bold text-lg mb-1">Ocena 0-5</div>
-                            <div className="text-slate-400 text-sm">Klient niezadowolony? <span className="text-white font-bold">0 PLN</span>. Nic nie płacisz, a my uczymy się na błędach.</div>
+                            <div className="text-sm font-bold text-white">Sukces!</div>
+                            <div className="text-xs text-slate-400">Naliczono opłatę za rozmowę.</div>
                         </div>
                     </div>
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                            <span className="text-2xl">😍</span>
-                        </div>
-                        <div>
-                            <div className="text-white font-bold text-lg mb-1">Ocena 6-10</div>
-                            <div className="text-slate-400 text-sm">Klient zachwycony? Płacisz drobną opłatę <span className="text-emerald-400 font-bold">Success Fee</span>. Uczciwy układ.</div>
-                        </div>
-                    </div>
+                    <div className="text-emerald-400 font-mono font-bold">2.00 PLN</div>
                 </div>
             </div>
+          </div>
 
-            {/* Right: Visualization */}
-            <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-[2.5rem] blur opacity-30"></div>
-                <div className="relative bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-10 shadow-2xl">
-                    <div className="flex justify-between items-end mb-8">
-                        <div>
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Analiza Sentymentu (Live AI)</div>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-6xl font-extrabold text-white">9.2</span>
-                                <span className="text-xl font-medium text-slate-500">/10</span>
-                            </div>
-                        </div>
-                        <div className="px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-sm flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            Wysoka jakość
-                        </div>
-                    </div>
-
-                    {/* Interactive Bar */}
-                    <div className="relative h-6 bg-slate-700/50 rounded-full overflow-hidden w-full mb-4 ring-1 ring-white/5">
-                        {/* Zones */}
-                        <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-rose-900/50 to-slate-600/50 border-r border-white/10"></div>
-                        <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-900/50 to-emerald-500/50"></div>
-                        
-                        {/* Markers */}
-                        <div className="absolute left-[60%] top-0 bottom-0 w-0.5 bg-white/30 z-10"></div>
-                        
-                        {/* Active Pointer */}
-                        <div className="absolute top-0 bottom-0 w-1.5 bg-white shadow-[0_0_15px_white] left-[92%] z-20 rounded-full"></div>
-                    </div>
-
-                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-8">
-                        <span>Strefa Darmowa</span>
-                        <span className="text-emerald-400">Strefa Płatna (Success Fee)</span>
-                    </div>
-
-                    {/* Chat Snippet Context */}
-                    <div className="bg-slate-900/50 rounded-2xl p-4 border border-white/5">
-                        <div className="flex gap-3 mb-3">
-                            <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold text-white">AI</div>
-                            <div className="bg-slate-800 rounded-xl rounded-tl-none p-3 text-sm text-slate-300 shadow-sm border border-white/5">
-                                Rozumiem, przepraszamy za opóźnienie. Jako rekompensatę dodałem rabat -10% do Twojego konta. Czy to w porządku?
-                            </div>
-                        </div>
-                        <div className="flex gap-3 justify-end">
-                            <div className="bg-emerald-500/10 rounded-xl rounded-tr-none p-3 text-sm text-emerald-100 shadow-sm border border-emerald-500/20">
-                                Wow, dziękuję! To bardzo miłe. Świetna obsługa!
-                            </div>
-                            <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-xs font-bold text-white">Klient</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-         </div>
+        </div>
       </section>
 
       <footer id="contact" className="py-16 md:py-20 bg-white border-t border-slate-200">
