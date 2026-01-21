@@ -451,7 +451,7 @@ export default function Home() {
                 </div>
                 <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span>AI przetłumaczy na <strong className="uppercase">{activeChat.lang}</strong></span>
+                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
@@ -557,7 +557,7 @@ export default function Home() {
                             <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
                                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                                 <span className="hidden sm:inline">Connected</span>
-                                <span className="sm:hidden">ON</span>
+                                <span className="sm:hidden">Connected</span>
                             </div>
                         </div>
                     </div>
@@ -570,8 +570,8 @@ export default function Home() {
                             <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
                             <div className="pl-4 h-4"></div>
                             <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r inline-block w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 inline-block w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
+                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
+                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
                             <div><span className="text-pink-600">&lt;/head&gt;</span></div>
                         </div>
                     </div>
