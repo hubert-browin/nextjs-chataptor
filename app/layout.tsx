@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Chataptor - Global Support Platform",
+  title: "Chataptor - preview",
   description: "Sprzedawaj globalnie, obsługuj lokalnie. Platforma AI dla e-commerce.",
 };
 
