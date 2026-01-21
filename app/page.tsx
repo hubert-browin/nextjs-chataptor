@@ -450,7 +450,7 @@ export default function Home() {
                 </div>
                 <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span>AI przetłumaczy na <strong className="uppercase">{activeChat.lang}</strong></span>
+                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
