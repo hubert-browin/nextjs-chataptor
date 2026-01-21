@@ -542,23 +542,45 @@ export default function Home() {
             </div>
             <div className="relative mt-4 lg:mt-0">
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
-                {/* Scroll code block - większy padding na mobile */}
-                <div className="relative bg-white rounded-2xl border border-slate-200 p-5 md:p-8 shadow-xl font-mono text-xs md:text-sm overflow-x-auto">
-                    <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4 min-w-[300px]">
-                        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div><div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div><div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div></div>
-                        <span className="text-slate-400 text-xs font-semibold">index.html</span>
+                
+                {/* Fixed Terminal Window */}
+                <div className="relative bg-white rounded-2xl border border-slate-200 shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden">
+                    
+                    {/* Header Bar */}
+                    <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-slate-100 bg-white relative z-10">
+                        {/* Dots */}
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
+                        </div>
+                        
+                        {/* Title - Centered absolutely */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-slate-400 text-xs font-semibold">
+                            index.html
+                        </div>
+
+                        {/* Connected Badge - Right Aligned */}
+                        <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
+                            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                            <span className="hidden sm:inline">Connected</span>
+                            <span className="sm:hidden">ON</span>
+                        </div>
                     </div>
-                    <div className="text-slate-600 space-y-1.5 leading-relaxed min-w-[300px]">
-                        <div><span className="text-pink-600">&lt;head&gt;</span></div>
-                        <div className="pl-4 text-slate-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
-                        <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
-                        <div className="pl-4 h-4"></div>
-                        <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                        <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                        <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
-                        <div><span className="text-pink-600">&lt;/head&gt;</span></div>
+
+                    {/* Scrollable Code Content */}
+                    <div className="p-5 md:p-8 overflow-x-auto bg-white">
+                        <div className="text-slate-600 space-y-1.5 leading-relaxed whitespace-nowrap">
+                            <div><span className="text-pink-600">&lt;head&gt;</span></div>
+                            <div className="pl-4 text-slate-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
+                            <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
+                            <div className="pl-4 h-4"></div>
+                            <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
+                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r inline-block w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
+                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 inline-block w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
+                            <div><span className="text-pink-600">&lt;/head&gt;</span></div>
+                        </div>
                     </div>
-                    <div className="absolute top-8 right-8 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-100 flex items-center gap-2 shadow-sm"><span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>Connected</div>
                 </div>
             </div>
         </div>
