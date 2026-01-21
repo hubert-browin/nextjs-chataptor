@@ -604,7 +604,20 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 - Omnichannel (Glass List) */}
+          {/* Card 2 - Market Unlock (Compact Square) */}
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col justify-between">
+             <div className="relative z-10 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shadow-sm mb-4">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
+                <p className="text-slate-500 text-sm">Włącz nowy kraj jednym kliknięciem.</p>
+            </div>
+            
+            <MarketCounter />
+          </div>
+
+          {/* Card 3 - Omnichannel Hub (Tall Vertical) */}
           <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-xl transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden group">
             <div className="relative z-10 mb-8">
                 <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center mb-6 shadow-sm">
@@ -633,19 +646,6 @@ export default function Home() {
                     </div>
                 ))}
             </div>
-          </div>
-
-          {/* Card 3 - MARKET UNLOCK (Updated Toggle Style) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col justify-between">
-             <div className="relative z-10 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shadow-sm mb-4">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
-                <p className="text-slate-500 text-sm">Włącz nowy kraj jednym kliknięciem.</p>
-            </div>
-            
-            <MarketCounter />
           </div>
 
           {/* Card 4 - Marketing Automation (Minimalist Chart) */}
