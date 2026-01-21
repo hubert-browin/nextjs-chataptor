@@ -11,6 +11,10 @@ const styles = `
   .animate-marquee {
     animation: marquee 40s linear infinite;
   }
+  /* Szybsza animacja dla mobile */
+  .animate-marquee-mobile {
+    animation: marquee 20s linear infinite;
+  }
   .mask-gradient {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -198,7 +202,7 @@ const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { f
     </div>
 );
 
-// Komponent Kroku Growth - ZMODYFIKOWANY UKŁAD MOBILNY
+// Komponent Kroku Growth
 const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
@@ -221,9 +225,7 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
             {/* Linia tylko na desktopie */}
             <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-indigo-200 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             
-            {/* TEKST (KROK, TYTUŁ) */}
-            {/* Mobile: order-1 (pierwszy) */}
-            {/* Desktop: order zależy od 'side' */}
+            {/* TEKST */}
             <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 order-1 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 md:order-1' : 'md:items-start md:text-left md:pl-16 md:order-2'}`}>
                 <div>
                     <div className="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-4 tracking-wide border border-slate-200">KROK {number}</div>
@@ -232,9 +234,7 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
                 </div>
             </div>
 
-            {/* WIZUALIZACJA (KAFELEK) */}
-            {/* Mobile: order-2 (drugi) */}
-            {/* Desktop: order zależy od 'side' */}
+            {/* WIZUALIZACJA */}
             <div className={`w-full md:w-1/2 flex items-center justify-center relative z-10 order-2 ${side === 'left' ? 'md:order-2 md:pl-16' : 'md:order-1 md:pr-16'}`}>
                 {children}
             </div>
@@ -296,7 +296,7 @@ export default function Home() {
         </nav>
       </div>
 
-      {/* Static Header Logo - zmiana paddingu na mobile */}
+      {/* Static Header Logo */}
       <div className={`absolute top-0 left-0 w-full z-40 py-4 md:py-6 px-4 md:px-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0 transition-opacity duration-300 ${showNavbar ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
          <div className="flex items-center gap-2">
             <img src="/logotype.png" alt="Chataptor Logo" className="h-6 md:h-8 object-contain" />
@@ -325,9 +325,8 @@ export default function Home() {
             </div>
         )}
 
-      {/* HERO SECTION - Optymalizacja mobile: pt-40 -> pt-28 */}
+      {/* HERO SECTION */}
       <section className="relative pt-28 md:pt-48 pb-12 md:pb-24 text-center overflow-hidden">
-        {/* Zmniejszony blur na mobile, żeby nie zasłaniał treści */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[1200px] h-[400px] md:h-[600px] bg-gradient-to-b from-indigo-50/60 to-transparent rounded-[100%] blur-3xl -z-10 opacity-70"></div>
         <div className="px-4 md:px-6 max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[10px] md:text-xs font-semibold text-slate-600 mb-6 md:mb-8 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-default mx-auto">
@@ -337,7 +336,6 @@ export default function Home() {
             </span>
             Nowość: Model "Pay-per-satisfaction"
           </div>
-          {/* Zmniejszony font nagłówka na mobile: text-4xl -> text-3xl */}
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 md:mb-8 text-slate-900 px-2">
             Sprzedawaj globalnie.<br />
             <span className="text-slate-400">Obsługuj lokalnie.</span>
@@ -366,9 +364,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UI MOCKUP - Optymalizacja pod mobile */}
+      {/* UI MOCKUP */}
       <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-6 md:-mt-10 mb-16 md:mb-32 relative z-20">
-        {/* Na mobile wysokość jest dynamiczna (80vh), na desktopie stała */}
         <div className="bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[80vh] md:h-[750px] ring-1 ring-slate-900/5">
           <div className="bg-white h-12 border-b border-slate-100 flex items-center px-4 md:px-5 gap-2 shrink-0 justify-between">
             <div className="flex gap-2"><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div></div>
@@ -376,7 +373,6 @@ export default function Home() {
             <div className="w-8 md:w-10"></div>
           </div>
           <div className="flex flex-1 overflow-hidden relative">
-            {/* Sidebar listy rozmów */}
             <div className={`${activeChatId ? 'hidden md:flex' : 'flex'} w-full md:w-[320px] border-r border-slate-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full`}>
               <div className="p-4 md:p-5 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
                 <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">Inbox</div>
@@ -396,9 +392,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* Widok rozmowy */}
             <div className={`${activeChatId ? 'flex' : 'hidden md:flex'} flex-1 flex-col bg-slate-50/30 relative w-full h-full`}>
-              {/* Header mobilny czatu z przyciskiem powrotu */}
               <div className="md:hidden h-14 border-b border-slate-100 bg-white flex items-center px-3 gap-3 sticky top-0 z-20 shadow-sm">
                    <button onClick={() => setActiveChatId(0)} className="p-2 -ml-1 text-slate-600 hover:bg-slate-100 rounded-lg">
                       <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -409,7 +403,6 @@ export default function Home() {
                         <div className="text-[10px] text-slate-400 leading-tight">{activeChat.lang} • Online</div>
                    </div>
               </div>
-              {/* Header desktopowy */}
               <div className="hidden md:flex h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
@@ -458,7 +451,7 @@ export default function Home() {
                 </div>
                 <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
+                    <span>AI przetłumaczy na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
@@ -466,7 +459,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI - mniejsze paddingi --- */}
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI --- */}
       <section id="how-it-works" className="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16 md:mb-32">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
@@ -474,7 +467,6 @@ export default function Home() {
         </div>
         <div className="relative">
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-indigo-200 -translate-x-1/2 rounded-full"></div>
-            {/* Usunięta linia pionowa na mobile - robiła bałagan */}
             <div className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-slate-100"></div>
             <div className="space-y-16 md:space-y-32 relative">
                 <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
@@ -527,7 +519,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE --- */}
+      {/* --- SEKCJA: WDROŻENIE (Poprawiony Terminal) --- */}
       <section id="implementation" className="py-20 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-12 md:mb-16">
             <div>
@@ -543,28 +535,30 @@ export default function Home() {
             <div className="relative mt-4 lg:mt-0">
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
                 
-                {/* Fixed Terminal Window */}
+                {/* Fixed Terminal Window - Prawidłowy Layout dla Mobile */}
                 <div className="relative bg-white rounded-2xl border border-slate-200 shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden">
                     
-                    {/* Header Bar */}
+                    {/* Header Bar - Flexbox zamiast Absolute */}
                     <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-slate-100 bg-white relative z-10">
                         {/* Dots */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 min-w-[50px]">
                             <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
                         </div>
                         
-                        {/* Title - Centered absolutely */}
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-slate-400 text-xs font-semibold">
+                        {/* Title - Center via Flexbox */}
+                        <div className="text-slate-400 text-xs font-semibold truncate px-2">
                             index.html
                         </div>
 
                         {/* Connected Badge - Right Aligned */}
-                        <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
-                            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                            <span className="hidden sm:inline">Connected</span>
-                            <span className="sm:hidden">Connected</span>
+                        <div className="flex items-center justify-end min-w-[50px]">
+                            <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
+                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                                <span className="hidden sm:inline">Connected</span>
+                                <span className="sm:hidden">ON</span>
+                            </div>
                         </div>
                     </div>
 
@@ -576,20 +570,22 @@ export default function Home() {
                             <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
                             <div className="pl-4 h-4"></div>
                             <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
+                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r inline-block w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
+                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 inline-block w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
                             <div><span className="text-pink-600">&lt;/head&gt;</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {/* POWIĘKSZONE LOGOTYPY INTEGRACJI */}
+        
+        {/* POWIĘKSZONE I PRZYSPIESZONE LOGOTYPY INTEGRACJI DLA MOBILE */}
         <div className="w-full relative mask-gradient mt-8 md:mt-12 overflow-hidden">
-            <div className="flex animate-marquee whitespace-nowrap items-center">
+            {/* Zmieniona klasa animacji: animate-marquee-mobile (mobile) vs animate-marquee (desktop) */}
+            <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap items-center">
                 {[...logos, ...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-                    <div key={index} className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0 flex items-center justify-center mx-6 md:mx-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        {/* Zmieniono w-16 h-16 na w-24 h-24 oraz w-24 na w-32 */}
+                    <div key={index} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center mx-3 md:mx-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                        {/* Mniejsze odstępy (mx-3) na mobile, standardowe na desktop */}
                         <img src={logo} alt="Integration" className="w-24 h-24 md:w-32 md:h-32 object-contain" />
                     </div>
                 ))}
@@ -597,7 +593,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURE BENTO GRID (Zoptymalizowane paddingi na mobile: p-8 -> p-5) --- */}
+      {/* --- FEATURE BENTO GRID --- */}
       <section id="product" className="py-16 md:py-28 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wszystko w jednym panelu.</h2>
