@@ -154,7 +154,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-        // Show navbar only after scrolling down a bit (e.g., 100px)
         setShowNavbar(window.scrollY > 100);
     };
     window.addEventListener('scroll', handleScroll);
@@ -287,13 +286,10 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-slate-900 text-white rounded-2xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] shadow-xl shadow-slate-900/10 ring-4 ring-slate-100 active:scale-95">
               Dołącz do bety
             </button>
-            {/* NEW MODERN "PLAY CAPSULE" BUTTON - MONOCHROME VERSION */}
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-slate-200 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_0_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
                 <div className="relative w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-lg shadow-slate-900/20 shrink-0 group-hover:bg-black transition-colors duration-300">
                     <span className="absolute inset-0 rounded-full border border-white/20"></span>
                     <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                    
-                    {/* Pulsing ring inside icon - Always active (Monochrome) */}
                     <span className="absolute -inset-1 rounded-full border border-slate-900/30 animate-[ping_2s_linear_infinite]"></span>
                 </div>
                 <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Zobacz demo</span>
@@ -800,8 +796,8 @@ export default function Home() {
                     <div className="absolute inset-0 bg-slate-50 opacity-50"></div>
                     <div className="relative bg-white shadow-lg rounded-lg p-3 w-3/4 text-center border border-slate-100 transform -rotate-2">
                         <span className="text-xs font-bold text-slate-800 block mb-1">Rabat -20%!</span>
-                        <span className="text-xs text-slate-500 block mb-2">Tylko dzisiaj dla Ciebie.</span>
-                        <div className="h-6 bg-slate-900 rounded text-white text-[10px] flex items-center justify-center font-bold">Odbierz</div>
+                        <span className="text-[10px] text-slate-500 block">Tylko dzisiaj dla Ciebie.</span>
+                        <div className="mt-2 h-6 bg-slate-900 rounded text-white text-[10px] flex items-center justify-center font-bold">Odbierz</div>
                     </div>
                 </div>
             </div>
@@ -824,9 +820,7 @@ export default function Home() {
                 {/* Scenario 1: Bad Sentiment */}
                 <div className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400">
-                             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
+                        <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-lg">😡</div>
                         <div>
                             <div className="text-xs text-slate-400">Sentyment: <span className="text-rose-400 font-bold">2/10</span></div>
                             <div className="text-[10px] text-slate-500">"Towar uszkodzony..."</div>
@@ -842,9 +836,7 @@ export default function Home() {
                 <div className="flex items-center justify-between bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 relative overflow-hidden">
                     <div className="absolute left-0 top-0 w-1 h-full bg-emerald-500"></div>
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-lg">😍</div>
                         <div>
                             <div className="text-xs text-slate-300">Sentyment: <span className="text-emerald-400 font-bold">9/10</span></div>
                             <div className="text-[10px] text-slate-400">"Dziękuję, super!"</div>
@@ -856,17 +848,6 @@ export default function Home() {
                 </div>
             </div>
           </div>
-        </div>
-
-        {/* --- COMING SOON BADGE --- */}
-        <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-xs font-medium text-slate-500">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-500"></span>
-                </span>
-                To tylko MVP. Kolejne funkcje (SMS, Voice AI) już wkrótce.
-            </div>
         </div>
 
         {/* SECURITY BADGES */}
