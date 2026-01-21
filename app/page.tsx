@@ -218,6 +218,7 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white bg-indigo-600 shadow-md z-10 items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
             </div>
+            {/* Ukrywamy linię przerywaną na mobile, bo psuje layout */}
             <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-indigo-200 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 ${side === 'left' ? 'md:items-end md:text-right md:pr-16 order-2 md:order-1' : 'md:items-start md:text-left md:pl-16 order-2 md:order-2'}`}>
                 <div>
@@ -287,10 +288,10 @@ export default function Home() {
         </nav>
       </div>
 
-      {/* Static Header Logo */}
-      <div className={`absolute top-0 left-0 w-full z-40 py-6 px-4 md:px-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0 transition-opacity duration-300 ${showNavbar ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      {/* Static Header Logo - zmiana paddingu na mobile */}
+      <div className={`absolute top-0 left-0 w-full z-40 py-4 md:py-6 px-4 md:px-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0 transition-opacity duration-300 ${showNavbar ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
          <div className="flex items-center gap-2">
-            <img src="/logotype.png" alt="Chataptor Logo" className="h-8 object-contain" />
+            <img src="/logotype.png" alt="Chataptor Logo" className="h-6 md:h-8 object-contain" />
          </div>
          <div className="hidden md:flex items-center gap-4">
              <a href="#" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Zaloguj się</a>
@@ -303,8 +304,8 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-white z-50 flex flex-col pt-28 px-6 gap-6 md:hidden animate-in fade-in duration-200">
-                <button className="absolute top-6 right-4 p-2 text-slate-600" onClick={() => setMobileMenuOpen(false)}>
+            <div className="fixed inset-0 bg-white z-50 flex flex-col pt-24 px-6 gap-6 md:hidden animate-in fade-in duration-200">
+                <button className="absolute top-5 right-4 p-2 text-slate-600" onClick={() => setMobileMenuOpen(false)}>
                     <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
                 <a href="#how-it-works" className="text-2xl font-bold text-slate-900" onClick={() => setMobileMenuOpen(false)}>Jak to działa?</a>
@@ -316,9 +317,10 @@ export default function Home() {
             </div>
         )}
 
-      {/* HERO SECTION */}
-      <section className="relative pt-40 md:pt-48 pb-16 md:pb-24 text-center overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] md:w-[1200px] h-[600px] bg-gradient-to-b from-indigo-50/60 to-transparent rounded-[100%] blur-3xl -z-10 opacity-70"></div>
+      {/* HERO SECTION - Optymalizacja mobile: pt-40 -> pt-28 */}
+      <section className="relative pt-28 md:pt-48 pb-12 md:pb-24 text-center overflow-hidden">
+        {/* Zmniejszony blur na mobile, żeby nie zasłaniał treści */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[1200px] h-[400px] md:h-[600px] bg-gradient-to-b from-indigo-50/60 to-transparent rounded-[100%] blur-3xl -z-10 opacity-70"></div>
         <div className="px-4 md:px-6 max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[10px] md:text-xs font-semibold text-slate-600 mb-6 md:mb-8 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-default mx-auto">
             <span className="relative flex h-2 w-2">
@@ -327,15 +329,16 @@ export default function Home() {
             </span>
             Nowość: Model "Pay-per-satisfaction"
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 md:mb-8 text-slate-900 px-2">
+          {/* Zmniejszony font nagłówka na mobile: text-4xl -> text-3xl */}
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 md:mb-8 text-slate-900 px-2">
             Sprzedawaj globalnie.<br />
             <span className="text-slate-400">Obsługuj lokalnie.</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto font-normal mb-8 md:mb-12 leading-relaxed px-4">
+          <p className="text-base md:text-xl text-slate-500 max-w-2xl mx-auto font-normal mb-8 md:mb-12 leading-relaxed px-4">
             Przełam barierę językową. Jeden agent obsługuje 20 rynków.<br className="hidden md:block"/>
             <span className="block mt-2 md:inline md:mt-0 text-slate-900 font-medium">Zero tłumaczy. Zero opóźnień. 100% AI.</span>
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-16 md:mb-20 px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-12 md:mb-20 px-4">
             <button className="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-slate-900 text-white rounded-2xl text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] shadow-xl shadow-slate-900/10 ring-4 ring-slate-100 active:scale-95">Dołącz do bety</button>
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-slate-200 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_0_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
                 <div className="relative w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-lg shadow-slate-900/20 shrink-0 group-hover:bg-black transition-colors duration-300">
@@ -355,21 +358,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UI MOCKUP */}
-      <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-6 md:-mt-10 mb-20 md:mb-32 relative z-20">
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[600px] md:h-[750px] ring-1 ring-slate-900/5">
-          <div className="bg-white h-12 border-b border-slate-100 flex items-center px-5 gap-2 shrink-0 justify-between">
-            <div className="flex gap-2"><div className="w-3 h-3 rounded-full bg-slate-200"></div><div className="w-3 h-3 rounded-full bg-slate-200"></div><div className="w-3 h-3 rounded-full bg-slate-200"></div></div>
-            <div className="text-[11px] text-slate-400 font-medium tracking-wide">Chataptor Agent Dashboard</div>
-            <div className="w-10"></div>
+      {/* UI MOCKUP - Optymalizacja pod mobile */}
+      <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-6 md:-mt-10 mb-16 md:mb-32 relative z-20">
+        {/* Na mobile wysokość jest dynamiczna (80vh), na desktopie stała */}
+        <div className="bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[80vh] md:h-[750px] ring-1 ring-slate-900/5">
+          <div className="bg-white h-12 border-b border-slate-100 flex items-center px-4 md:px-5 gap-2 shrink-0 justify-between">
+            <div className="flex gap-2"><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div><div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-200"></div></div>
+            <div className="text-[10px] md:text-[11px] text-slate-400 font-medium tracking-wide">Chataptor Agent Dashboard</div>
+            <div className="w-8 md:w-10"></div>
           </div>
           <div className="flex flex-1 overflow-hidden relative">
+            {/* Sidebar listy rozmów */}
             <div className={`${activeChatId ? 'hidden md:flex' : 'flex'} w-full md:w-[320px] border-r border-slate-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full`}>
-              <div className="p-5 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
+              <div className="p-4 md:p-5 border-b border-slate-50 flex justify-between items-center sticky top-0 bg-white z-10">
                 <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">Inbox</div>
                 <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-md font-medium">3 nowe</div>
               </div>
-              <div className="p-3 space-y-1">
+              <div className="p-2 md:p-3 space-y-1">
                 {conversations.map((chat) => (
                   <button key={chat.id} onClick={() => setActiveChatId(chat.id)} className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${activeChatId === chat.id ? 'bg-indigo-50 border-indigo-100 shadow-sm z-10' : 'bg-white border-transparent hover:bg-slate-50'}`}>
                     {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-600 rounded-r-full"></div>}
@@ -383,12 +388,20 @@ export default function Home() {
                 ))}
               </div>
             </div>
+            {/* Widok rozmowy */}
             <div className={`${activeChatId ? 'flex' : 'hidden md:flex'} flex-1 flex-col bg-slate-50/30 relative w-full h-full`}>
-              <div className="md:hidden h-16 border-b border-slate-100 bg-white flex items-center px-4 gap-3 sticky top-0 z-20">
-                   <button onClick={() => setActiveChatId(0)} className="p-2 -ml-2 text-slate-500"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg></button>
-                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
-                   <div className="font-bold text-sm text-slate-900">{activeChat.name}</div>
+              {/* Header mobilny czatu z przyciskiem powrotu */}
+              <div className="md:hidden h-14 border-b border-slate-100 bg-white flex items-center px-3 gap-3 sticky top-0 z-20 shadow-sm">
+                   <button onClick={() => setActiveChatId(0)} className="p-2 -ml-1 text-slate-600 hover:bg-slate-100 rounded-lg">
+                      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+                   </button>
+                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
+                   <div className="flex flex-col">
+                        <div className="font-bold text-sm text-slate-900 leading-tight">{activeChat.name}</div>
+                        <div className="text-[10px] text-slate-400 leading-tight">{activeChat.lang} • Online</div>
+                   </div>
               </div>
+              {/* Header desktopowy */}
               <div className="hidden md:flex h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
@@ -399,12 +412,12 @@ export default function Home() {
                 </div>
                 <div className="flex gap-2"><button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button></div>
               </div>
-              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
                 {activeChat.messages.map((msg) => (
-                  <div key={msg.id} className={`flex gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
-                    {msg.sender === 'user' && (<div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold shadow-sm ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>)}
+                  <div key={msg.id} className={`flex gap-2 md:gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
+                    {msg.sender === 'user' && (<div className={`w-6 h-6 md:w-8 md:h-8 rounded-full shrink-0 flex items-center justify-center text-[10px] md:text-xs font-bold shadow-sm ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>)}
                     <div className={`flex flex-col max-w-[85%] md:max-w-[70%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
-                      <div className={`p-4 rounded-2xl text-sm shadow-sm relative group ${msg.sender === 'agent' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'}`}>
+                      <div className={`p-3 md:p-4 rounded-2xl text-sm shadow-sm relative group ${msg.sender === 'agent' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'}`}>
                         <div className="font-medium leading-relaxed">{msg.text}</div>
                         {msg.translation && (
                           <div className={`mt-3 pt-2 text-[11px] border-t flex items-start gap-2 ${msg.sender === 'agent' ? 'border-white/20 text-indigo-100' : 'border-slate-100 text-slate-400'}`}>
@@ -415,7 +428,7 @@ export default function Home() {
                       </div>
                       <span className="text-[10px] text-slate-400 mt-1 px-1">{msg.timestamp}</span>
                     </div>
-                    {msg.sender === 'agent' && (<div className="w-8 h-8 rounded-full bg-slate-900 shrink-0 flex items-center justify-center text-white text-xs font-bold shadow-sm">A</div>)}
+                    {msg.sender === 'agent' && (<div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-slate-900 shrink-0 flex items-center justify-center text-white text-[10px] md:text-xs font-bold shadow-sm">A</div>)}
                   </div>
                 ))}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
@@ -427,17 +440,17 @@ export default function Home() {
                     </div>
                 )}
               </div>
-              <div className="p-4 bg-white border-t border-slate-100">
-                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
+              <div className="p-3 md:p-4 bg-white border-t border-slate-100">
+                <div className="flex gap-2 p-1.5 md:p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
                   <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Napisz po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 px-2 min-w-0" />
                   <div className="flex items-center gap-1 border-r border-slate-200 pr-2 mr-1">
                      <button className="hover:bg-slate-200 p-1.5 rounded-lg text-slate-400 transition-colors hidden sm:block" title="Załącz plik"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg></button>
                   </div>
-                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">Wyślij</button>
+                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-3 py-1.5 md:px-4 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">Wyślij</button>
                 </div>
-                <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
+                <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
+                    <span>AI przetłumaczy na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
@@ -445,16 +458,17 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI --- */}
-      <section id="how-it-works" className="py-24 md:py-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-24 md:mb-32">
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI - mniejsze paddingi --- */}
+      <section id="how-it-works" className="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-16 md:mb-32">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
             <p className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto">Ścieżka, która poprowadzi Cię do międzynarodowego sukcesu. Prosta, logiczna, zautomatyzowana.</p>
         </div>
         <div className="relative">
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-indigo-200 -translate-x-1/2 rounded-full"></div>
-            <div className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-slate-200"></div>
-            <div className="space-y-24 md:space-y-32 relative">
+            {/* Usunięta linia pionowa na mobile - robiła bałagan */}
+            <div className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-slate-100"></div>
+            <div className="space-y-16 md:space-y-32 relative">
                 <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
                     <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full max-w-sm ml-auto transform hover:-translate-y-1 transition-transform duration-300 relative">
                         <div className="flex items-center gap-4 mb-6">
@@ -506,8 +520,8 @@ export default function Home() {
       </section>
 
       {/* --- SEKCJA: WDROŻENIE --- */}
-      <section id="implementation" className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-16">
+      <section id="implementation" className="py-20 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-12 md:mb-16">
             <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
                 <p className="text-slate-600 text-base md:text-lg mb-10 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.</p>
@@ -518,9 +532,10 @@ export default function Home() {
                     <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">4</div><div><h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4><p className="text-slate-500 text-sm">Podłącz Messengera, WhatsAppa lub e-mail.</p></div></div>
                 </div>
             </div>
-            <div className="relative mt-8 lg:mt-0">
+            <div className="relative mt-4 lg:mt-0">
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
-                <div className="relative bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-xl font-mono text-xs md:text-sm overflow-x-auto">
+                {/* Scroll code block - większy padding na mobile */}
+                <div className="relative bg-white rounded-2xl border border-slate-200 p-5 md:p-8 shadow-xl font-mono text-xs md:text-sm overflow-x-auto">
                     <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4 min-w-[300px]">
                         <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div><div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div><div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div></div>
                         <span className="text-slate-400 text-xs font-semibold">index.html</span>
@@ -539,7 +554,7 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        <div className="w-full relative mask-gradient mt-12 overflow-hidden">
+        <div className="w-full relative mask-gradient mt-8 md:mt-12 overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap items-center">
                 {[...logos, ...logos, ...logos, ...logos, ...logos].map((logo, index) => (
                     <div key={index} className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0 flex items-center justify-center mx-6 md:mx-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
@@ -550,8 +565,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURE BENTO GRID (REDESIGNED V3 - FINAL) --- */}
-      <section id="product" className="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto w-full">
+      {/* --- FEATURE BENTO GRID (Zoptymalizowane paddingi na mobile: p-8 -> p-5) --- */}
+      <section id="product" className="py-16 md:py-28 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wszystko w jednym panelu.</h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">Zastąp Intercom, Mailchimp i zewnętrznych tłumaczy jednym narzędziem zaprojektowanym dla nowoczesnego e-commerce.</p>
@@ -559,8 +574,8 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-min">
           
-          {/* Card 1 - Translation (Glassmorphism + Real-time) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-10 items-center relative overflow-hidden">
+          {/* Card 1 - Translation - Mobile: flex-col, Desktop: flex-row */}
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-8 md:gap-10 items-center relative overflow-hidden">
             
             <div className="flex-1 relative z-10 text-left">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
@@ -574,7 +589,7 @@ export default function Home() {
             
             {/* Visual - Real-time Chat Simulation */}
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm bg-white p-6 rounded-3xl">
+                <div className="relative w-full max-w-sm bg-white p-4 md:p-6 rounded-3xl">
                     <div className="flex flex-col gap-4">
                         {/* Incoming Message */}
                         <div className="flex items-start gap-3">
@@ -610,8 +625,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 - Market Unlock (Tall Vertical - Right Column) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
+          {/* Card 2 - Market Unlock */}
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
              <div className="relative z-10 mb-4 flex-none">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
@@ -622,8 +637,8 @@ export default function Home() {
             <MarketCounter />
           </div>
 
-          {/* Card 3 - Omnichannel Hub (Compact Square - Bottom Left) */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          {/* Card 3 - Omnichannel Hub */}
+          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
             <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
@@ -632,7 +647,6 @@ export default function Home() {
             </div>
             
             <div className="relative z-10 flex-1 space-y-2">
-                {/* Compact Text-Only List Items */}
                 {[
                     { name: 'Widget na stronie', color: 'bg-indigo-500' },
                     { name: 'Email', color: 'bg-amber-500' },
@@ -650,7 +664,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 4 - Marketing Automation (Minimalist Chart - Bottom Center) */}
+          {/* Card 4 - Marketing Automation */}
           <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
              <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
@@ -659,14 +673,10 @@ export default function Home() {
                 </p>
             </div>
             
-            {/* Minimalist Chart UI */}
             <div className="bg-white rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
-                
-                {/* Simple Bar Chart - Pink Variant */}
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
                         <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
-                            {/* Highlight the last bar */}
                             {i === 6 && (
                                 <div className="absolute inset-0 bg-gradient-to-t from-pink-500 to-rose-500 rounded-t-md shadow-lg shadow-pink-500/30"></div>
                             )}
@@ -676,8 +686,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 5 (Dark) - Pay-per-Satisfaction (Full Width Bottom - RESTORED) */}
-          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] p-8 md:p-12 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center mt-4">
+          {/* Card 5 (Dark) - Pay-per-Satisfaction */}
+          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] p-6 md:p-12 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center mt-4">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
             
             <div className="relative z-10 flex-1 max-w-lg">
@@ -693,7 +703,7 @@ export default function Home() {
                 <p className="text-slate-400 text-lg leading-relaxed mb-6">
                     Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
-                <div className="flex gap-8 text-sm font-medium text-slate-300">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm font-medium text-slate-300">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-slate-600"></div>
                         Ocena 0-5: <span className="text-white font-bold">0 PLN</span>
@@ -706,7 +716,7 @@ export default function Home() {
             </div>
 
             {/* Progress Bar Visualization */}
-            <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-sm">
+            <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-6 md:p-8 border border-white/10 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-4">
                     <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
                     <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-slate-500">/10</span></div>
@@ -714,16 +724,12 @@ export default function Home() {
                 
                 {/* The Bar */}
                 <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-2">
-                    {/* Free Zone (Red/Grey) */}
                     <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
-                    {/* Paid Zone (Green) */}
                     <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
-                    
-                    {/* Pointer Indicator */}
                     <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
                 </div>
 
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+                <div className="flex justify-between text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
                     <span>Niezadowolony (0)</span>
                     <span className="text-white">Próg Płatności (6.0)</span>
                     <span className="text-emerald-400">Zachwycony (10)</span>
@@ -745,7 +751,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contact" className="py-16 md:py-20 bg-white border-t border-slate-200">
+      <footer id="contact" className="py-12 md:py-20 bg-white border-t border-slate-200">
         <div className="container mx-auto px-6 max-w-7xl">
             <div className="grid md:grid-cols-3 gap-12 md:gap-16 mb-16 md:mb-20">
             <div className="space-y-6 md:space-y-8">
