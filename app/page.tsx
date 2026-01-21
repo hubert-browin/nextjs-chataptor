@@ -536,7 +536,7 @@ export default function Home() {
                 <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
                 
                 {/* Fixed Terminal Window - Prawidłowy Layout dla Mobile */}
-                <div className="relative bg-white rounded-2xl border border-slate-200 shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden">
+                <div className="relative bg-white rounded-2xl border border-slate-200 shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto">
                     
                     {/* Header Bar - Flexbox zamiast Absolute */}
                     <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-slate-100 bg-white relative z-10">
@@ -563,8 +563,8 @@ export default function Home() {
                     </div>
 
                     {/* Scrollable Code Content */}
-                    <div className="p-5 md:p-8 overflow-x-auto bg-white">
-                        <div className="text-slate-600 space-y-1.5 leading-relaxed whitespace-nowrap">
+                    <div className="p-3 sm:p-5 md:p-8 overflow-x-auto bg-white">
+                        <div className="text-slate-600 space-y-1.5 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[10px] sm:text-xs md:text-sm">
                             <div><span className="text-pink-600">&lt;head&gt;</span></div>
                             <div className="pl-4 text-slate-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
                             <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
@@ -757,10 +757,10 @@ export default function Home() {
                     <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
                 </div>
 
-                <div className="flex justify-between text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
-                    <span>Niezadowolony (0)</span>
-                    <span className="text-white">Próg Płatności (6.0)</span>
-                    <span className="text-emerald-400">Zachwycony (10)</span>
+                <div className="flex justify-between text-[9px] md:text-[10px] font-bold uppercase tracking-tight md:tracking-widest text-slate-500 mt-3">
+                    <span><span className="hidden sm:inline">Niezadowolony</span><span className="sm:hidden">Niezadowolony</span> <span className="text-slate-600">(0)</span></span>
+                    <span className="text-white text-center"><span className="sm:hidden">Próg (6.0)</span><span className="hidden sm:inline">Próg Płatności (6.0)</span></span>
+                    <span className="text-emerald-400 text-right"><span className="hidden sm:inline">Zachwycony</span><span className="sm:hidden">Zachwycony</span> (10)</span>
                 </div>
 
                 <div className="mt-6 bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20 flex items-center justify-between">
