@@ -139,37 +139,41 @@ const MarketCounter = () => {
 
     return (
         <div className="w-full space-y-4 flex flex-col h-full">
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-5 text-center shadow-lg relative overflow-hidden ring-1 ring-white/10 shrink-0">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 relative z-10">Twój potencjalny zasięg</p>
-                <div className="text-3xl md:text-4xl font-extrabold text-white relative z-10 tabular-nums transition-all duration-300 tracking-tight">
+            {/* New Design for Counter Header */}
+            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 text-center relative overflow-hidden shrink-0">
+                <div className="absolute top-0 right-0 p-3 opacity-10">
+                    <svg width="64" height="64" fill="currentColor" viewBox="0 0 24 24" className="text-slate-900"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2 relative z-10">Potencjalny Zasięg Rynku</p>
+                <div className="text-4xl md:text-5xl font-extrabold text-slate-900 relative z-10 tabular-nums transition-all duration-300 tracking-tight">
                     {formattedCount}
                 </div>
+                <div className="text-xs font-medium text-slate-400 mt-1">Aktywnych klientów w bazie</div>
             </div>
 
-            <div className="space-y-2 bg-slate-50/50 p-2 rounded-2xl border border-slate-100 flex-1 overflow-y-auto custom-scrollbar">
+            <div className="space-y-2 flex-1 overflow-y-auto custom-scrollbar px-1">
                 <CountryToggle 
-                    flag="🇵🇱" name="Polska" active={true} locked={true} 
+                    flag="🇵🇱" name="Polska" sub="Rynek domowy" active={true} locked={true} 
                     onClick={() => {}} 
                 />
                 <CountryToggle 
-                    flag="🇩🇪" name="Niemcy" sub="+83M" active={activeCountries.includes('de')} 
+                    flag="🇩🇪" name="Niemcy" sub="+83M potencjalnych klientów" active={activeCountries.includes('de')} 
                     onClick={() => toggleCountry('de', 83000000)} 
                 />
                 <CountryToggle 
-                    flag="🇫🇷" name="Francja" sub="+67M" active={activeCountries.includes('fr')} 
+                    flag="🇫🇷" name="Francja" sub="+67M potencjalnych klientów" active={activeCountries.includes('fr')} 
                     onClick={() => toggleCountry('fr', 67000000)} 
                 />
                 <CountryToggle 
-                    flag="🇮🇹" name="Włochy" sub="+59M" active={activeCountries.includes('it')} 
+                    flag="🇮🇹" name="Włochy" sub="+59M potencjalnych klientów" active={activeCountries.includes('it')} 
                     onClick={() => toggleCountry('it', 59000000)} 
                 />
                 <CountryToggle 
-                    flag="🇪🇸" name="Hiszpania" sub="+47M" active={activeCountries.includes('es')} 
+                    flag="🇪🇸" name="Hiszpania" sub="+47M potencjalnych klientów" active={activeCountries.includes('es')} 
                     onClick={() => toggleCountry('es', 47000000)} 
                 />
                 <CountryToggle 
-                    flag="🇬🇧" name="Wielka Brytania" sub="+67M" active={activeCountries.includes('gb')} 
+                    flag="🇬🇧" name="Wielka Brytania" sub="+67M potencjalnych klientów" active={activeCountries.includes('gb')} 
                     onClick={() => toggleCountry('gb', 67000000)} 
                 />
             </div>
@@ -180,19 +184,17 @@ const MarketCounter = () => {
 const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { flag: string, name: string, sub?: string, active: boolean, onClick: () => void, locked?: boolean }) => (
     <div 
         onClick={!locked ? onClick : undefined}
-        className={`flex items-center justify-between p-3 rounded-xl transition-all cursor-pointer ${active ? 'bg-white shadow-sm ring-1 ring-black/5' : 'hover:bg-white/50'} ${locked ? 'opacity-70 cursor-default' : ''}`}
+        className={`flex items-center justify-between p-3.5 rounded-xl transition-all cursor-pointer border ${active ? 'bg-white border-slate-200 shadow-sm' : 'bg-transparent border-transparent hover:bg-slate-50'} ${locked ? 'opacity-70 cursor-default' : ''}`}
     >
-        <div className="flex items-center gap-3">
-            <span className="text-xl filter drop-shadow-sm">{flag}</span>
+        <div className="flex items-center gap-4">
+            <span className="text-2xl filter drop-shadow-sm">{flag}</span>
             <div>
                 <div className={`text-sm font-bold ${active ? 'text-slate-900' : 'text-slate-500'}`}>{name}</div>
+                {active && <div className="text-[10px] text-slate-400 font-medium hidden sm:block">{sub}</div>}
             </div>
         </div>
-        <div className="flex items-center gap-2">
-            {sub && active && <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded hidden sm:inline-block">{sub}</span>}
-            <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-emerald-500' : 'bg-slate-200'}`}>
-                <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[22px]' : 'left-0.5'}`}></div>
-            </div>
+        <div className={`w-12 h-7 rounded-full relative transition-colors duration-300 ${active ? 'bg-indigo-600' : 'bg-slate-200'}`}>
+            <div className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[24px]' : 'left-1'}`}></div>
         </div>
     </div>
 );
@@ -619,7 +621,9 @@ export default function Home() {
                     <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
-                <p className="text-slate-500 text-sm">Włącz nowy kraj jednym kliknięciem.</p>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Marzysz o ekspansji? Z nami to kwestia jednego kliknięcia. Po prostu włączasz nowy rynek, a nasz system zajmuje się resztą – tłumaczy treści, obsługuje waluty i dostosowuje komunikację. Skup się na sprzedaży, my zajmiemy się barierami.
+                </p>
             </div>
             
             <MarketCounter />
@@ -632,16 +636,18 @@ export default function Home() {
                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
-                <p className="text-slate-500 text-sm">Wszystkie kanały w jednym miejscu.</p>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Połącz wszystkie punkty styku z klientem. Zarządzaj wiadomościami z widgetu na stronie, e-maili, WhatsAppa i Messengera w jednym, spójnym panelu. To dopiero początek – integracji jest znacznie więcej.
+                </p>
             </div>
             
             <div className="relative z-10 flex-1 space-y-2.5">
                 {/* Modern Glass List Items - Compact for Square */}
                 {[
-                    { name: 'Messenger', icon: <path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/>, bg: 'from-blue-500 to-blue-600', shadow: 'shadow-blue-500/30' },
+                    { name: 'Widget na stronie', icon: <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />, bg: 'from-indigo-500 to-purple-600', shadow: 'shadow-indigo-500/30' },
+                    { name: 'Email', icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>, bg: 'from-amber-400 to-orange-500', shadow: 'shadow-orange-500/30' },
                     { name: 'WhatsApp', icon: <path d="M12.031 0C5.396 0 0 5.373 0 12c0 2.123.554 4.116 1.517 5.862L.47 23.587l5.962-1.564A11.91 11.91 0 0012.031 24c6.634 0 12.031-5.373 12.031-12S18.665 0 12.031 0zm0 21.84a9.824 9.824 0 01-5.006-1.373l-.36-.213-3.716.974.993-3.623-.234-.373A9.824 9.824 0 013.99 12c0-5.41 4.402-9.84 9.84-9.84s9.84 4.43 9.84 9.84c0 5.424-4.416 9.84-9.839 9.84z"/>, bg: 'from-green-500 to-emerald-600', shadow: 'shadow-green-500/30' },
-                    { name: 'Instagram', icon: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>, bg: 'from-pink-500 to-rose-500', shadow: 'shadow-pink-500/30' },
-                    { name: 'Email', icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>, bg: 'from-amber-400 to-orange-500', shadow: 'shadow-orange-500/30' }
+                    { name: 'Messenger', icon: <path d="M12 0C5.373 0 0 5.265 0 11.765c0 3.706 2.059 7.029 5.294 9.088v3.853l3.294-1.794c1.088.294 2.235.471 3.412.471 6.627 0 12-5.265 12-11.765C24 5.265 18.627 0 12 0zm1.147 14.735l-3-3.206-5.853 3.206 6.441-6.824 3.029 3.206 5.824-3.206-6.441 6.824z"/>, bg: 'from-blue-500 to-blue-600', shadow: 'shadow-blue-500/30' },
                 ].map((item, i) => (
                     <div key={i} className="glass-panel p-2.5 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
                         <div className="flex items-center gap-3">
@@ -653,6 +659,9 @@ export default function Home() {
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
                     </div>
                 ))}
+                <div className="text-center pt-2">
+                    <span className="text-[10px] font-semibold text-slate-400 bg-slate-100 px-2 py-1 rounded-full">+ wiele więcej integracji</span>
+                </div>
             </div>
           </div>
 
@@ -663,7 +672,9 @@ export default function Home() {
                     <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
-                <p className="text-slate-500 text-sm">Skuteczne kampanie.</p>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Wykorzystaj potencjał każdej interakcji. Twórz spersonalizowane kampanie, odzyskuj porzucone koszyki i buduj lojalność dzięki inteligentnym powiadomieniom i newsletterom.
+                </p>
             </div>
             
             {/* Minimalist Chart UI */}
@@ -673,13 +684,13 @@ export default function Home() {
                     <div className="text-2xl font-bold text-slate-900">+124%</div>
                 </div>
                 
-                {/* Simple Bar Chart */}
+                {/* Simple Bar Chart - Pink Variant */}
                 <div className="flex items-end justify-between gap-2 h-20 mt-4">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
-                        <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-indigo-200 transition-colors" style={{ height: `${height}%` }}>
+                        <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
                             {/* Highlight the last bar */}
                             {i === 6 && (
-                                <div className="absolute inset-0 bg-gradient-to-t from-indigo-500 to-purple-500 rounded-t-md shadow-lg shadow-indigo-500/30"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-pink-500 to-rose-500 rounded-t-md shadow-lg shadow-pink-500/30"></div>
                             )}
                         </div>
                     ))}
@@ -753,25 +764,6 @@ export default function Home() {
             </div>
           </div>
 
-        </div>
-
-        {/* SECURITY BADGES */}
-        <div className="mt-16 md:mt-20 border-t border-slate-100 pt-12 text-center">
-            <h4 className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Bezpieczeństwo klasy Enterprise</h4>
-            <div className="flex flex-wrap justify-center gap-6 md:gap-20 items-center">
-                 <div className="flex items-center gap-2 md:gap-3 text-slate-500 font-semibold hover:text-slate-800 transition-colors cursor-default text-sm md:text-base">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-                    GDPR / RODO Shield
-                 </div>
-                 <div className="flex items-center gap-2 md:gap-3 text-slate-500 font-semibold hover:text-slate-800 transition-colors cursor-default text-sm md:text-base">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-9-2c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
-                    AES-256 Encryption
-                 </div>
-                 <div className="flex items-center gap-2 md:gap-3 text-slate-500 font-semibold hover:text-slate-800 transition-colors cursor-default text-sm md:text-base">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    Data Residency (EU)
-                 </div>
-            </div>
         </div>
       </section>
 
