@@ -138,42 +138,42 @@ const MarketCounter = () => {
     };
 
     return (
-        <div className="w-full space-y-4 flex flex-col h-full">
-            {/* New Design for Counter Header */}
-            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 text-center relative overflow-hidden shrink-0">
-                <div className="absolute top-0 right-0 p-3 opacity-10">
-                    <svg width="64" height="64" fill="currentColor" viewBox="0 0 24 24" className="text-slate-900"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                </div>
-                <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2 relative z-10">Potencjalny Zasięg Rynku</p>
-                <div className="text-4xl md:text-5xl font-extrabold text-slate-900 relative z-10 tabular-nums transition-all duration-300 tracking-tight">
+        <div className="w-full space-y-6 flex flex-col h-full">
+            {/* New Design for Counter Header - Cleaner, Modern */}
+            <div className="text-center pt-2 pb-4 border-b border-slate-100 shrink-0">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
+                <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tabular-nums transition-all duration-300 tracking-tight">
                     {formattedCount}
                 </div>
-                <div className="text-xs font-medium text-slate-400 mt-1">Aktywnych klientów w bazie</div>
+                <div className="text-xs font-medium text-emerald-600 mt-1 flex items-center justify-center gap-1">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    Dostępni klienci
+                </div>
             </div>
 
-            <div className="space-y-2 flex-1 overflow-y-auto custom-scrollbar px-1">
+            <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <CountryToggle 
                     flag="🇵🇱" name="Polska" sub="Rynek domowy" active={true} locked={true} 
                     onClick={() => {}} 
                 />
                 <CountryToggle 
-                    flag="🇩🇪" name="Niemcy" sub="+83M potencjalnych klientów" active={activeCountries.includes('de')} 
+                    flag="🇩🇪" name="Niemcy" sub="+83M klientów" active={activeCountries.includes('de')} 
                     onClick={() => toggleCountry('de', 83000000)} 
                 />
                 <CountryToggle 
-                    flag="🇫🇷" name="Francja" sub="+67M potencjalnych klientów" active={activeCountries.includes('fr')} 
+                    flag="🇫🇷" name="Francja" sub="+67M klientów" active={activeCountries.includes('fr')} 
                     onClick={() => toggleCountry('fr', 67000000)} 
                 />
                 <CountryToggle 
-                    flag="🇮🇹" name="Włochy" sub="+59M potencjalnych klientów" active={activeCountries.includes('it')} 
+                    flag="🇮🇹" name="Włochy" sub="+59M klientów" active={activeCountries.includes('it')} 
                     onClick={() => toggleCountry('it', 59000000)} 
                 />
                 <CountryToggle 
-                    flag="🇪🇸" name="Hiszpania" sub="+47M potencjalnych klientów" active={activeCountries.includes('es')} 
+                    flag="🇪🇸" name="Hiszpania" sub="+47M klientów" active={activeCountries.includes('es')} 
                     onClick={() => toggleCountry('es', 47000000)} 
                 />
                 <CountryToggle 
-                    flag="🇬🇧" name="Wielka Brytania" sub="+67M potencjalnych klientów" active={activeCountries.includes('gb')} 
+                    flag="🇬🇧" name="Wlk. Brytania" sub="+67M klientów" active={activeCountries.includes('gb')} 
                     onClick={() => toggleCountry('gb', 67000000)} 
                 />
             </div>
@@ -184,17 +184,17 @@ const MarketCounter = () => {
 const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { flag: string, name: string, sub?: string, active: boolean, onClick: () => void, locked?: boolean }) => (
     <div 
         onClick={!locked ? onClick : undefined}
-        className={`flex items-center justify-between p-3.5 rounded-xl transition-all cursor-pointer border ${active ? 'bg-white border-slate-200 shadow-sm' : 'bg-transparent border-transparent hover:bg-slate-50'} ${locked ? 'opacity-70 cursor-default' : ''}`}
+        className={`flex items-center justify-between py-2 px-1 transition-all cursor-pointer group ${locked ? 'opacity-70 cursor-default' : ''}`}
     >
         <div className="flex items-center gap-4">
-            <span className="text-2xl filter drop-shadow-sm">{flag}</span>
+            <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{flag}</span>
             <div>
                 <div className={`text-sm font-bold ${active ? 'text-slate-900' : 'text-slate-500'}`}>{name}</div>
-                {active && <div className="text-[10px] text-slate-400 font-medium hidden sm:block">{sub}</div>}
+                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-slate-400' : 'text-slate-300'}`}>{sub}</div>
             </div>
         </div>
-        <div className={`w-12 h-7 rounded-full relative transition-colors duration-300 ${active ? 'bg-indigo-600' : 'bg-slate-200'}`}>
-            <div className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[24px]' : 'left-1'}`}></div>
+        <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-slate-900' : 'bg-slate-200'}`}>
+            <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[22px]' : 'left-0.5'}`}></div>
         </div>
     </div>
 );
@@ -673,15 +673,15 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                    Wykorzystaj potencjał każdej interakcji. Twórz spersonalizowane kampanie, odzyskuj porzucone koszyki i buduj lojalność dzięki inteligentnym powiadomieniom i newsletterom.
+                    Wykorzystaj potencjał każdej interakcji. Nasz innowacyjny kreator pop-upów, odzyskiwanie porzuconych koszyków i inteligentne newslettery zmienią odwiedzających w lojalnych klientów.
                 </p>
             </div>
             
             {/* Minimalist Chart UI */}
             <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 flex-1 flex flex-col justify-end relative overflow-hidden">
                 <div className="absolute top-4 left-5">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Growth</div>
-                    <div className="text-2xl font-bold text-slate-900">+124%</div>
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Konwersja</div>
+                    <div className="text-2xl font-bold text-slate-900">Skuteczność</div>
                 </div>
                 
                 {/* Simple Bar Chart - Pink Variant */}
@@ -698,73 +698,108 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 5 (Dark) - Pay-per-Satisfaction (Full Width Bottom) */}
-          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] p-8 md:p-12 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
+        </div>
+      </section>
+
+      {/* --- SEKCJA: PAY-PER-SATISFACTION (DEDICATED FULL WIDTH) --- */}
+      <section className="py-20 md:py-32 px-4 md:px-6 bg-slate-900 relative overflow-hidden">
+         <div className="absolute top-0 right-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
+         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px]"></div>
+         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]"></div>
+
+         <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
             
-            <div className="relative z-10 flex-1 max-w-lg">
-                <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        Rewolucyjny Model
-                    </span>
+            {/* Left: Text Content */}
+            <div className="text-white">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-bold text-emerald-400 uppercase tracking-widest mb-6">
+                    Rewolucyjny Model Rozliczeń
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Pay-per-Satisfaction</h3>
-                <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                    Płać tylko za <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">zadowolonych klientów.</span>
+                </h2>
+                <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
                     Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
-                <div className="flex gap-8 text-sm font-medium text-slate-300">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-slate-600"></div>
-                        Ocena 0-5: <span className="text-white font-bold">0 PLN</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-                        Ocena 6-10: <span className="text-white font-bold">Success Fee</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Progress Bar Visualization */}
-            <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-sm">
-                <div className="flex justify-between items-end mb-4">
-                    <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
-                    <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-slate-500">/10</span></div>
-                </div>
                 
-                {/* The Bar */}
-                <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-2">
-                    {/* Free Zone (Red/Grey) */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
-                    {/* Paid Zone (Green) */}
-                    <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
-                    
-                    {/* Pointer Indicator */}
-                    <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
-                </div>
-
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
-                    <span>Niezadowolony (0)</span>
-                    <span className="text-white">Próg Płatności (6.0)</span>
-                    <span className="text-emerald-400">Zachwycony (10)</span>
-                </div>
-
-                <div className="mt-6 bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">✓</div>
+                <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <span className="text-2xl">😡</span>
+                        </div>
                         <div>
-                            <div className="text-sm font-bold text-white">Sukces!</div>
-                            <div className="text-xs text-slate-400">Naliczono opłatę za rozmowę.</div>
+                            <div className="text-white font-bold text-lg mb-1">Ocena 0-5</div>
+                            <div className="text-slate-400 text-sm">Klient niezadowolony? <span className="text-white font-bold">0 PLN</span>. Nic nie płacisz, a my uczymy się na błędach.</div>
                         </div>
                     </div>
-                    <div className="text-emerald-400 font-mono font-bold">2.00 PLN</div>
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                            <span className="text-2xl">😍</span>
+                        </div>
+                        <div>
+                            <div className="text-white font-bold text-lg mb-1">Ocena 6-10</div>
+                            <div className="text-slate-400 text-sm">Klient zachwycony? Płacisz drobną opłatę <span className="text-emerald-400 font-bold">Success Fee</span>. Uczciwy układ.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
 
-        </div>
+            {/* Right: Visualization */}
+            <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-[2.5rem] blur opacity-30"></div>
+                <div className="relative bg-slate-800/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-10 shadow-2xl">
+                    <div className="flex justify-between items-end mb-8">
+                        <div>
+                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Analiza Sentymentu (Live AI)</div>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-6xl font-extrabold text-white">9.2</span>
+                                <span className="text-xl font-medium text-slate-500">/10</span>
+                            </div>
+                        </div>
+                        <div className="px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-sm flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Wysoka jakość
+                        </div>
+                    </div>
+
+                    {/* Interactive Bar */}
+                    <div className="relative h-6 bg-slate-700/50 rounded-full overflow-hidden w-full mb-4 ring-1 ring-white/5">
+                        {/* Zones */}
+                        <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-rose-900/50 to-slate-600/50 border-r border-white/10"></div>
+                        <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-900/50 to-emerald-500/50"></div>
+                        
+                        {/* Markers */}
+                        <div className="absolute left-[60%] top-0 bottom-0 w-0.5 bg-white/30 z-10"></div>
+                        
+                        {/* Active Pointer */}
+                        <div className="absolute top-0 bottom-0 w-1.5 bg-white shadow-[0_0_15px_white] left-[92%] z-20 rounded-full"></div>
+                    </div>
+
+                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-8">
+                        <span>Strefa Darmowa</span>
+                        <span className="text-emerald-400">Strefa Płatna (Success Fee)</span>
+                    </div>
+
+                    {/* Chat Snippet Context */}
+                    <div className="bg-slate-900/50 rounded-2xl p-4 border border-white/5">
+                        <div className="flex gap-3 mb-3">
+                            <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold text-white">AI</div>
+                            <div className="bg-slate-800 rounded-xl rounded-tl-none p-3 text-sm text-slate-300 shadow-sm border border-white/5">
+                                Rozumiem, przepraszamy za opóźnienie. Jako rekompensatę dodałem rabat -10% do Twojego konta. Czy to w porządku?
+                            </div>
+                        </div>
+                        <div className="flex gap-3 justify-end">
+                            <div className="bg-emerald-500/10 rounded-xl rounded-tr-none p-3 text-sm text-emerald-100 shadow-sm border border-emerald-500/20">
+                                Wow, dziękuję! To bardzo miłe. Świetna obsługa!
+                            </div>
+                            <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-xs font-bold text-white">Klient</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+         </div>
       </section>
 
       <footer id="contact" className="py-16 md:py-20 bg-white border-t border-slate-200">
