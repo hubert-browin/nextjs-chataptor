@@ -248,11 +248,6 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-zinc-300 z-10 items-center justify-center ring-4 ring-white"></div>
             <div className={`hidden md:block absolute top-1/2 -z-0 h-px border-t border-dashed border-zinc-300 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             
-            {/* ORAZ PIONOWA LINIA ŁĄCZĄCA KROKI NA DESKTOPIE (DODANA/PRZYWRÓCONA) */}
-            {!last && (
-                <div className="hidden md:block absolute left-1/2 top-1/2 bottom-[-100%] w-px border-l border-dashed border-zinc-300 -translate-x-1/2 -z-10 h-full"></div>
-            )}
-            
             {/* Kropka i Linia Mobile (Nowe) */}
             <div className="md:hidden absolute left-[19px] top-0 bottom-[-4rem] w-px border-l-2 border-dashed border-zinc-200 z-0"></div>
 
@@ -403,7 +398,7 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 px-4">
-            <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 active:scale-95">
+            <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 ring-4 ring-white active:scale-95">
                 Dołącz do bety
             </button>
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full ring-1 ring-zinc-900/5 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
@@ -566,6 +561,9 @@ export default function Home() {
             <p className="text-lg text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">Ścieżka, która poprowadzi Cię do międzynarodowego sukcesu. Prosta, logiczna, zautomatyzowana.</p>
         </div>
         <div className="relative">
+            {/* PIONOWA LINIA DESKTOP (Globalna - ciągła) */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-zinc-300 -translate-x-1/2"></div>
+
             {/* Linię i kropki obsługuje komponent GrowthStep */}
             <div className="space-y-16 md:space-y-40 relative">
                 <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
@@ -623,7 +621,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-12 md:mb-16">
             <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 mb-6 tracking-tight">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
-                <p className="text-zinc-500 text-base md:text-lg mb-10 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-zinc-900 font-bold bg-white px-2 py-0.5 rounded ring-1 ring-zinc-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.</p>
+                <p className="text-zinc-500 text-base md:text-lg mb-10 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget zintegruje się z Twoim sklepem w <span className="text-zinc-900 font-bold bg-white px-2 py-0.5 rounded ring-1 ring-zinc-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.</p>
                 <div className="space-y-6 md:space-y-8">
                     <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">1</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Skopiuj snippet</h4><p className="text-zinc-500 text-sm">Dostępny w Twoim panelu administratora.</p></div></div>
                     <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">2</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Wklej w &lt;head&gt;</h4><p className="text-zinc-500 text-sm">Działa z każdym CMS i customowym sklepem.</p></div></div>
