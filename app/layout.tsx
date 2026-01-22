@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Konfiguracja fontu Inter z odpowiednimi wagami i subsetem
-const inter = Inter({ 
+// Konfiguracja fontu Inter
+const inter = Inter({
   subsets: ["latin"],
-  variable: '--font-inter',
+  variable: '--font-inter', // Definiujemy zmienną CSS
   display: 'swap',
 });
 
@@ -21,8 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className="scroll-smooth">
-      {/* Zmieniamy text-slate-900 na text-zinc-900 dla bardziej neutralnego odcienia */}
-      <body className={`${inter.className} font-sans antialiased bg-white text-zinc-900`}>
+      <body className={`${inter.variable} ${inter.className} font-sans antialiased bg-white text-zinc-900`}>
         {children}
       </body>
     </html>
