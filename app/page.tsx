@@ -474,17 +474,17 @@ export default function Home() {
               </div>
 
               {/* Input Area */}
-              <div className="p-4 md:p-6 bg-white border-t border-slate-100">
-                <div className="flex gap-2 p-2 bg-slate-50 border border-slate-200 rounded-2xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
-                  <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Napisz po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-zinc-900 placeholder:text-zinc-400 px-3 min-w-0 font-medium" />
-                  <div className="flex items-center gap-1 pr-1">
-                     <button className="hover:bg-slate-200 p-2 rounded-xl text-zinc-400 transition-colors" title="Załącz plik"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg></button>
-                     <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all shadow-md shadow-indigo-200 active:scale-95">Wyślij</button>
+              <div className="p-3 md:p-4 bg-white border-t border-slate-100">
+                <div className="flex gap-2 p-1.5 md:p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
+                  <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Napisz po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 px-2 min-w-0" />
+                  <div className="flex items-center gap-1 border-r border-slate-200 pr-2 mr-1">
+                     <button className="hover:bg-slate-200 p-1.5 rounded-lg text-slate-400 transition-colors hidden sm:block" title="Załącz plik"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg></button>
                   </div>
+                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-3 py-1.5 md:px-4 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">Wyślij</button>
                 </div>
-                <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-zinc-400 font-medium">
+                <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span>AI przetłumaczy na <strong className="text-zinc-600 uppercase">{activeChat.lang}</strong> w czasie rzeczywistym</span>
+                    <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
               </div>
             </div>
