@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Ładujemy font Inter z optymalizacją Next.js
-const inter = Inter({ subsets: ["latin"] });
+// Konfiguracja fontu Inter z odpowiednimi wagami i subsetem
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "Chataptor - Global Customer Support AI",
@@ -16,8 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
-      <body className={`${inter.className} font-sans antialiased bg-white text-slate-900`}>
+    <html lang="pl" className="scroll-smooth">
+      {/* Zmieniamy text-slate-900 na text-zinc-900 dla bardziej neutralnego odcienia */}
+      <body className={`${inter.className} font-sans antialiased bg-white text-zinc-900`}>
         {children}
       </body>
     </html>
