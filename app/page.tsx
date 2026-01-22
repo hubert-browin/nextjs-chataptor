@@ -36,10 +36,11 @@ const styles = `
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
   }
+  /* Ciemniejsza karta Pay-per-satisfaction */
   .glass-card-dark {
-    background: rgba(9, 9, 11, 0.7); /* zinc-950 */
-    backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, #09090b, #000000); /* Solidne ciemne tło */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
   }
   /* Delikatny gradient w tle Hero */
   .hero-gradient {
@@ -56,7 +57,7 @@ const conversations = [
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
     source: 'Messenger', 
-    avatarColor: 'bg-indigo-100 text-indigo-600', // Zachowane zgodnie z prośbą
+    avatarColor: 'bg-indigo-100 text-indigo-600', 
     messages: [
       {
         id: 1,
@@ -81,7 +82,7 @@ const conversations = [
     lastMessage: 'Produit endommagé...',
     lang: 'FR',
     source: 'Email',
-    avatarColor: 'bg-emerald-100 text-emerald-600', // Zachowane
+    avatarColor: 'bg-emerald-100 text-emerald-600', 
     messages: [
       {
         id: 1,
@@ -113,7 +114,7 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    avatarColor: 'bg-rose-100 text-rose-600', // Zachowane
+    avatarColor: 'bg-rose-100 text-rose-600', 
     messages: [
       {
         id: 1,
@@ -196,7 +197,8 @@ const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { f
             <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform grayscale hover:grayscale-0">{flag}</span>
             <div>
                 <div className={`text-sm font-bold ${active ? 'text-zinc-900' : 'text-zinc-400'}`}>{name}</div>
-                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-zinc-500' : 'text-zinc-300'}`}>{sub}</div>
+                {/* ZMIANA: Zielony tekst po aktywacji */}
+                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-emerald-600 font-bold' : 'text-zinc-300'}`}>{sub}</div>
             </div>
         </div>
         <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-zinc-900' : 'bg-zinc-200'}`}>
@@ -449,7 +451,7 @@ export default function Home() {
                     <div className={`flex flex-col max-w-[85%] md:max-w-[65%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
                       <div className={`p-4 md:p-5 rounded-2xl text-[15px] leading-relaxed shadow-sm relative group transition-all
                           ${msg.sender === 'agent' 
-                            ? 'bg-zinc-900 text-white rounded-tr-sm' // Zmiana z Indigo na Black (Zgodnie z życzeniem)
+                            ? 'bg-zinc-900 text-white rounded-tr-sm' 
                             : 'bg-white text-zinc-800 ring-1 ring-zinc-200 rounded-tl-sm shadow-sm'
                            }`}>
                         <div>{msg.text}</div>
@@ -699,7 +701,7 @@ export default function Home() {
             <MarketCounter />
           </div>
 
-          {/* Card 3 - Omnichannel Hub (Minimal) */}
+          {/* Card 3 - Omnichannel Hub (Restore Colors) */}
           <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 md:p-5 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
             <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Omnichannel</h3>
@@ -709,11 +711,12 @@ export default function Home() {
             </div>
             
             <div className="relative z-10 flex-1 space-y-2">
+                {/* ZMIANA: Przywrócone kolorowe kropki */}
                 {[
-                    { name: 'Widget na stronie', color: 'bg-zinc-900' }, // Zmienione na brand
-                    { name: 'Email', color: 'bg-zinc-500' },
-                    { name: 'WhatsApp', color: 'bg-emerald-500' }, // Zachowane bo to kolor brandu WA
-                    { name: 'Messenger', color: 'bg-blue-600' }, // Brand Messenger
+                    { name: 'Widget na stronie', color: 'bg-indigo-500' },
+                    { name: 'Email', color: 'bg-amber-500' },
+                    { name: 'WhatsApp', color: 'bg-green-500' },
+                    { name: 'Messenger', color: 'bg-blue-500' },
                 ].map((item, i) => (
                     <div key={i} className="glass-panel p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
                         <span className="font-bold text-zinc-700 text-xs pl-2">{item.name}</span>
@@ -726,7 +729,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 4 - Marketing Automation */}
+          {/* Card 4 - Marketing Automation (Restore Pink) */}
           <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
              <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Marketing</h3>
@@ -737,10 +740,11 @@ export default function Home() {
             
             <div className="bg-zinc-50 rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden ring-1 ring-black/5">
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
+                    {/* ZMIANA: Przywrócony różowy kolor przy hover i gradient na końcu */}
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
-                        <div key={i} className="w-full bg-zinc-200 rounded-t-sm relative group/bar hover:bg-emerald-200 transition-colors" style={{ height: `${height}%` }}>
+                        <div key={i} className="w-full bg-slate-200 rounded-t-sm relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
                             {i === 6 && (
-                                <div className="absolute inset-0 bg-zinc-900 rounded-t-sm shadow-lg"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-pink-500 to-rose-500 rounded-t-sm shadow-lg shadow-pink-500/30"></div>
                             )}
                         </div>
                     ))}
@@ -748,8 +752,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 5 (Dark) - Pay-per-Satisfaction */}
-          <div className="md:col-span-3 glass-card-dark text-white rounded-[2.5rem] p-6 md:p-12 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center mt-4">
+          {/* Card 5 (Dark) - Pay-per-Satisfaction (ZMIANA: Ciemniejszy) */}
+          <div className="md:col-span-3 glass-card-dark text-white rounded-[2.5rem] p-6 md:p-12 hover:shadow-2xl hover:shadow-black/40 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center mt-4">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
             
             <div className="relative z-10 flex-1 max-w-lg">
