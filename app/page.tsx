@@ -719,7 +719,7 @@ export default function Home() {
                     { name: 'Messenger', color: 'bg-blue-500' },
                 ].map((item, i) => (
                     <div key={i} className="p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
-                        <span className="font-bold text-zinc-700 text-xs pl-2">{item.name}</span>
+                        <span className="font-bold text-zinc-700 text-xs">{item.name}</span>
                         <div className={`w-2 h-2 rounded-full ${item.color} shadow-sm mr-2`}></div>
                     </div>
                 ))}
@@ -852,7 +852,7 @@ export default function Home() {
                 <p className="text-zinc-400 text-sm font-medium text-center">© {new Date().getFullYear()} Chataptor. Wszystkie prawa zastrzeżone.</p>
                 <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-400 bg-zinc-50 px-3 py-1.5 rounded-full border border-zinc-100">
                     <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
-                    System Operational
+                    Uptime: 99.89%
                 </div>
             </div>
         </div>
