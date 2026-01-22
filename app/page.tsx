@@ -30,8 +30,13 @@ const styles = `
   }
   .glass-panel {
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(228, 228, 231, 0.6); /* zinc-200 */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .glass-card-dark {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 `;
 
@@ -44,7 +49,6 @@ const conversations = [
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
     source: 'Messenger', 
-    // Przywrócone kolory (Indigo)
     avatarColor: 'bg-indigo-100 text-indigo-600',
     messages: [
       {
@@ -70,7 +74,6 @@ const conversations = [
     lastMessage: 'Produit endommagé...',
     lang: 'FR',
     source: 'Email',
-    // Przywrócone kolory (Emerald)
     avatarColor: 'bg-emerald-100 text-emerald-600',
     messages: [
       {
@@ -103,7 +106,6 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    // Przywrócone kolory (Rose)
     avatarColor: 'bg-rose-100 text-rose-600',
     messages: [
       {
@@ -119,6 +121,7 @@ const conversations = [
 
 // --- COMPONENTS ---
 
+// Komponent Licznika (Market Unlock)
 const MarketCounter = () => {
     const [baseCount, setBaseCount] = useState(38000000); 
     const [activeCountries, setActiveCountries] = useState<string[]>(['pl']);
@@ -137,18 +140,18 @@ const MarketCounter = () => {
 
     return (
         <div className="w-full space-y-6 flex flex-col h-full">
-            <div className="text-center pt-2 pb-4 border-b border-zinc-100 shrink-0">
-                <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
-                <div className="text-4xl md:text-5xl font-extrabold text-zinc-900 tabular-nums tracking-tighter">
+            <div className="text-center pt-2 pb-4 border-b border-slate-100 shrink-0">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
+                <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tabular-nums transition-all duration-300 tracking-tight">
                     {formattedCount}
                 </div>
-                <div className="text-xs font-medium text-emerald-600 mt-2 flex items-center justify-center gap-1.5 bg-emerald-50 w-fit mx-auto px-2 py-1 rounded-full border border-emerald-100">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                <div className="text-xs font-medium text-emerald-600 mt-1 flex items-center justify-center gap-1">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     Dostępni klienci
                 </div>
             </div>
 
-            <div className="space-y-2 flex-1 overflow-y-auto custom-scrollbar pr-1">
+            <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <CountryToggle 
                     flag="🇵🇱" name="Polska" sub="Rynek domowy" active={true} locked={true} 
                     onClick={() => {}} 
@@ -177,21 +180,22 @@ const MarketCounter = () => {
 const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { flag: string, name: string, sub?: string, active: boolean, onClick: () => void, locked?: boolean }) => (
     <div 
         onClick={!locked ? onClick : undefined}
-        className={`flex items-center justify-between py-2.5 px-3 rounded-xl transition-all cursor-pointer border ${active ? 'bg-zinc-50 border-zinc-200' : 'bg-transparent border-transparent hover:bg-zinc-50'} ${locked ? 'opacity-70 cursor-default' : ''}`}
+        className={`flex items-center justify-between py-2 px-1 transition-all cursor-pointer group ${locked ? 'opacity-70 cursor-default' : ''}`}
     >
         <div className="flex items-center gap-4">
-            <span className="text-xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{flag}</span>
+            <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{flag}</span>
             <div>
-                <div className={`text-sm font-semibold tracking-tight ${active ? 'text-zinc-900' : 'text-zinc-500'}`}>{name}</div>
-                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-zinc-400' : 'text-zinc-300'}`}>{sub}</div>
+                <div className={`text-sm font-bold ${active ? 'text-slate-900' : 'text-slate-500'}`}>{name}</div>
+                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-slate-400' : 'text-slate-300'}`}>{sub}</div>
             </div>
         </div>
-        <div className={`w-9 h-5 rounded-full relative transition-colors duration-300 ${active ? 'bg-zinc-900' : 'bg-zinc-200'}`}>
-            <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-300 ${active ? 'left-[18px]' : 'left-0.5'}`}></div>
+        <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-slate-900' : 'bg-slate-200'}`}>
+            <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[22px]' : 'left-0.5'}`}></div>
         </div>
     </div>
 );
 
+// Komponent Kroku Growth (Monochromatyczny - zgodnie z życzeniem)
 const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
@@ -208,16 +212,15 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
 
     return (
         <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-32 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white bg-indigo-600 shadow-md z-10 items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
+            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-zinc-300 z-10 items-center justify-center ring-4 ring-white">
             </div>
-            {/* Linia tylko na desktopie - bardziej widoczna */}
-            <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-zinc-300/60 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
+            {/* Linia - bardziej widoczna */}
+            <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-zinc-300 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             
             {/* TEKST */}
             <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 order-1 ${side === 'left' ? 'md:items-end md:text-right md:pr-24 md:order-1' : 'md:items-start md:text-left md:pl-24 md:order-2'}`}>
                 <div>
-                    <div className="inline-block px-3 py-1 bg-zinc-100 text-zinc-600 rounded-full text-[10px] font-bold mb-4 tracking-widest border border-zinc-200/50 uppercase">Krok {number}</div>
+                    <div className="inline-block px-3 py-1 bg-zinc-100 text-zinc-600 rounded-full text-[10px] font-bold mb-4 tracking-widest border border-zinc-200 uppercase">Krok {number}</div>
                     <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 tracking-tight">{title}</h3>
                     <p className="text-zinc-500 text-base leading-relaxed max-w-sm">{description}</p>
                 </div>
@@ -316,7 +319,6 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-32 md:pt-48 pb-16 md:pb-32 text-center overflow-hidden">
-        {/* Usunięcie niebieskiego glow, dodanie bardzo subtelnego szarego */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-zinc-100/50 rounded-[100%] blur-[120px] -z-10 pointer-events-none"></div>
         
         <div className="px-4 md:px-6 max-w-5xl mx-auto relative z-10">
@@ -343,7 +345,6 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 ring-4 ring-white active:scale-95">
                 Dołącz do bety
             </button>
-            {/* PRZYWRÓCONY PRZYCISK DEMO */}
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-zinc-200 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
                 <div className="relative w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white shadow-lg shrink-0 group-hover:bg-black transition-colors duration-300">
                     <span className="absolute inset-0 rounded-full border border-white/20"></span>
@@ -366,7 +367,7 @@ export default function Home() {
       {/* UI MOCKUP */}
       <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-10 mb-20 md:mb-40 relative z-20">
         <div className="bg-white rounded-2xl md:rounded-[32px] border border-zinc-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[80vh] md:h-[800px] ring-1 ring-zinc-900/5">
-          {/* Mockup Header */}
+          {/* Mockup Header - zachowujemy ten nowy, bo się podobał */}
           <div className="bg-white h-12 border-b border-zinc-100 flex items-center px-4 md:px-5 gap-2 shrink-0 justify-between">
             <div className="flex gap-2 opacity-50"><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div></div>
             <div className="flex items-center gap-2 px-3 py-1 bg-zinc-50 rounded-md border border-zinc-100/50">
@@ -376,8 +377,9 @@ export default function Home() {
             <div className="w-8 md:w-10"></div>
           </div>
           
+          {/* Body Mockupu - powrót do oryginału (kolory) */}
           <div className="flex flex-1 overflow-hidden relative bg-zinc-50/30">
-            {/* Sidebar - lista czatów */}
+            {/* Sidebar */}
             <div className={`${activeChatId ? 'hidden md:flex' : 'flex'} w-full md:w-[320px] border-r border-zinc-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full`}>
               <div className="p-4 md:p-5 flex justify-between items-center sticky top-0 bg-white z-10 border-b border-zinc-50">
                 <div className="text-sm font-bold text-zinc-900 tracking-tight">Wiadomości</div>
@@ -394,7 +396,7 @@ export default function Home() {
                             <span className="text-[10px] text-zinc-400 ml-2 whitespace-nowrap">{chat.time}</span>
                         </div>
                         <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-indigo-600/80' : 'text-zinc-400'}`}>{chat.lastMessage}</div>
-                        {/* PRZYWRÓCONY BADGE */}
+                        {/* Oryginalne badge */}
                         <div className="mt-2 flex items-center gap-2"><span className="inline-flex items-center gap-1.5 px-2 py-1 bg-zinc-50 border border-zinc-200 rounded text-[10px] font-medium text-zinc-500 shadow-sm"><span className="font-bold">{chat.lang}</span><span className="text-zinc-300">|</span><span className="capitalize">{chat.source}</span></span></div>
                     </div>
                   </button>
@@ -433,11 +435,9 @@ export default function Home() {
               <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8">
                 {activeChat.messages.map((msg) => (
                   <div key={msg.id} className={`flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.sender === 'agent' ? 'justify-end' : ''}`}>
-                    
                     {msg.sender === 'user' && (
                         <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold shadow-sm mt-2 ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
                     )}
-                    
                     <div className={`flex flex-col max-w-[85%] md:max-w-[65%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
                       <div className={`p-4 md:p-5 rounded-2xl text-[15px] leading-relaxed shadow-sm relative group transition-all
                           ${msg.sender === 'agent' 
@@ -454,14 +454,11 @@ export default function Home() {
                       </div>
                       <span className="text-[10px] text-zinc-400 mt-2 px-1 font-medium">{msg.timestamp}</span>
                     </div>
-
                     {msg.sender === 'agent' && (
                         <div className="w-8 h-8 rounded-full bg-zinc-900 shrink-0 flex items-center justify-center text-white text-xs font-bold mt-2 shadow-sm">A</div>
                     )}
                   </div>
                 ))}
-
-                {/* AI Suggestion Chip */}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-6">
                         <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs font-medium px-4 py-2 rounded-full flex items-center gap-2 transition-all border border-indigo-200 shadow-sm hover:shadow-md">
@@ -491,16 +488,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI --- */}
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (Monochromatyczna - zgodnie z życzeniem) --- */}
       <section id="how-it-works" className="py-24 md:py-40 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-24 md:mb-40">
             <h2 className="text-3xl md:text-5xl font-extrabold text-zinc-900 mb-6 tracking-tight">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
             <p className="text-lg text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">Ścieżka, która poprowadzi Cię do międzynarodowego sukcesu. Prosta, logiczna, zautomatyzowana.</p>
         </div>
         <div className="relative">
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-indigo-200 -translate-x-1/2"></div>
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-zinc-300 -translate-x-1/2"></div>
             <div className="md:hidden absolute left-5 top-4 bottom-4 w-px bg-zinc-100"></div>
-            
             <div className="space-y-24 md:space-y-40 relative">
                 <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
                     <div className="bg-white p-8 rounded-[32px] border border-zinc-100 shadow-2xl shadow-zinc-200/40 w-full max-w-sm ml-auto transform hover:-translate-y-2 transition-transform duration-500 relative group">
@@ -552,7 +548,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE (Przywrócona wersja) --- */}
+      {/* --- SEKCJA: WDROŻENIE (Przywrócona do oryginału: Jasna + 4 kroki) --- */}
       <section id="implementation" className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-zinc-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-24 items-center relative z-10 mb-16 md:mb-24">
             <div>
@@ -582,17 +578,13 @@ export default function Home() {
                 
                 {/* Fixed Terminal Window - LIGHT MODE RESTORED */}
                 <div className="relative bg-white rounded-2xl shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto border border-zinc-200">
-                    
-                    {/* Header Bar */}
                     <div className="flex items-center justify-between px-4 py-3 md:px-5 md:py-4 border-b border-zinc-100 bg-white relative z-10">
                         <div className="flex items-center gap-2 min-w-[50px]">
                             <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
                         </div>
-                        <div className="text-zinc-400 text-xs font-semibold truncate px-2">
-                            index.html
-                        </div>
+                        <div className="text-zinc-400 text-xs font-semibold truncate px-2">index.html</div>
                         <div className="flex items-center justify-end min-w-[50px]">
                             <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
                                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
@@ -600,8 +592,6 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Code Content - Light Mode */}
                     <div className="p-4 sm:p-6 md:p-8 overflow-x-auto bg-white">
                         <div className="text-zinc-600 space-y-2 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-mono">
                             <div><span className="text-pink-600">&lt;</span><span className="text-pink-600">head</span><span className="text-pink-600">&gt;</span></div>
@@ -630,7 +620,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURE BENTO GRID --- */}
+      {/* --- FEATURE BENTO GRID (Przywrócony oryginał: Kolorowe karty) --- */}
       <section id="product" className="py-24 md:py-40 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-24 md:mb-32">
           <h2 className="text-3xl md:text-5xl font-extrabold text-zinc-900 mb-6 tracking-tight">Wszystko w jednym panelu.</h2>
@@ -650,9 +640,8 @@ export default function Home() {
                  Silnik oparty na OpenAI i DeepL. Klient pisze po niemiecku, Ty widzisz to od razu po polsku. Zero opóźnień, zero nieporozumień.
               </p>
             </div>
-            
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm bg-white p-6 rounded-3xl">
+                <div className="relative w-full max-w-sm bg-white p-6 rounded-3xl shadow-sm border border-zinc-100">
                     <div className="flex flex-col gap-4">
                         <div className="flex items-start gap-3">
                             <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-zinc-500">DE</div>
@@ -667,7 +656,6 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-
                         <div className="flex items-start gap-3 flex-row-reverse mt-2">
                             <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
                             <div className="flex-1 text-right">
@@ -705,7 +693,6 @@ export default function Home() {
                     Wszystkie kanały w jednym miejscu. Zarządzaj wiadomościami z wielu źródeł bez przełączania kart.
                 </p>
             </div>
-            
             <div className="relative z-10 flex-1 space-y-3">
                 {[
                     { name: 'Widget na stronie', color: 'bg-indigo-500' },
@@ -729,7 +716,6 @@ export default function Home() {
                     Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
                 </p>
             </div>
-            
             <div className="bg-white rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
@@ -743,10 +729,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 5 (Dark) - Pay-per-Satisfaction (RESTORED) */}
+          {/* Card 5 (Dark) - Pay-per-Satisfaction (Przywrócony oryginał) */}
           <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[32px] p-8 md:p-16 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 md:gap-24 items-center mt-6">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
-            
             <div className="relative z-10 flex-1 max-w-lg">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/10">
@@ -758,7 +743,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Pay-per-Satisfaction</h3>
                 <p className="text-slate-400 text-lg leading-relaxed mb-8 font-light">
-                    Koniec z płaceniem za puste słowa. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena jakości wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
+                    Koniec z płaceniem za puste słowa. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 text-sm font-medium text-slate-300">
                     <div className="flex items-center gap-3">
@@ -771,27 +756,21 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-            {/* Progress Bar Visualization */}
             <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-md">
                 <div className="flex justify-between items-end mb-6">
-                    <div className="text-sm font-medium text-slate-400">Analiza jakości (Live)</div>
+                    <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
                     <div className="text-5xl font-bold text-emerald-400 tracking-tighter">9.2<span className="text-xl text-slate-500 font-normal">/10</span></div>
                 </div>
-                
-                {/* The Bar */}
                 <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-3">
                     <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
                     <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
                     <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
                 </div>
-
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-4">
                     <span>Niezadowolony</span>
                     <span className="text-white text-center">Próg (6.0)</span>
                     <span className="text-emerald-400 text-right">Zachwycony</span>
                 </div>
-
                 <div className="mt-8 bg-emerald-500/10 rounded-2xl p-5 border border-emerald-500/20 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-sm">✓</div>
