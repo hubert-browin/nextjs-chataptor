@@ -718,7 +718,7 @@ export default function Home() {
                     { name: 'WhatsApp', color: 'bg-green-500' },
                     { name: 'Messenger', color: 'bg-blue-500' },
                 ].map((item, i) => (
-                    <div key={i} className="glass-panel p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
+                    <div key={i} className="p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
                         <span className="font-bold text-zinc-700 text-xs pl-2">{item.name}</span>
                         <div className={`w-2 h-2 rounded-full ${item.color} shadow-sm mr-2`}></div>
                     </div>
@@ -734,7 +734,10 @@ export default function Home() {
              <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Marketing</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
-                    Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów. Nie potrzebujesz dodatkowych narzędzi, dostajesz wszystko w jednym panelu. Pop-up'y zbierają leady, wysyłasz do nich maile z jednego miejsca.
+                    Zamień odwiedzających w lojalnych klientów.
+                </p>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                    Zbieraj leady inteligentnymi pop-upami i prowadź skuteczne kampanie e-mailowe z jednego panelu.
                 </p>
             </div>
             
