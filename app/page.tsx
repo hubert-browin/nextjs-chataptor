@@ -734,11 +734,11 @@ export default function Home() {
              <div className="relative z-10 mb-4">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Marketing</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
-                    Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
+                    Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów. Nie potrzebujesz dodatkowych narzędzi, dostajesz wszystko w jednym panelu. Pop-up'y zbierają leady, wysyłasz do nich maile z jednego miejsca.
                 </p>
             </div>
             
-            <div className="bg-zinc-50 rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden ring-1 ring-black/5">
+            <div className="rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {/* ZMIANA: Przywrócony różowy kolor przy hover i gradient na końcu */}
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
