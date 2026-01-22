@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Używamy domyślnego fontu systemowego lub zdefiniowanego w Tailwind CSS
-// Usunięto import next/font/google, który powodował błędy kompilacji
+// Ładujemy font Inter z optymalizacją Next.js
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Chataptor - Global Customer Support AI",
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className="font-sans antialiased bg-white text-zinc-900">{children}</body>
+      <body className={`${inter.className} font-sans antialiased bg-white text-slate-900`}>
+        {children}
+      </body>
     </html>
   );
 }
