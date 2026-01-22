@@ -244,9 +244,14 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
 
     return (
         <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-32 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {/* Kropka i Linia Desktop */}
+            {/* Kropka i Linia Desktop - PRZYWRÓCONA */}
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-zinc-300 z-10 items-center justify-center ring-4 ring-white"></div>
             <div className={`hidden md:block absolute top-1/2 -z-0 h-px border-t border-dashed border-zinc-300 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
+            
+            {/* ORAZ PIONOWA LINIA ŁĄCZĄCA KROKI NA DESKTOPIE (DODANA/PRZYWRÓCONA) */}
+            {!last && (
+                <div className="hidden md:block absolute left-1/2 top-1/2 bottom-[-100%] w-px border-l border-dashed border-zinc-300 -translate-x-1/2 -z-10 h-full"></div>
+            )}
             
             {/* Kropka i Linia Mobile (Nowe) */}
             <div className="md:hidden absolute left-[19px] top-0 bottom-[-4rem] w-px border-l-2 border-dashed border-zinc-200 z-0"></div>
@@ -398,7 +403,7 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 px-4">
-            <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 ring-4 ring-white active:scale-95">
+            <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 active:scale-95">
                 Dołącz do bety
             </button>
             <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full ring-1 ring-zinc-900/5 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
