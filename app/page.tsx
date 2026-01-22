@@ -552,60 +552,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEKCJA: WDROŻENIE (Przywrócona do oryginału: Jasna + 4 kroki + Styl Slate) --- */}
-      <section id="implementation" className="py-24 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+      {/* --- SEKCJA: WDROŻENIE --- */}
+      <section id="implementation" className="py-24 md:py-32 px-4 md:px-6 bg-zinc-50 border-y border-zinc-200 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-24 items-center relative z-10 mb-16 md:mb-24">
             <div>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-zinc-900 mb-8 tracking-tight">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
-                <p className="text-zinc-500 text-lg mb-12 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-zinc-900 font-bold bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">3 minuty</span>.</p>
+                <p className="text-zinc-500 text-lg mb-12 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-zinc-900 font-bold bg-white px-2 py-0.5 rounded border border-zinc-200 shadow-sm">3 minuty</span>.</p>
                 <div className="space-y-8 md:space-y-10">
                     <div className="flex gap-6 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">1</div>
+                        <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-zinc-400 group-hover:scale-110 transition-all">1</div>
                         <div><h4 className="font-bold text-lg text-zinc-900 mb-1">Skopiuj snippet</h4><p className="text-zinc-500 text-sm">Dostępny w Twoim panelu administratora.</p></div>
                     </div>
                     <div className="flex gap-6 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">2</div>
+                        <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-zinc-400 group-hover:scale-110 transition-all">2</div>
                         <div><h4 className="font-bold text-lg text-zinc-900 mb-1">Wklej w &lt;head&gt;</h4><p className="text-zinc-500 text-sm">Działa z każdym CMS i customowym sklepem.</p></div>
                     </div>
                     <div className="flex gap-6 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">3</div>
-                        <div><h4 className="font-bold text-lg text-zinc-900 mb-1">Wybierz języki</h4><p className="text-zinc-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p></div>
-                    </div>
-                    <div className="flex gap-6 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">4</div>
-                        <div><h4 className="font-bold text-lg text-zinc-900 mb-1">Integracja (Opcjonalne)</h4><p className="text-zinc-500 text-sm">Podłącz Messengera, WhatsAppa lub e-mail.</p></div>
+                        <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:border-zinc-400 group-hover:scale-110 transition-all">3</div>
+                        <div><h4 className="font-bold text-lg text-zinc-900 mb-1">Gotowe</h4><p className="text-zinc-500 text-sm">Twoja firma właśnie stała się globalna.</p></div>
                     </div>
                 </div>
             </div>
             <div className="relative mt-8 lg:mt-0">
-                <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-[32px] blur-xl opacity-60"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-zinc-200 to-zinc-100 rounded-[32px] blur-xl opacity-60"></div>
                 
-                {/* Fixed Terminal Window - LIGHT MODE RESTORED */}
-                <div className="relative bg-white rounded-2xl shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto border border-slate-200">
-                    <div className="flex items-center justify-between px-4 py-3 md:px-5 md:py-4 border-b border-slate-100 bg-white relative z-10">
+                {/* Fixed Terminal Window - Monochrome Style */}
+                <div className="relative bg-zinc-900 rounded-2xl shadow-2xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto ring-1 ring-white/10">
+                    
+                    {/* Header Bar */}
+                    <div className="flex items-center justify-between px-4 py-3 md:px-5 md:py-4 border-b border-white/10 bg-zinc-900 relative z-10">
                         <div className="flex items-center gap-2 min-w-[50px]">
-                            <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
-                            <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
-                            <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
+                            <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                            <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                            <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
                         </div>
-                        <div className="text-slate-400 text-xs font-semibold truncate px-2">index.html</div>
+                        <div className="text-zinc-500 text-xs font-medium truncate px-2">
+                            index.html
+                        </div>
                         <div className="flex items-center justify-end min-w-[50px]">
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/20">
                                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                                 <span className="hidden sm:inline">Connected</span>
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 sm:p-6 md:p-8 overflow-x-auto bg-white">
-                        <div className="text-slate-600 space-y-2 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-mono">
-                            <div><span className="text-pink-600">&lt;</span><span className="text-pink-600">head</span><span className="text-pink-600">&gt;</span></div>
-                            <div className="pl-4 text-slate-400 italic opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
-                            <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
+
+                    {/* Code Content - High Contrast Dark Mode */}
+                    <div className="p-4 sm:p-6 md:p-8 overflow-x-auto bg-zinc-950/50">
+                        <div className="text-zinc-300 space-y-2 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-mono">
+                            <div><span className="text-zinc-500">&lt;</span><span className="text-pink-400">head</span><span className="text-zinc-500">&gt;</span></div>
+                            <div className="pl-4 text-zinc-600 italic">&lt;!-- Twoje meta tagi --&gt;</div>
+                            <div className="pl-4"><span className="text-zinc-500">&lt;</span><span className="text-pink-400">meta</span> <span className="text-indigo-300">charset</span>=<span className="text-emerald-300">"UTF-8"</span> /<span className="text-zinc-500">&gt;</span></div>
                             <div className="pl-4 h-4"></div>
-                            <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-3 pr-2 rounded-r w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-3 pr-2 rounded-r -mt-2 w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
-                            <div><span className="text-pink-600">&lt;/head&gt;</span></div>
+                            <div className="pl-4 text-zinc-500 font-bold">&lt;!-- Chataptor Integration --&gt;</div>
+                            <div className="pl-4 bg-zinc-800/50 border-l-2 border-indigo-500 py-3 pr-2 rounded-r w-full"><span className="text-zinc-500">&lt;</span><span className="text-pink-400">script</span> <span className="text-indigo-300">src</span>=<span className="text-emerald-300">"https://cdn.chataptor.com/widget.js"</span></div>
+                            <div className="pl-8 bg-zinc-800/50 border-l-2 border-indigo-500 py-3 pr-2 rounded-r -mt-2 w-full"><span className="text-indigo-300">data-id</span>=<span className="text-emerald-300">"YOUR_STORE_ID"</span> <span className="text-zinc-500">&gt;&lt;/</span><span className="text-pink-400">script</span><span className="text-zinc-500">&gt;</span></div>
+                            <div><span className="text-zinc-500">&lt;/</span><span className="text-pink-400">head</span><span className="text-zinc-500">&gt;</span></div>
                         </div>
                     </div>
                 </div>
@@ -624,7 +626,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURE BENTO GRID (Przywrócony oryginał: Kolorowe karty + Styl Slate) --- */}
+       {/* --- FEATURE BENTO GRID --- */}
       <section id="product" className="py-24 md:py-40 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-24 md:mb-32">
           <h2 className="text-3xl md:text-5xl font-extrabold text-zinc-900 mb-6 tracking-tight">Wszystko w jednym panelu.</h2>
@@ -634,40 +636,40 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
           
           {/* Card 1 - Translation */}
-          <div className="group bg-white border border-slate-200 rounded-[32px] p-8 md:p-10 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-10 items-center relative overflow-hidden">
+          <div className="group bg-white border border-zinc-200 rounded-[32px] p-8 md:p-10 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-10 items-center relative overflow-hidden">
             <div className="flex-1 relative z-10 text-left">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+              <div className="w-12 h-12 rounded-xl bg-zinc-900 text-white flex items-center justify-center mb-6 shadow-lg shadow-zinc-900/20">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
               <h3 className="text-2xl font-bold text-zinc-900 mb-3 tracking-tight">Real-time Translation</h3>
               <p className="text-zinc-500 text-base leading-relaxed mb-6">
                  Silnik oparty na OpenAI i DeepL. Klient pisze po niemiecku, Ty widzisz to od razu po polsku. Zero opóźnień, zero nieporozumień.
               </p>
             </div>
+            
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                <div className="relative w-full max-w-sm bg-zinc-50 p-6 rounded-3xl border border-zinc-100">
                     <div className="flex flex-col gap-4">
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-zinc-500">DE</div>
+                            <div className="w-8 h-8 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-xs font-bold text-zinc-500">DE</div>
                             <div className="flex-1">
-                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 text-sm text-zinc-800">
+                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-zinc-200 text-sm text-zinc-800">
                                     Wo ist mein Paket?
-                                    <div className="h-px bg-slate-100 my-2"></div>
-                                    <div className="text-indigo-600 font-medium flex items-center gap-2 text-xs">
-                                        <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    <div className="h-px bg-zinc-100 my-2"></div>
+                                    <div className="text-zinc-500 font-medium flex items-center gap-2 text-xs">
                                         Gdzie jest moja paczka?
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div className="flex items-start gap-3 flex-row-reverse mt-2">
                             <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
                             <div className="flex-1 text-right">
                                 <div className="bg-zinc-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-left">
                                     Sprawdzam to...
-                                    <div className="h-px bg-white/20 my-2"></div>
-                                    <div className="text-indigo-200 font-medium flex items-center gap-2 text-xs">
-                                        <svg className="w-3.5 h-3.5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    <div className="h-px bg-white/10 my-2"></div>
+                                    <div className="text-zinc-400 font-medium flex items-center gap-2 text-xs">
                                         Ich überprüfe das...
                                     </div>
                                 </div>
@@ -679,7 +681,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 - Market Unlock */}
-          <div className="group bg-white border border-slate-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
+          <div className="group bg-white border border-zinc-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
              <div className="relative z-10 mb-6 flex-none">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Market Unlock</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
@@ -690,42 +692,44 @@ export default function Home() {
           </div>
 
           {/* Card 3 - Omnichannel Hub */}
-          <div className="group bg-white border border-slate-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          <div className="group bg-white border border-zinc-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
             <div className="relative z-10 mb-6">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Omnichannel</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
                     Wszystkie kanały w jednym miejscu. Zarządzaj wiadomościami z wielu źródeł bez przełączania kart.
                 </p>
             </div>
+            
             <div className="relative z-10 flex-1 space-y-3">
                 {[
-                    { name: 'Widget na stronie', color: 'bg-indigo-500' },
-                    { name: 'Email', color: 'bg-amber-500' },
-                    { name: 'WhatsApp', color: 'bg-green-500' },
-                    { name: 'Messenger', color: 'bg-blue-500' },
+                    { name: 'Widget na stronie', color: 'bg-zinc-900' },
+                    { name: 'Email', color: 'bg-zinc-700' },
+                    { name: 'WhatsApp', color: 'bg-zinc-500' },
+                    { name: 'Messenger', color: 'bg-zinc-400' },
                 ].map((item, i) => (
-                    <div key={i} className="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white border border-slate-100 shadow-sm">
+                    <div key={i} className="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white border border-zinc-100 shadow-sm">
                         <span className="font-semibold text-zinc-700 text-xs pl-2">{item.name}</span>
-                        <div className={`w-2 h-2 rounded-full ${item.color} mr-2 shadow-sm`}></div>
+                        <div className={`w-2 h-2 rounded-full ${item.color} mr-2`}></div>
                     </div>
                 ))}
             </div>
           </div>
 
           {/* Card 4 - Marketing Automation */}
-          <div className="group bg-white border border-slate-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          <div className="group bg-white border border-zinc-200 rounded-[32px] p-8 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
              <div className="relative z-10 mb-6">
                 <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Marketing</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">
                     Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
                 </p>
             </div>
-            <div className="bg-white rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
+            
+            <div className="bg-zinc-50 rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden border border-zinc-100">
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
-                        <div key={i} className="w-full bg-slate-200 rounded-t-sm relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
+                        <div key={i} className="w-full bg-zinc-200 rounded-t-sm relative group/bar hover:bg-zinc-300 transition-colors" style={{ height: `${height}%` }}>
                             {i === 6 && (
-                                <div className="absolute inset-0 bg-gradient-to-t from-pink-500 to-rose-500 rounded-t-sm shadow-lg shadow-pink-500/30"></div>
+                                <div className="absolute inset-0 bg-zinc-900 rounded-t-sm shadow-lg shadow-zinc-900/20"></div>
                             )}
                         </div>
                     ))}
@@ -733,25 +737,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 5 (Dark) - Pay-per-Satisfaction (Przywrócony oryginał) */}
-          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[32px] p-8 md:p-16 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 md:gap-24 items-center mt-6">
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
+          {/* Card 5 (Dark) - Pay-per-Satisfaction */}
+          <div className="md:col-span-3 bg-zinc-900 text-white border border-zinc-800 rounded-[32px] p-8 md:p-16 hover:shadow-2xl hover:shadow-zinc-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-12 md:gap-24 items-center mt-6">
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-800/50 via-zinc-900 to-zinc-950"></div>
+            
             <div className="relative z-10 flex-1 max-w-lg">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/10">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold text-zinc-300 uppercase tracking-widest">
                         Rewolucyjny Model
                     </span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Pay-per-Satisfaction</h3>
-                <p className="text-slate-400 text-lg leading-relaxed mb-8 font-light">
+                <p className="text-zinc-400 text-lg leading-relaxed mb-8 font-light">
                     Koniec z płaceniem za puste słowa. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena sentymentu wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 text-sm font-medium text-slate-300">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 text-sm font-medium text-zinc-400">
                     <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                        <div className="w-2 h-2 rounded-full bg-zinc-600"></div>
                         Ocena 0-5: <span className="text-white font-bold">0 PLN</span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -760,27 +765,32 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            {/* Progress Bar Visualization */}
             <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-md">
                 <div className="flex justify-between items-end mb-6">
-                    <div className="text-sm font-medium text-slate-400">Analiza sentymentu (Live)</div>
-                    <div className="text-5xl font-bold text-emerald-400 tracking-tighter">9.2<span className="text-xl text-slate-500 font-normal">/10</span></div>
+                    <div className="text-sm font-medium text-zinc-400">Analiza sentymentu (Live)</div>
+                    <div className="text-5xl font-bold text-white tracking-tighter">9.2<span className="text-xl text-zinc-500 font-normal">/10</span></div>
                 </div>
-                <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-3">
-                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
-                    <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
-                    <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
+                
+                {/* The Bar */}
+                <div className="relative h-2 bg-zinc-800 rounded-full overflow-hidden w-full mb-3">
+                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-zinc-700 border-r-2 border-zinc-900"></div>
+                    <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-white"></div>
                 </div>
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-4">
+
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-4">
                     <span>Niezadowolony</span>
-                    <span className="text-white text-center">Próg (6.0)</span>
-                    <span className="text-emerald-400 text-right">Zachwycony</span>
+                    <span className="text-zinc-300">Próg (6.0)</span>
+                    <span className="text-white">Zachwycony</span>
                 </div>
+
                 <div className="mt-8 bg-emerald-500/10 rounded-2xl p-5 border border-emerald-500/20 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-sm">✓</div>
                         <div>
                             <div className="text-sm font-bold text-white">Sukces!</div>
-                            <div className="text-xs text-slate-400">Naliczono opłatę.</div>
+                            <div className="text-xs text-zinc-400">Naliczono opłatę.</div>
                         </div>
                     </div>
                     <div className="text-emerald-400 font-mono font-bold text-lg">2.00 PLN</div>
