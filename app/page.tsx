@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// --- STYLES FOR ANIMATIONS ---
+// --- STYLES FOR ANIMATIONS & GLASSMORPHISM ---
 const styles = `
   @keyframes marquee {
     0% { transform: translateX(0); }
@@ -25,22 +25,29 @@ const styles = `
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #e4e4e7; /* zinc-200 */
+    background-color: #f4f4f5; /* zinc-100 */
     border-radius: 20px;
   }
+  /* Ulepszony Glassmorphism (Apple Style) */
   .glass-panel {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
   }
   .glass-card-dark {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(9, 9, 11, 0.7); /* zinc-950 */
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  /* Delikatny gradient w tle Hero */
+  .hero-gradient {
+    background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
   }
 `;
 
-// --- MOCK DATA ---
+// --- MOCK DATA (TREŚĆ BEZ ZMIAN) ---
 const conversations = [
   {
     id: 1,
@@ -49,7 +56,7 @@ const conversations = [
     lastMessage: 'Wo ist meine Bestellung?',
     lang: 'DE',
     source: 'Messenger', 
-    avatarColor: 'bg-indigo-100 text-indigo-600',
+    avatarColor: 'bg-indigo-100 text-indigo-600', // Zachowane zgodnie z prośbą
     messages: [
       {
         id: 1,
@@ -74,7 +81,7 @@ const conversations = [
     lastMessage: 'Produit endommagé...',
     lang: 'FR',
     source: 'Email',
-    avatarColor: 'bg-emerald-100 text-emerald-600',
+    avatarColor: 'bg-emerald-100 text-emerald-600', // Zachowane
     messages: [
       {
         id: 1,
@@ -106,7 +113,7 @@ const conversations = [
     lastMessage: 'Avete questo in rosso?',
     lang: 'IT',
     source: 'WhatsApp',
-    avatarColor: 'bg-rose-100 text-rose-600',
+    avatarColor: 'bg-rose-100 text-rose-600', // Zachowane
     messages: [
       {
         id: 1,
@@ -121,7 +128,6 @@ const conversations = [
 
 // --- COMPONENTS ---
 
-// Komponent Licznika (Market Unlock)
 const MarketCounter = () => {
     const [baseCount, setBaseCount] = useState(38000000); 
     const [activeCountries, setActiveCountries] = useState<string[]>(['pl']);
@@ -140,9 +146,9 @@ const MarketCounter = () => {
 
     return (
         <div className="w-full space-y-6 flex flex-col h-full">
-            <div className="text-center pt-2 pb-4 border-b border-slate-100 shrink-0">
-                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
-                <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tabular-nums transition-all duration-300 tracking-tight">
+            <div className="text-center pt-2 pb-4 border-b border-zinc-100 shrink-0">
+                <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest mb-1">Całkowity potencjał rynku</p>
+                <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-600 tabular-nums transition-all duration-300 tracking-tight">
                     {formattedCount}
                 </div>
                 <div className="text-xs font-medium text-emerald-600 mt-1 flex items-center justify-center gap-1">
@@ -187,19 +193,18 @@ const CountryToggle = ({ flag, name, sub, active, onClick, locked = false }: { f
         className={`flex items-center justify-between py-2 px-1 transition-all cursor-pointer group ${locked ? 'opacity-70 cursor-default' : ''}`}
     >
         <div className="flex items-center gap-4">
-            <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{flag}</span>
+            <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform grayscale hover:grayscale-0">{flag}</span>
             <div>
-                <div className={`text-sm font-bold ${active ? 'text-slate-900' : 'text-slate-500'}`}>{name}</div>
-                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-slate-400' : 'text-slate-300'}`}>{sub}</div>
+                <div className={`text-sm font-bold ${active ? 'text-zinc-900' : 'text-zinc-400'}`}>{name}</div>
+                <div className={`text-[10px] font-medium transition-colors ${active ? 'text-zinc-500' : 'text-zinc-300'}`}>{sub}</div>
             </div>
         </div>
-        <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-slate-900' : 'bg-slate-200'}`}>
+        <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${active ? 'bg-zinc-900' : 'bg-zinc-200'}`}>
             <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${active ? 'left-[22px]' : 'left-0.5'}`}></div>
         </div>
     </div>
 );
 
-// Komponent Kroku Growth (Monochromatyczny - zgodnie z życzeniem)
 const GrowthStep = ({ number, title, description, children, side = 'left', last = false }: { number: string, title: string, description: string, children: React.ReactNode, side?: 'left' | 'right', last?: boolean }) => {
     const [isVisible, setIsVisible] = useState(false);
     const domRef = useRef<HTMLDivElement>(null);
@@ -218,13 +223,13 @@ const GrowthStep = ({ number, title, description, children, side = 'left', last 
         <div ref={domRef} className={`relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-32 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-zinc-300 z-10 items-center justify-center ring-4 ring-white">
             </div>
-            {/* Linia - bardziej widoczna */}
-            <div className={`hidden md:block absolute top-1/2 -z-0 h-0.5 border-t-2 border-dashed border-zinc-300 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
+            {/* Linia */}
+            <div className={`hidden md:block absolute top-1/2 -z-0 h-px border-t border-dashed border-zinc-300 w-1/2 ${side === 'left' ? 'left-1/2' : 'right-1/2'}`}></div>
             
             {/* TEKST */}
             <div className={`w-full md:w-1/2 flex flex-col justify-center relative z-10 order-1 ${side === 'left' ? 'md:items-end md:text-right md:pr-24 md:order-1' : 'md:items-start md:text-left md:pl-24 md:order-2'}`}>
                 <div>
-                    <div className="inline-block px-3 py-1 bg-zinc-100 text-zinc-600 rounded-full text-[10px] font-bold mb-4 tracking-widest border border-zinc-200 uppercase">Krok {number}</div>
+                    <div className="inline-block px-3 py-1 bg-zinc-50 text-zinc-500 rounded-full text-[10px] font-bold mb-4 tracking-widest ring-1 ring-zinc-900/5 uppercase">Krok {number}</div>
                     <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 tracking-tight">{title}</h3>
                     <p className="text-zinc-500 text-base leading-relaxed max-w-sm">{description}</p>
                 </div>
@@ -264,24 +269,24 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex min-h-screen flex-col bg-white overflow-x-hidden font-sans text-zinc-900 selection:bg-indigo-100 selection:text-indigo-900">
+    <main className="flex min-h-screen flex-col bg-white overflow-x-hidden font-sans text-zinc-900 selection:bg-emerald-100 selection:text-emerald-900">
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       
       {/* NAVIGATION */}
-      <div className={`fixed top-0 left-0 w-full z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none transition-all duration-500 ${showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`}>
-        <nav className="pointer-events-auto w-[95%] md:w-[720px] bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-xl shadow-zinc-200/20 py-2.5 px-3 md:px-4 rounded-full flex items-center justify-between">
+      <div className={`fixed top-0 left-0 w-full z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`}>
+        <nav className="pointer-events-auto w-[95%] md:w-[720px] bg-white/70 backdrop-blur-xl ring-1 ring-black/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] py-2.5 px-3 md:px-4 rounded-full flex items-center justify-between">
             <div className="flex items-center gap-3 pl-3">
                 <a href="#" className="flex items-center gap-2 group opacity-90 hover:opacity-100 transition-opacity">
                     <img src="/logotype.png" alt="Chataptor Logo" className="h-5 md:h-6 object-contain" />
                 </a>
             </div>
-            <div className="hidden md:flex items-center gap-1 text-[13px] font-medium text-zinc-600">
+            <div className="hidden md:flex items-center gap-1 text-[13px] font-medium text-zinc-500">
                 <a href="#how-it-works" className="px-4 py-2 rounded-full hover:bg-zinc-100 hover:text-zinc-900 transition-all">Jak to działa</a>
                 <a href="#implementation" className="px-4 py-2 rounded-full hover:bg-zinc-100 hover:text-zinc-900 transition-all">Wdrożenie</a>
                 <a href="#product" className="px-4 py-2 rounded-full hover:bg-zinc-100 hover:text-zinc-900 transition-all">Funkcje</a>
             </div>
             <div className="hidden md:flex items-center gap-2 pr-1">
-                <a href="#" className="font-medium text-zinc-600 hover:text-zinc-900 transition-colors text-[13px] px-3">Zaloguj</a>
+                <a href="#" className="font-medium text-zinc-500 hover:text-zinc-900 transition-colors text-[13px] px-3">Zaloguj</a>
                 <button className="bg-zinc-900 text-white rounded-full font-medium hover:bg-black transition-all hover:scale-105 active:scale-95 px-5 py-2 text-[13px] shadow-lg shadow-zinc-900/10">Rozpocznij</button>
             </div>
             <button className="md:hidden p-2 text-zinc-600 rounded-full hover:bg-zinc-100" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -308,7 +313,7 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-white z-50 flex flex-col pt-24 px-6 gap-6 md:hidden animate-in fade-in duration-200">
+            <div className="fixed inset-0 bg-white/90 backdrop-blur-xl z-50 flex flex-col pt-24 px-6 gap-6 md:hidden animate-in fade-in duration-200">
                 <button className="absolute top-5 right-4 p-2 text-zinc-500" onClick={() => setMobileMenuOpen(false)}>
                     <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
@@ -322,11 +327,12 @@ export default function Home() {
         )}
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 md:pt-48 pb-16 md:pb-32 text-center overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-zinc-100/50 rounded-[100%] blur-[120px] -z-10 pointer-events-none"></div>
+      <section className="relative pt-36 md:pt-48 pb-16 md:pb-32 text-center overflow-hidden">
+        {/* Zmienione tło na czystsze, subtelne */}
+        <div className="absolute inset-0 hero-gradient -z-10 pointer-events-none"></div>
         
         <div className="px-4 md:px-6 max-w-5xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-zinc-200 rounded-full text-[11px] font-medium text-zinc-500 mb-8 shadow-sm hover:border-zinc-300 transition-all cursor-default mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white ring-1 ring-zinc-900/5 rounded-full text-[11px] font-medium text-zinc-500 mb-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:ring-zinc-900/10 transition-all cursor-default mx-auto">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -334,7 +340,7 @@ export default function Home() {
             Nowość: Model "Pay-per-satisfaction"
           </div>
           
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] mb-8 text-zinc-900 px-2">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-8 text-zinc-900 px-2">
             Sprzedawaj globalnie.<br className="block sm:hidden" />
             <span className="hidden sm:inline"><br /></span>
             <span className="text-zinc-400 mt-2 sm:mt-0 block sm:inline font-semibold">Obsługuj lokalnie.</span>
@@ -349,13 +355,11 @@ export default function Home() {
             <button className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-full text-[15px] font-semibold hover:bg-black transition-all hover:scale-[1.02] shadow-xl shadow-zinc-900/10 ring-4 ring-white active:scale-95">
                 Dołącz do bety
             </button>
-            <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full border border-zinc-200 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
-                <div className="relative w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white shadow-lg shrink-0 group-hover:bg-black transition-colors duration-300">
-                    <span className="absolute inset-0 rounded-full border border-white/20"></span>
+            <button className="group relative w-full sm:w-auto pl-2 pr-6 py-2 bg-white rounded-full ring-1 ring-zinc-900/5 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
+                <div className="relative w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-900 shadow-sm shrink-0 group-hover:bg-zinc-100 transition-colors duration-300">
                     <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                    <span className="absolute -inset-1 rounded-full border border-zinc-900/30 animate-[ping_2s_linear_infinite] opacity-50"></span>
                 </div>
-                <span className="text-sm font-bold text-zinc-700 group-hover:text-zinc-900 transition-colors">Zobacz demo</span>
+                <span className="text-sm font-bold text-zinc-600 group-hover:text-zinc-900 transition-colors">Zobacz demo</span>
             </button>
           </div>
           
@@ -370,8 +374,8 @@ export default function Home() {
 
       {/* UI MOCKUP */}
       <div className="w-full max-w-7xl mx-auto px-2 md:px-6 -mt-10 mb-20 md:mb-40 relative z-20">
-        <div className="bg-white rounded-2xl md:rounded-[32px] border border-slate-200 shadow-2xl shadow-indigo-500/10 overflow-hidden flex flex-col h-[80vh] md:h-[800px] ring-1 ring-zinc-900/5">
-          {/* Mockup Header - zachowujemy ten nowy, bo się podobał */}
+        <div className="bg-white rounded-2xl md:rounded-[32px] ring-1 ring-black/5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col h-[80vh] md:h-[800px]">
+          {/* Mockup Header */}
           <div className="bg-white h-12 border-b border-zinc-100 flex items-center px-4 md:px-5 gap-2 shrink-0 justify-between">
             <div className="flex gap-2 opacity-50"><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div><div className="w-2.5 h-2.5 rounded-full bg-zinc-300"></div></div>
             <div className="flex items-center gap-2 px-3 py-1 bg-zinc-50 rounded-md border border-zinc-100/50">
@@ -381,27 +385,27 @@ export default function Home() {
             <div className="w-8 md:w-10"></div>
           </div>
           
-          {/* Body Mockupu - powrót do oryginału (kolory) */}
-          <div className="flex flex-1 overflow-hidden relative bg-slate-50/30">
+          {/* Body Mockupu */}
+          <div className="flex flex-1 overflow-hidden relative bg-zinc-50/50">
             {/* Sidebar */}
-            <div className={`${activeChatId ? 'hidden md:flex' : 'flex'} w-full md:w-[320px] border-r border-slate-100 bg-white flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full`}>
-              <div className="p-4 md:p-5 flex justify-between items-center sticky top-0 bg-white z-10 border-b border-slate-50">
+            <div className={`${activeChatId ? 'hidden md:flex' : 'flex'} w-full md:w-[320px] border-r border-zinc-100 bg-white/80 backdrop-blur-xl flex-col overflow-y-auto custom-scrollbar absolute md:relative z-10 h-full`}>
+              <div className="p-4 md:p-5 flex justify-between items-center sticky top-0 bg-white/90 backdrop-blur z-10 border-b border-zinc-50">
                 <div className="text-sm font-bold text-zinc-900 tracking-tight">Wiadomości</div>
-                <div className="text-xs text-zinc-500 bg-slate-100 px-2 py-1 rounded-md font-medium">3 nowe</div>
+                <div className="text-xs text-zinc-500 bg-zinc-100 px-2 py-1 rounded-md font-medium">3 nowe</div>
               </div>
               <div className="p-2 space-y-1">
                 {conversations.map((chat) => (
-                  <button key={chat.id} onClick={() => setActiveChatId(chat.id)} className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${activeChatId === chat.id ? 'bg-indigo-50 border-indigo-100 shadow-sm z-10' : 'bg-white border-transparent hover:bg-slate-50'}`}>
-                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-600 rounded-r-full"></div>}
-                    <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-2 ring-white shadow-sm transition-colors`}>{chat.name.charAt(0)}</div>
+                  <button key={chat.id} onClick={() => setActiveChatId(chat.id)} className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group flex items-start gap-3 relative ${activeChatId === chat.id ? 'bg-zinc-100 border-zinc-200 shadow-sm z-10' : 'bg-transparent border-transparent hover:bg-zinc-50'}`}>
+                    {activeChatId === chat.id && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-zinc-900 rounded-r-full"></div>}
+                    <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-sm font-bold ${chat.avatarColor} ring-1 ring-black/5 shadow-sm transition-colors`}>{chat.name.charAt(0)}</div>
                     <div className="flex-1 min-w-0 py-0.5">
                         <div className="flex justify-between items-center mb-0.5">
-                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-indigo-900' : 'text-zinc-700'}`}>{chat.name}</span>
+                            <span className={`text-sm font-semibold truncate ${activeChatId === chat.id ? 'text-zinc-900' : 'text-zinc-600'}`}>{chat.name}</span>
                             <span className="text-[10px] text-zinc-400 ml-2 whitespace-nowrap">{chat.time}</span>
                         </div>
-                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-indigo-600/80' : 'text-zinc-400'}`}>{chat.lastMessage}</div>
-                        {/* Oryginalne badge */}
-                        <div className="mt-2 flex items-center gap-2"><span className="inline-flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-200 rounded text-[10px] font-medium text-slate-500 shadow-sm"><span className="font-bold">{chat.lang}</span><span className="text-slate-300">|</span><span className="capitalize">{chat.source}</span></span></div>
+                        <div className={`text-xs truncate ${activeChatId === chat.id ? 'text-zinc-600' : 'text-zinc-400'}`}>{chat.lastMessage}</div>
+                        {/* Oryginalne badge - zachowane */}
+                        <div className="mt-2 flex items-center gap-2"><span className="inline-flex items-center gap-1.5 px-2 py-1 bg-white border border-zinc-100 rounded text-[10px] font-medium text-zinc-500 shadow-sm"><span className="font-bold">{chat.lang}</span><span className="text-zinc-300">|</span><span className="capitalize">{chat.source}</span></span></div>
                     </div>
                   </button>
                 ))}
@@ -409,29 +413,29 @@ export default function Home() {
             </div>
 
             {/* Main Chat Area */}
-            <div className={`${activeChatId ? 'flex' : 'hidden md:flex'} flex-1 flex-col bg-slate-50/30 relative w-full h-full`}>
+            <div className={`${activeChatId ? 'flex' : 'hidden md:flex'} flex-1 flex-col bg-zinc-50/30 relative w-full h-full`}>
               {/* Chat Header */}
-              <div className="h-16 border-b border-slate-100 bg-white/80 backdrop-blur-sm flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
+              <div className="h-16 border-b border-zinc-100 bg-white/80 backdrop-blur-md flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div className="flex items-center gap-4">
                   <div className="md:hidden -ml-2 mr-2 cursor-pointer" onClick={() => setActiveChatId(0)}>
                     <svg width="24" height="24" fill="none" stroke="currentColor" className="text-zinc-400"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
                   </div>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor}`}>{activeChat.name.charAt(0)}</div>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${activeChat.avatarColor} ring-1 ring-black/5`}>{activeChat.name.charAt(0)}</div>
                   <div>
                     <div className="text-sm font-bold text-zinc-900">{activeChat.name}</div>
                     <div className="text-[11px] text-zinc-500 flex items-center gap-2">
                         <span className="flex items-center gap-1.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Online
                         </span>
-                        <span className="text-slate-300">•</span>
+                        <span className="text-zinc-300">•</span>
                         <span>Język: <strong className="uppercase">{activeChat.lang}</strong></span>
-                        <span className="text-slate-300">•</span>
+                        <span className="text-zinc-300">•</span>
                         <span className="capitalize">{activeChat.source}</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                    <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
+                    <button className="p-2 text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 rounded-lg transition-colors"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
                 </div>
               </div>
 
@@ -445,13 +449,13 @@ export default function Home() {
                     <div className={`flex flex-col max-w-[85%] md:max-w-[65%] ${msg.sender === 'agent' ? 'items-end' : 'items-start'}`}>
                       <div className={`p-4 md:p-5 rounded-2xl text-[15px] leading-relaxed shadow-sm relative group transition-all
                           ${msg.sender === 'agent' 
-                            ? 'bg-indigo-600 text-white rounded-tr-sm' 
-                            : 'bg-white text-zinc-800 border border-slate-100 rounded-tl-sm shadow-sm'
+                            ? 'bg-zinc-900 text-white rounded-tr-sm' // Zmiana z Indigo na Black (Zgodnie z życzeniem)
+                            : 'bg-white text-zinc-800 ring-1 ring-zinc-200 rounded-tl-sm shadow-sm'
                            }`}>
                         <div>{msg.text}</div>
                         {msg.translation && (
-                          <div className={`mt-3 pt-2 text-xs border-t flex items-start gap-2 ${msg.sender === 'agent' ? 'border-white/20 text-indigo-100' : 'border-slate-100 text-slate-400'}`}>
-                            <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                          <div className={`mt-3 pt-2 text-xs border-t flex items-start gap-2 ${msg.sender === 'agent' ? 'border-white/20 text-zinc-300' : 'border-zinc-100 text-zinc-400'}`}>
+                            <svg className={`w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70 ${msg.sender === 'agent' ? 'text-emerald-400' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                             <span className="italic">{msg.translation}</span>
                           </div>
                         )}
@@ -465,7 +469,7 @@ export default function Home() {
                 ))}
                 {activeChat.messages.length > 0 && activeChat.messages[activeChat.messages.length-1].sender === 'user' && (
                     <div className="flex justify-center mt-6">
-                        <button className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs font-medium px-4 py-2 rounded-full flex items-center gap-2 transition-all border border-indigo-200 shadow-sm hover:shadow-md">
+                        <button className="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-medium px-4 py-2 rounded-full flex items-center gap-2 transition-all ring-1 ring-emerald-200 shadow-sm hover:shadow-md">
                             <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             <span>Sugestia: "Wyślemy nowy produkt jutro."</span>
                         </button>
@@ -474,15 +478,15 @@ export default function Home() {
               </div>
 
               {/* Input Area */}
-              <div className="p-3 md:p-4 bg-white border-t border-slate-100">
-                <div className="flex gap-2 p-1.5 md:p-2 bg-slate-50 border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all shadow-inner">
-                  <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Napisz po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 px-2 min-w-0" />
-                  <div className="flex items-center gap-1 border-r border-slate-200 pr-2 mr-1">
-                     <button className="hover:bg-slate-200 p-1.5 rounded-lg text-slate-400 transition-colors hidden sm:block" title="Załącz plik"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg></button>
+              <div className="p-3 md:p-4 bg-white border-t border-zinc-100">
+                <div className="flex gap-2 p-1.5 md:p-2 bg-zinc-50 ring-1 ring-zinc-200 rounded-xl focus-within:ring-2 focus-within:ring-zinc-900/10 transition-all shadow-inner">
+                  <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Napisz po polsku..." className="flex-1 bg-transparent border-none outline-none text-sm text-zinc-700 placeholder:text-zinc-400 px-2 min-w-0" />
+                  <div className="flex items-center gap-1 border-r border-zinc-200 pr-2 mr-1">
+                     <button className="hover:bg-zinc-200 p-1.5 rounded-lg text-zinc-400 transition-colors hidden sm:block" title="Załącz plik"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg></button>
                   </div>
-                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-3 py-1.5 md:px-4 rounded-lg transition-all shadow-md shadow-indigo-200 active:scale-95">Wyślij</button>
+                  <button className="bg-zinc-900 hover:bg-black text-white text-sm font-semibold px-3 py-1.5 md:px-4 rounded-lg transition-all shadow-md active:scale-95">Wyślij</button>
                 </div>
-                <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-slate-400 font-medium">
+                <div className="mt-2 md:mt-3 flex items-center justify-center gap-2 text-[10px] text-zinc-400 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
                     <span>AI automatycznie przetłumaczy Twoją wiadomość na <strong className="uppercase">{activeChat.lang}</strong></span>
                 </div>
@@ -492,7 +496,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI (Monochromatyczna - zgodnie z życzeniem) --- */}
+      {/* --- SEKCJA: ŚCIEŻKA EKSPANSJI --- */}
       <section id="how-it-works" className="py-24 md:py-40 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-24 md:mb-40">
             <h2 className="text-3xl md:text-5xl font-extrabold text-zinc-900 mb-6 tracking-tight">Od lokalnego sklepu<br/>do globalnego gracza.</h2>
@@ -503,30 +507,30 @@ export default function Home() {
             <div className="md:hidden absolute left-5 top-4 bottom-4 w-px bg-zinc-100"></div>
             <div className="space-y-24 md:space-y-40 relative">
                 <GrowthStep number="1" title="Szybka instalacja" description="Instalujesz widget i panel w kilka minut. Twój obecny zespół supportu jest gotowy do działania." side="right">
-                    <div className="bg-white p-8 rounded-[32px] border border-zinc-100 shadow-2xl shadow-zinc-200/40 w-full max-w-sm ml-auto transform hover:-translate-y-2 transition-transform duration-500 relative group">
+                    <div className="glass-panel p-8 rounded-[32px] w-full max-w-sm ml-auto transform hover:-translate-y-2 transition-transform duration-500 relative group">
                         <div className="flex items-center gap-5 mb-8">
-                            <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                            <div className="w-14 h-14 rounded-2xl bg-zinc-50 ring-1 ring-black/5 flex items-center justify-center text-zinc-900 shadow-sm"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
                             <div><div className="text-base font-bold text-zinc-900">System gotowy</div><div className="text-xs text-zinc-400 font-medium mt-1">Status: <span className="text-emerald-600 font-bold">Aktywny</span></div></div>
                         </div>
-                        <div className="h-2 w-full bg-zinc-100 rounded-full overflow-hidden"><div className="h-full bg-indigo-500 w-[85%] rounded-full"></div></div>
+                        <div className="h-2 w-full bg-zinc-100 rounded-full overflow-hidden"><div className="h-full bg-zinc-900 w-[85%] rounded-full"></div></div>
                     </div>
                 </GrowthStep>
                 <GrowthStep number="2" title="Wybór rynków" description="W panelu zaznaczasz kraje, na które chcesz wejść. Tłumaczenie AI włącza się automatycznie." side="left">
-                    <div className="bg-white p-8 rounded-[32px] border border-zinc-100 shadow-2xl shadow-zinc-200/40 w-full max-w-sm mr-auto transform hover:-translate-y-2 transition-transform duration-500">
+                    <div className="glass-panel p-8 rounded-[32px] w-full max-w-sm mr-auto transform hover:-translate-y-2 transition-transform duration-500">
                         <div className="flex flex-wrap gap-2 mb-8">
-                            <span className="px-4 py-2 bg-zinc-50 rounded-lg text-sm font-semibold text-zinc-600 border border-zinc-100">Polska 🇵🇱</span>
-                            <span className="px-4 py-2 bg-amber-50 rounded-lg text-sm font-semibold text-amber-700 border border-amber-100">Niemcy 🇩🇪</span>
-                            <span className="px-4 py-2 bg-blue-50 rounded-lg text-sm font-semibold text-blue-700 border border-blue-100">Francja 🇫🇷</span>
+                            <span className="px-4 py-2 bg-zinc-50 rounded-lg text-sm font-semibold text-zinc-600 ring-1 ring-zinc-100">Polska 🇵🇱</span>
+                            <span className="px-4 py-2 bg-zinc-50 rounded-lg text-sm font-semibold text-zinc-600 ring-1 ring-zinc-100">Niemcy 🇩🇪</span>
+                            <span className="px-4 py-2 bg-zinc-50 rounded-lg text-sm font-semibold text-zinc-600 ring-1 ring-zinc-100">Francja 🇫🇷</span>
                         </div>
-                        <div className="flex justify-between items-center"><span className="text-sm font-bold text-zinc-600">Dostępność</span><span className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-md font-bold">Globalna</span></div>
+                        <div className="flex justify-between items-center"><span className="text-sm font-bold text-zinc-600">Dostępność</span><span className="text-xs text-emerald-600 bg-emerald-50 ring-1 ring-emerald-100 px-2.5 py-1 rounded-md font-bold">Globalna</span></div>
                     </div>
                 </GrowthStep>
                 <GrowthStep number="3" title="Obsługa bez barier" description="Klienci piszą w swoim języku, Ty odpisujesz po polsku. AI tłumaczy wszystko w locie." side="right">
-                    <div className="bg-white p-6 rounded-[32px] border border-zinc-200 shadow-2xl shadow-zinc-200/40 w-full max-w-sm ml-auto transform hover:-translate-y-2 transition-transform duration-500">
+                    <div className="glass-panel p-6 rounded-[32px] w-full max-w-sm ml-auto transform hover:-translate-y-2 transition-transform duration-500">
                         <div className="flex gap-4">
                              <div className="w-10 h-10 rounded-full bg-zinc-100 shrink-0 flex items-center justify-center text-base shadow-inner">🇩🇪</div>
                              <div className="flex flex-col items-start max-w-[85%]">
-                                <div className="p-5 rounded-2xl text-[15px] shadow-sm bg-white text-zinc-700 border border-zinc-100 rounded-tl-none">
+                                <div className="p-5 rounded-2xl text-[15px] shadow-sm bg-white text-zinc-700 ring-1 ring-zinc-100 rounded-tl-none">
                                     <div className="font-medium leading-relaxed">Wo ist mein Paket?</div>
                                     <div className="mt-3 pt-3 text-xs border-t border-zinc-100 text-zinc-400 flex items-start gap-2">
                                         <svg className="w-3.5 h-3.5 shrink-0 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
@@ -539,7 +543,7 @@ export default function Home() {
                     </div>
                 </GrowthStep>
                 <GrowthStep number="4" title="Wzrost przychodów" description="Klienci kupują chętniej, gdy mogą porozmawiać w swoim języku. Ty oszczędzasz na zespole, a słupki sprzedaży rosną." side="left" last={true}>
-                    <div className="bg-white p-8 rounded-[32px] border border-emerald-100 shadow-2xl shadow-emerald-500/10 w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-2 transition-transform duration-500 group">
+                    <div className="bg-white p-8 rounded-[32px] ring-1 ring-emerald-100 shadow-[0_20px_50px_rgba(16,185,129,0.15)] w-full max-w-sm mr-auto relative overflow-hidden transform hover:-translate-y-2 transition-transform duration-500 group">
                         <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
                         <div className="relative z-10">
                             <div className="text-5xl md:text-6xl font-extrabold text-emerald-500 mb-2 tracking-tighter">+40%</div>
@@ -553,41 +557,40 @@ export default function Home() {
       </section>
 
       {/* --- SEKCJA: WDROŻENIE (Poprawiony Terminal) --- */}
-      <section id="implementation" className="py-20 md:py-32 px-4 md:px-6 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+      <section id="implementation" className="py-20 md:py-32 px-4 md:px-6 bg-zinc-50/50 border-y border-zinc-100 overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10 mb-12 md:mb-16">
             <div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
-                <p className="text-slate-600 text-base md:text-lg mb-10 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.</p>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 mb-6 tracking-tight">Wdrożenie szybsze niż<br/>parzenie kawy.</h2>
+                <p className="text-zinc-500 text-base md:text-lg mb-10 leading-relaxed">Nie potrzebujesz armii programistów. Nasz widget integruje się z Twoim sklepem w <span className="text-zinc-900 font-bold bg-white px-2 py-0.5 rounded ring-1 ring-zinc-200 shadow-sm">3 minuty</span>. Po prostu wklej kod i zacznij sprzedawać globalnie.</p>
                 <div className="space-y-6 md:space-y-8">
-                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">1</div><div><h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Skopiuj snippet</h4><p className="text-slate-500 text-sm">Dostępny w Twoim panelu administratora.</p></div></div>
-                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">2</div><div><h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Wklej w &lt;head&gt;</h4><p className="text-slate-500 text-sm">Działa z każdym CMS i customowym sklepem.</p></div></div>
-                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">3</div><div><h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Wybierz języki</h4><p className="text-slate-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p></div></div>
-                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 font-bold shadow-sm group-hover:border-indigo-300 group-hover:shadow-indigo-100 transition-all">4</div><div><h4 className="font-bold text-base md:text-lg text-slate-900 mb-1">Integracja (Opcjonalne)</h4><p className="text-slate-500 text-sm">Podłącz Messengera, WhatsAppa lub e-mail.</p></div></div>
+                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">1</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Skopiuj snippet</h4><p className="text-zinc-500 text-sm">Dostępny w Twoim panelu administratora.</p></div></div>
+                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">2</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Wklej w &lt;head&gt;</h4><p className="text-zinc-500 text-sm">Działa z każdym CMS i customowym sklepem.</p></div></div>
+                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">3</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Wybierz języki</h4><p className="text-zinc-500 text-sm">Włącz niemiecki, francuski lub włoski jednym kliknięciem.</p></div></div>
+                    <div className="flex gap-4 md:gap-5 group"><div className="w-10 h-10 rounded-xl bg-white ring-1 ring-zinc-200 flex items-center justify-center text-zinc-900 font-bold shadow-sm group-hover:ring-zinc-900 transition-all">4</div><div><h4 className="font-bold text-base md:text-lg text-zinc-900 mb-1">Integracja (Opcjonalne)</h4><p className="text-zinc-500 text-sm">Podłącz Messengera, WhatsAppa lub e-mail.</p></div></div>
                 </div>
             </div>
             <div className="relative mt-4 lg:mt-0">
-                <div className="absolute -inset-2 bg-gradient-to-r from-slate-200 to-indigo-100 rounded-3xl blur-lg opacity-60"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-zinc-200 to-zinc-100 rounded-3xl blur-lg opacity-60"></div>
                 
-                {/* Fixed Terminal Window - Prawidłowy Layout dla Mobile */}
-                <div className="relative bg-white rounded-2xl border border-slate-200 shadow-xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto">
+                {/* Fixed Terminal Window - Light/Clean Theme */}
+                <div className="relative bg-[#F5F5F7] rounded-2xl ring-1 ring-black/5 shadow-2xl font-mono text-xs md:text-sm flex flex-col overflow-hidden max-w-[calc(100vw-2rem)] md:max-w-full mx-auto">
                     
-                    {/* Header Bar - Flexbox zamiast Absolute */}
-                    <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-slate-100 bg-white relative z-10">
-                        {/* Dots */}
+                    {/* Header Bar */}
+                    <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-zinc-200/50 bg-[#F5F5F7] relative z-10">
+                        {/* Dots (Standard macOS) */}
                         <div className="flex items-center gap-2 min-w-[50px]">
                             <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]"></div>
                             <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]"></div>
                         </div>
                         
-                        {/* Title - Center via Flexbox */}
-                        <div className="text-slate-400 text-xs font-semibold truncate px-2">
+                        <div className="text-zinc-400 text-xs font-semibold truncate px-2">
                             index.html
                         </div>
 
-                        {/* Connected Badge - Right Aligned */}
+                        {/* Connected Badge - Emerald (Accent) */}
                         <div className="flex items-center justify-end min-w-[50px]">
-                            <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full border border-emerald-100">
+                            <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full ring-1 ring-emerald-100/50">
                                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                                 <span className="hidden sm:inline">Connected</span>
                                 <span className="sm:hidden">Connected</span>
@@ -595,30 +598,28 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Scrollable Code Content */}
+                    {/* Scrollable Code Content - Neutral Colors */}
                     <div className="p-3 sm:p-5 md:p-8 overflow-x-auto bg-white">
-                        <div className="text-slate-600 space-y-1.5 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[10px] sm:text-xs md:text-sm">
-                            <div><span className="text-pink-600">&lt;head&gt;</span></div>
-                            <div className="pl-4 text-slate-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
-                            <div className="pl-4"><span className="text-pink-600">&lt;meta</span> <span className="text-indigo-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
+                        <div className="text-zinc-600 space-y-1.5 leading-relaxed whitespace-pre-wrap break-all md:whitespace-nowrap text-[10px] sm:text-xs md:text-sm">
+                            <div><span className="text-purple-600">&lt;head&gt;</span></div>
+                            <div className="pl-4 text-zinc-400 opacity-70">&lt;!-- Twoje meta tagi --&gt;</div>
+                            <div className="pl-4"><span className="text-purple-600">&lt;meta</span> <span className="text-zinc-600">charset</span>=<span className="text-emerald-600">"UTF-8"</span> /&gt;</div>
                             <div className="pl-4 h-4"></div>
-                            <div className="pl-4 text-slate-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
-                            <div className="pl-4 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r w-full"><span className="text-pink-600">&lt;script</span> <span className="text-indigo-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
-                            <div className="pl-8 bg-slate-50 border-l-2 border-indigo-500 py-2 pr-2 rounded-r -mt-1.5 w-full"><span className="text-indigo-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-pink-600">&gt;&lt;/script&gt;</span></div>
-                            <div><span className="text-pink-600">&lt;/head&gt;</span></div>
+                            <div className="pl-4 text-zinc-400 italic">&lt;!-- Chataptor Integration --&gt;</div>
+                            <div className="pl-4 bg-zinc-50 border-l-2 border-zinc-300 py-2 pr-2 rounded-r w-full"><span className="text-purple-600">&lt;script</span> <span className="text-zinc-600">src</span>=<span className="text-emerald-600">"https://cdn.chataptor.com/widget.js"</span></div>
+                            <div className="pl-8 bg-zinc-50 border-l-2 border-zinc-300 py-2 pr-2 rounded-r -mt-1.5 w-full"><span className="text-zinc-600">data-id</span>=<span className="text-emerald-600">"YOUR_STORE_ID"</span> <span className="text-purple-600">&gt;&lt;/script&gt;</span></div>
+                            <div><span className="text-purple-600">&lt;/head&gt;</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        {/* POWIĘKSZONE I PRZYSPIESZONE LOGOTYPY INTEGRACJI DLA MOBILE */}
+        {/* LOGOTYPY INTEGRACJI */}
         <div className="w-full relative mask-gradient mt-8 md:mt-12 overflow-hidden">
-            {/* Zmieniona klasa animacji: animate-marquee-mobile (mobile) vs animate-marquee (desktop) */}
             <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap items-center">
                 {[...logos, ...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-                    <div key={index} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center mx-3 md:mx-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        {/* Mniejsze odstępy (mx-3) na mobile, standardowe na desktop */}
+                    <div key={index} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center mx-3 md:mx-10 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
                         <img src={logo} alt="Integration" className="w-24 h-24 md:w-32 md:h-32 object-contain" />
                     </div>
                 ))}
@@ -626,56 +627,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURE BENTO GRID --- */}
+      {/* --- FEATURE BENTO GRID (BLACK & WHITE) --- */}
       <section id="product" className="py-16 md:py-28 px-4 md:px-6 max-w-7xl mx-auto w-full">
         <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Wszystko w jednym panelu.</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">Zastąp Intercom, Mailchimp i zewnętrznych tłumaczy jednym narzędziem zaprojektowanym dla nowoczesnego e-commerce.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 mb-6 tracking-tight">Wszystko w jednym panelu.</h2>
+          <p className="text-lg text-zinc-500 max-w-2xl mx-auto">Zastąp Intercom, Mailchimp i zewnętrznych tłumaczy jednym narzędziem zaprojektowanym dla nowoczesnego e-commerce.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-min">
           
-          {/* Card 1 - Translation - Mobile: flex-col, Desktop: flex-row */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-8 md:gap-10 items-center relative overflow-hidden">
+          {/* Card 1 - Translation - White & Zinc */}
+          <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 md:col-span-2 flex flex-col md:flex-row gap-8 md:gap-10 items-center relative overflow-hidden">
             
             <div className="flex-1 relative z-10 text-left">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
+              <div className="w-14 h-14 rounded-2xl bg-zinc-50 ring-1 ring-black/5 text-zinc-900 flex items-center justify-center mb-6 shadow-sm">
                 <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Real-time Translation</h3>
-              <p className="text-slate-500 text-base leading-relaxed mb-6">
+              <h3 className="text-2xl font-bold text-zinc-900 mb-3 tracking-tight">Real-time Translation</h3>
+              <p className="text-zinc-500 text-base leading-relaxed mb-6">
                  Silnik oparty na OpenAI i DeepL. Klient pisze po niemiecku, Ty widzisz to od razu po polsku. Zero opóźnień, zero nieporozumień.
               </p>
             </div>
             
-            {/* Visual - Real-time Chat Simulation */}
+            {/* Visual - Clean Mock */}
             <div className="relative w-full md:w-1/2 flex flex-col gap-6 justify-center items-center py-4">
-                <div className="relative w-full max-w-sm bg-white p-4 md:p-6 rounded-3xl">
+                <div className="relative w-full max-w-sm bg-zinc-50/50 ring-1 ring-black/5 p-4 md:p-6 rounded-3xl">
                     <div className="flex flex-col gap-4">
-                        {/* Incoming Message */}
+                        {/* Incoming */}
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">DE</div>
+                            <div className="w-8 h-8 rounded-full bg-zinc-200 flex items-center justify-center text-xs font-bold text-zinc-600">DE</div>
                             <div className="flex-1">
-                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 text-sm text-slate-800">
+                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm ring-1 ring-black/5 text-sm text-zinc-800">
                                     Wo ist mein Paket?
-                                    <div className="h-px bg-slate-100 my-2"></div>
-                                    <div className="text-indigo-600 font-medium flex items-center gap-2">
-                                        <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    <div className="h-px bg-zinc-100 my-2"></div>
+                                    <div className="text-zinc-500 font-medium flex items-center gap-2 text-xs">
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                                         Gdzie jest moja paczka?
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Outgoing Message */}
+                        {/* Outgoing - Black Bubble */}
                         <div className="flex items-start gap-3 flex-row-reverse mt-2">
-                            <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
+                            <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-xs font-bold text-white">PL</div>
                             <div className="flex-1 text-right">
-                                <div className="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-left">
+                                <div className="bg-zinc-900 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-left">
                                     Sprawdzam to...
                                     <div className="h-px bg-white/20 my-2"></div>
-                                    <div className="text-indigo-200 font-medium flex items-center gap-2">
-                                        <svg className="w-3.5 h-3.5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    <div className="text-zinc-400 font-medium flex items-center gap-2 text-xs">
+                                        <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                                         Ich überprüfe das...
                                     </div>
                                 </div>
@@ -687,10 +688,10 @@ export default function Home() {
           </div>
 
           {/* Card 2 - Market Unlock */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
+          <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 md:p-8 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 md:row-span-2 flex flex-col relative overflow-hidden">
              <div className="relative z-10 mb-4 flex-none">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Market Unlock</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
+                <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Market Unlock</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
                     Włącz nowy rynek jednym kliknięciem. Skaluj sprzedaż bez granic.
                 </p>
             </div>
@@ -698,48 +699,48 @@ export default function Home() {
             <MarketCounter />
           </div>
 
-          {/* Card 3 - Omnichannel Hub */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 md:p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          {/* Card 3 - Omnichannel Hub (Minimal) */}
+          <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 md:p-5 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
             <div className="relative z-10 mb-4">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Omnichannel</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
+                <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Omnichannel</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
                     Wszystkie kanały w jednym miejscu. Zarządzaj wiadomościami z wielu źródeł bez przełączania kart.
                 </p>
             </div>
             
             <div className="relative z-10 flex-1 space-y-2">
                 {[
-                    { name: 'Widget na stronie', color: 'bg-indigo-500' },
-                    { name: 'Email', color: 'bg-amber-500' },
-                    { name: 'WhatsApp', color: 'bg-green-500' },
-                    { name: 'Messenger', color: 'bg-blue-500' },
+                    { name: 'Widget na stronie', color: 'bg-zinc-900' }, // Zmienione na brand
+                    { name: 'Email', color: 'bg-zinc-500' },
+                    { name: 'WhatsApp', color: 'bg-emerald-500' }, // Zachowane bo to kolor brandu WA
+                    { name: 'Messenger', color: 'bg-blue-600' }, // Brand Messenger
                 ].map((item, i) => (
                     <div key={i} className="glass-panel p-2 rounded-xl flex items-center justify-between cursor-pointer transition-transform hover:scale-[1.02] hover:bg-white/80">
-                        <span className="font-bold text-slate-700 text-xs pl-2">{item.name}</span>
+                        <span className="font-bold text-zinc-700 text-xs pl-2">{item.name}</span>
                         <div className={`w-2 h-2 rounded-full ${item.color} shadow-sm mr-2`}></div>
                     </div>
                 ))}
                 <div className="text-center pt-2">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">...i wiele więcej</span>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">...i wiele więcej</span>
                 </div>
             </div>
           </div>
 
           {/* Card 4 - Marketing Automation */}
-          <div className="group bg-white border border-slate-200 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
+          <div className="group bg-white ring-1 ring-black/5 rounded-[2.5rem] p-5 hover:shadow-2xl hover:shadow-zinc-200/50 transition-all duration-500 relative overflow-hidden flex flex-col">
              <div className="relative z-10 mb-4">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Marketing</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
+                <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">Marketing</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">
                     Nasz innowacyjny kreator pop-upów i inteligentne kampanie zmienią odwiedzających w lojalnych klientów.
                 </p>
             </div>
             
-            <div className="bg-white rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden">
+            <div className="bg-zinc-50 rounded-2xl p-4 flex-1 flex flex-col justify-end relative overflow-hidden ring-1 ring-black/5">
                 <div className="flex items-end justify-between gap-2 h-20 mt-2">
                     {[30, 45, 35, 60, 50, 75, 90].map((height, i) => (
-                        <div key={i} className="w-full bg-slate-200 rounded-t-md relative group/bar hover:bg-pink-200 transition-colors" style={{ height: `${height}%` }}>
+                        <div key={i} className="w-full bg-zinc-200 rounded-t-sm relative group/bar hover:bg-emerald-200 transition-colors" style={{ height: `${height}%` }}>
                             {i === 6 && (
-                                <div className="absolute inset-0 bg-gradient-to-t from-pink-500 to-rose-500 rounded-t-md shadow-lg shadow-pink-500/30"></div>
+                                <div className="absolute inset-0 bg-zinc-900 rounded-t-sm shadow-lg"></div>
                             )}
                         </div>
                     ))}
@@ -748,25 +749,25 @@ export default function Home() {
           </div>
 
           {/* Card 5 (Dark) - Pay-per-Satisfaction */}
-          <div className="md:col-span-3 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] p-6 md:p-12 hover:shadow-2xl hover:shadow-slate-900/30 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center mt-4">
+          <div className="md:col-span-3 glass-card-dark text-white rounded-[2.5rem] p-6 md:p-12 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center mt-4">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-black/40"></div>
             
             <div className="relative z-10 flex-1 max-w-lg">
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
                         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-xs font-bold text-emerald-400 uppercase tracking-widest">
                         Rewolucyjny Model
                     </span>
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Pay-per-Satisfaction</h3>
-                <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                <h3 className="text-3xl font-bold mb-4 tracking-tight">Pay-per-Satisfaction</h3>
+                <p className="text-zinc-400 text-lg leading-relaxed mb-6">
                     Koniec z płaceniem za puste słowa. Nasz model opiera się na jakości. Płacisz tylko wtedy, gdy AI rozwiąże problem klienta, a ocena jakości wyniesie <span className="text-white font-bold">6/10</span> lub więcej.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm font-medium text-slate-300">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm font-medium text-zinc-300">
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                        <div className="w-2 h-2 rounded-full bg-zinc-600"></div>
                         Ocena 0-5: <span className="text-white font-bold">0 PLN</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -779,19 +780,19 @@ export default function Home() {
             {/* Progress Bar Visualization */}
             <div className="relative z-10 w-full md:w-1/2 bg-white/5 rounded-3xl p-6 md:p-8 border border-white/10 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-4">
-                    <div className="text-sm font-medium text-slate-400">Analiza jakości (Live)</div>
-                    <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-slate-500">/10</span></div>
+                    <div className="text-sm font-medium text-zinc-400">Analiza jakości (Live)</div>
+                    <div className="text-4xl font-bold text-emerald-400">9.2<span className="text-lg text-zinc-500">/10</span></div>
                 </div>
                 
                 {/* The Bar */}
-                <div className="relative h-4 bg-slate-700/50 rounded-full overflow-hidden w-full mb-2">
-                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-slate-600 to-slate-500/50 border-r-2 border-white/10"></div>
+                <div className="relative h-4 bg-zinc-800/50 rounded-full overflow-hidden w-full mb-2">
+                    <div className="absolute left-0 top-0 bottom-0 w-[60%] bg-gradient-to-r from-zinc-700 to-zinc-600 border-r-2 border-white/10"></div>
                     <div className="absolute left-[60%] top-0 bottom-0 w-[40%] bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
                     <div className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_white] left-[92%] z-20"></div>
                 </div>
 
-                <div className="flex justify-between text-[9px] md:text-[10px] font-bold uppercase tracking-tight md:tracking-widest text-slate-500 mt-3">
-                    <span><span className="hidden sm:inline">Niezadowolony</span><span className="sm:hidden">Niezadowolony</span> <span className="text-slate-600">(0)</span></span>
+                <div className="flex justify-between text-[9px] md:text-[10px] font-bold uppercase tracking-tight md:tracking-widest text-zinc-500 mt-3">
+                    <span><span className="hidden sm:inline">Niezadowolony</span><span className="sm:hidden">Niezadowolony</span> <span className="text-zinc-600">(0)</span></span>
                     <span className="text-white text-center"><span className="sm:hidden">Próg (6.0)</span><span className="hidden sm:inline">Próg Płatności (6.0)</span></span>
                     <span className="text-emerald-400 text-right"><span className="hidden sm:inline">Zachwycony</span><span className="sm:hidden">Zachwycony</span> (10)</span>
                 </div>
@@ -801,7 +802,7 @@ export default function Home() {
                         <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">✓</div>
                         <div>
                             <div className="text-sm font-bold text-white">Sukces!</div>
-                            <div className="text-xs text-slate-400">Naliczono opłatę za rozmowę.</div>
+                            <div className="text-xs text-zinc-400">Naliczono opłatę za rozmowę.</div>
                         </div>
                     </div>
                     <div className="text-emerald-400 font-mono font-bold">2.00 PLN</div>
